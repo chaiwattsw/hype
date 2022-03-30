@@ -4,7 +4,7 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 
-const container = document.getElementById("app");
+const container = document.getElementById("root");
 
 // Create a root.
 const root = ReactDOMClient.createRoot(container);
