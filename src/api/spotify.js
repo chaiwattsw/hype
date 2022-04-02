@@ -5,9 +5,7 @@ const scopes = ["user-read-currently-playing", "user-top-read"];
 export const authEndPoint = "https://accounts.spotify.com/authorize";
 
 export const getTokenFromURL = () => {
-  let accessToken = new URLSearchParams(window.location.hash).get(
-    "#access_token"
-  );
+  let accessToken = new URLSearchParams(window.location.hash).get("code");
 };
 
 export const register = () => {};
