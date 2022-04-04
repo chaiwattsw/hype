@@ -3,7 +3,6 @@ import React from "react";
 function Home() {
   return (
     <div className="flex justify-center items-center text-cente text-white flex-col">
-      {/* <Login /> */}
       <section>Your Favorite Song</section>
       <section>Your Facvorite Artist</section>
       <section>Song you might likes based on your top tracks</section>

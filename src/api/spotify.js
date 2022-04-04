@@ -4,16 +4,12 @@ const scopes = ["user-read-currently-playing", "user-top-read"];
 
 export const authEndPoint = "https://accounts.spotify.com/authorize";
 
-export const getTokenFromURL = () => {
-  let accessToken = new URLSearchParams(window.location.hash).get("code");
-};
+export const getCodeFromURL = new URLSearchParams(window.location.search).get(
+  "code"
+);
 
-export const register = () => {};
+export const login = () => {};
 
-export const logout = () => {
-  window.localStorage.removeItem("spotify_access_token");
-};
+export const logout = () => {};
 
-export const loginURL = `${authEndPoint}?client_id=${clientID}&redirect_uri=${redirectURI}&scope=${scopes.join(
-  "%20"
-)}&response_type=token`;
+export const loginURL = `https://accounts.spotify.com/authorize?client_id=${clientID}&response_type=code&redirect_uri=${redirectURI}&scope=streaming%20user-read-email%20user-read-private%20user-library-read%20user-library-modify%20user-read-playback-state%20user-modify-playback-state`;
