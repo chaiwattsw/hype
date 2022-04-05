@@ -1,13 +1,19 @@
 import React from "react";
-import { Outlet } from "react-router-dom";
-import useAuth from "../../hooks/useAuth";
+import { Navigate, Outlet, useLocation } from "react-router-dom";
+import { useAuth } from "../../hooks/useAuth";
 import { getCodeFromURL } from "../../api/spotify";
-import Login from "../Login";
 
 const ProtectedRoutes = () => {
-  const auth = useAuth(getCodeFromURL);
-  console.log(auth);
-  return auth ? <Outlet /> : <Login />;
+  const { state } = useAuth();
+  const location = useLocation();
+
+  console.log(state);
+
+  return state?.accessToken ? (
+    <Outlet />
+  ) : (
+    <Navigate to="/login" state={{ from: location }} replace />
+  );
 };
 
 export default ProtectedRoutes;

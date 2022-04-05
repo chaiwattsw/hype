@@ -3,6 +3,7 @@ import * as ReactDOMClient from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
 import "./index.css";
 import App from "./App";
+import { AuthProvider } from "./hooks/useAuth";
 import reportWebVitals from "./reportWebVitals";
 
 const container = document.getElementById("root");
@@ -13,7 +14,9 @@ const root = ReactDOMClient.createRoot(container);
 // Initial render: Render an element to the root.
 root.render(
   <BrowserRouter>
-    <App />
+    <AuthProvider>
+      <App />
+    </AuthProvider>
   </BrowserRouter>
 );
 

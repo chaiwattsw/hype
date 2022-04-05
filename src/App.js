@@ -7,7 +7,7 @@ import ProtectedRoutes from "./components/ProtectedRoutes";
 function App() {
   return (
     <Routes>
-      <Route path={"login"} element={<Login />} />
+      <Route path="login" element={<Login />} />
       <Route element={<ProtectedRoutes />}>
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
