@@ -1,15 +1,27 @@
-const redirectURI = "http://localhost:3000/";
+import axios from "axios";
+
+const redirectURI = "http://localhost:3000";
 const clientID = "db3a0997982646619d04c0837edfe658";
-const scopes = ["user-read-currently-playing", "user-top-read"];
+// const scopes = ["user-read-currently-playing", "user-top-read"];
 
 export const authEndPoint = "https://accounts.spotify.com/authorize";
 
-export const getCodeFromURL = new URLSearchParams(window.location.search).get(
+export const codeFromURL = new URLSearchParams(window.location.search).get(
   "code"
 );
 
-export const login = () => {};
+export const loginURL = `https://accounts.spotify.com/authorize?client_id=${clientID}&response_type=code&redirect_uri=${redirectURI}&scope=streaming%20user-read-email%20user-read-private%20user-library-read%20user-library-modify%20user-read-playback-state%20user-modify-playback-state%20user-top-read`;
 
-export const logout = () => {};
-
-export const loginURL = `https://accounts.spotify.com/authorize?client_id=${clientID}&response_type=code&redirect_uri=${redirectURI}&scope=streaming%20user-read-email%20user-read-private%20user-library-read%20user-library-modify%20user-read-playback-state%20user-modify-playback-state`;
+export const getUserTopItems = async (type, time_range, token, limit) => {
+  const result = await axios.get(
+    `https://api.spotify.com/v1/me/top/${type}?time_range=${time_range}&limit=${limit}`,
+    {
+      headers: {
+        Accept: "application/json",
+        Authorization: "Bearer " + token,
+        "Content-Type": "application/json",
+      },
+    }
+  );
+  return result;
+};

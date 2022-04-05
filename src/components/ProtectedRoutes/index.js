@@ -1,7 +1,7 @@
 import React from "react";
 import { Navigate, Outlet, useLocation } from "react-router-dom";
 import { useAuth } from "../../hooks/useAuth";
-import { getCodeFromURL } from "../../api/spotify";
+import Login from "../Login";
 
 const ProtectedRoutes = () => {
   const { state } = useAuth();
@@ -9,11 +9,7 @@ const ProtectedRoutes = () => {
 
   console.log(state);
 
-  return state?.accessToken ? (
-    <Outlet />
-  ) : (
-    <Navigate to="/login" state={{ from: location }} replace />
-  );
+  return state?.accessToken ? <Outlet /> : <Login />;
 };
 
 export default ProtectedRoutes;

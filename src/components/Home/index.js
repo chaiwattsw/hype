@@ -1,19 +1,25 @@
-import React from "react";
-import axios from "axios";
+import React, { useEffect } from "react";
 import { useAuth } from "../../hooks/useAuth";
 
 function Home() {
-  const getUserTopTracks = () => {
-    const topTracks = axios.get("https://api.spotify.com/v1/me/top/tracks", {
-      params: { time_range: "long_terms" },
-      headers: {
-        Accept: "application/json",
-        Authorization: "Bearer " + "token",
-        "Content-Type": "application/json",
-      },
-    });
-    console.log(topTracks);
-  };
+  // const {
+  //   state: { accessToken },
+  // } = useAuth();
+  // const getUserTopTracks = () => {
+  //   axios
+  //     .get("https://api.spotify.com/v1/me/top/tracks?time_range=long_term", {
+  //       headers: {
+  //         Accept: "application/json",
+  //         Authorization: "Bearer " + accessToken,
+  //         "Content-Type": "application/json",
+  //       },
+  //     })
+  //     .then((res) => console.log(res));
+  // };
+  // useEffect(() => {
+  //   getUserTopTracks();
+  // }, []);
+
   return (
     <div className="flex justify-center items-center text-cente text-white flex-col">
       <section>Your Favorite Song</section>

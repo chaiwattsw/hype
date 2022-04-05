@@ -1,5 +1,4 @@
-import { useReducer, useEffect, useContext, createContext } from "react";
-import axios from "axios";
+import { useReducer, useContext, createContext } from "react";
 
 const initialState = {
   accessToken: "",
