@@ -11,22 +11,21 @@ function Home() {
   console.log(topTracks);
 
   useEffect(() => {
-    getUserTopItems("tracks", "long_term", 5, accessToken).then((items) =>
+    getUserTopItems("tracks", "long_term", 10, accessToken).then((items) =>
       setTopTracks(items)
     );
   }, []);
 
   return (
-    <div className="flex justify-center items-center text-center text-white flex-col">
-      <section>
-        <TopTracks data={topTracks} />
-      </section>
-      <section>Your Facvorite Artist</section>
+    <div className="w-full flex justify-center items-center text-center text-white flex-col">
+      <TopTracks data={topTracks} />
+
+      {/* <section>Your Favorite Artist</section>
       <section>Song you might likes based on your top tracks</section>
       <section>Palette</section>
       <section>Your festival lineup</section>
       <section>generate image</section>
-      <section>song player</section>
+      <section>song player</section> */}
     </div>
   );
 }
