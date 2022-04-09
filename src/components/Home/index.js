@@ -1,28 +1,26 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useAuth } from "../../hooks/useAuth";
+import { getUserTopItems } from "../../api/spotify";
+import TopTracks from "../TopTracks";
 
 function Home() {
-  // const {
-  //   state: { accessToken },
-  // } = useAuth();
-  // const getUserTopTracks = () => {
-  //   axios
-  //     .get("https://api.spotify.com/v1/me/top/tracks?time_range=long_term", {
-  //       headers: {
-  //         Accept: "application/json",
-  //         Authorization: "Bearer " + accessToken,
-  //         "Content-Type": "application/json",
-  //       },
-  //     })
-  //     .then((res) => console.log(res));
-  // };
-  // useEffect(() => {
-  //   getUserTopTracks();
-  // }, []);
+  const {
+    state: { accessToken },
+  } = useAuth();
+  const [topTracks, setTopTracks] = useState([]);
+  console.log(topTracks);
+
+  useEffect(() => {
+    getUserTopItems("tracks", "long_term", 5, accessToken).then((items) =>
+      setTopTracks(items)
+    );
+  }, []);
 
   return (
-    <div className="flex justify-center items-center text-cente text-white flex-col">
-      <section>Your Favorite Song</section>
+    <div className="flex justify-center items-center text-center text-white flex-col">
+      <section>
+        <TopTracks data={topTracks} />
+      </section>
       <section>Your Facvorite Artist</section>
       <section>Song you might likes based on your top tracks</section>
       <section>Palette</section>
