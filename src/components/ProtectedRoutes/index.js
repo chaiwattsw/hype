@@ -5,7 +5,6 @@ import Login from "../Login";
 
 const ProtectedRoutes = () => {
   const { state } = useAuth();
-  console.log(state);
 
   return state?.accessToken ? <Outlet /> : <Login />;
 };
