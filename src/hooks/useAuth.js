@@ -38,24 +38,3 @@ export const AuthProvider = ({ children }) => {
     </AuthContext.Provider>
   );
 };
-
-// export default function useAuth(code) {
-//   const [state, dispatch] = useReducer(reducer, initialState);
-
-//   useEffect(() => {
-//     if (code) {
-//       axios
-//         .post("http://localhost:3001/login", { code })
-//         .then((res) => {
-//           dispatch({ type: "LOG_IN", payload: res.data });
-//           window.history.pushState({}, null, "/");
-//         })
-//         .catch((err) => {
-//           console.error(err);
-//           window.location.reload();
-//         });
-//     }
-//   }, [code]);
-
-//   return state;
-// }

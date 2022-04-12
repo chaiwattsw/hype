@@ -1,10 +1,11 @@
 import TopTracks from "../TopTracks";
+import TopArtists from "../TopArtists";
 
 function Home() {
   return (
     <div className="w-full flex justify-center items-center text-center text-white flex-col">
       <TopTracks duration="long_term" limit="10" />
-
+      <TopArtists duration="long_term" limit="10" />
       {/* FEATURE
 SONG RECOMMENDATION */}
 
