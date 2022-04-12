@@ -27,14 +27,15 @@ const TopTracks = ({ duration, limit }) => {
                 <img
                   src={item.album.images[1].url}
                   alt={item.name}
-                  className="rounded-md h-16 w-16 mr-4"
+                  className="h-16 w-16 mr-4"
                 />
-                <span className="text-left flex">
-                  <span className="font-bold text-white mr-4">{item.name}</span>
-                  <span className="font-semibold text-gray-400">
+                <div className="block text-left">
+                  <p className="font-bold text-white mr-4">{item.name}</p>
+                  <p className="font-semibold text-gray-400">
                     {item.artists[0].name}
-                  </span>
-                </span>
+                    {item.artists[1]?.name && `, ${item.artists[1].name}`}
+                  </p>
+                </div>
               </div>
             ))}
           </div>

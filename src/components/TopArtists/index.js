@@ -27,7 +27,7 @@ const TopArtists = ({ duration, limit }) => {
                 <img
                   src={item.images[1].url}
                   alt={item.name}
-                  className="rounded-md h-16 w-16 mr-4"
+                  className="rounded-full h-16 w-16 mr-4"
                 />
                 <span className="text-left flex">
                   <span className="font-bold text-white mr-4">{item.name}</span>
