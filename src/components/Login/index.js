@@ -7,6 +7,8 @@ const Login = () => {
   const { dispatch } = useAuth();
   const code = codeFromURL;
 
+  console.log(code);
+
   useEffect(() => {
     if (code) {
       axios
@@ -19,7 +21,7 @@ const Login = () => {
           console.error(err);
         });
     }
-  }, []);
+  }, [code]);
 
   return (
     <div className="bg-black flex flex-col justify-center items-center h-screen">

@@ -3,7 +3,7 @@ import React from "react";
 const TopItemsSkeleton = () => {
   return (
     <div className="w-full flex gap-6 flex-col">
-      {[...Array(10)].map((item, idx) => (
+      {[...Array(10)].map((_, idx) => (
         <div key={idx} className="animate-pulse flex items-center gap-6 w-1/2">
           <div className="bg-slate-200 h-16 w-16"></div>
           <div className="flex-1 space-y-6 py-1">

@@ -6,7 +6,11 @@ import Login from "../Login";
 const ProtectedRoutes = () => {
   const { state } = useAuth();
 
-  return state?.accessToken ? <Outlet /> : <Login />;
+  if (!state?.accessToken) {
+    return <Login />;
+  }
+
+  return <Outlet />;
 };
 
 export default ProtectedRoutes;
