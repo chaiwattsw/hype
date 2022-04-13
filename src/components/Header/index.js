@@ -7,7 +7,7 @@ function Header() {
       <h3 className="text-3xl font-bold">HYPE.</h3>
       <div className="flex-row justify-center gap-16 hidden md:flex text-lg">
         <Link to="/">Top Tracks</Link>
-        <Link to="/">Discover</Link>
+        <Link to="recommended">Discover</Link>
         <Link to="/">Palette</Link>
       </div>
     </nav>
