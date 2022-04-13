@@ -1,28 +1,7 @@
-import React, { useEffect } from "react";
-import { loginURL, codeFromURL } from "../../api/spotify";
-import { useAuth } from "../../hooks/useAuth";
-import axios from "axios";
+import React from "react";
+import { loginURL } from "../../api/spotify";
 
 const Login = () => {
-  const { dispatch } = useAuth();
-  const code = codeFromURL;
-
-  console.log(code);
-
-  useEffect(() => {
-    if (code) {
-      axios
-        .post("http://localhost:3001/login", { code })
-        .then((res) => {
-          dispatch({ type: "LOG_IN", payload: res.data });
-          window.history.pushState({}, null, "/");
-        })
-        .catch((err) => {
-          console.error(err);
-        });
-    }
-  }, [code]);
-
   return (
     <div className="bg-black flex flex-col justify-center items-center h-screen">
       <h2 className="text-3xl font-bold text-white">Welcome to Hype</h2>

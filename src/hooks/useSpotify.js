@@ -14,9 +14,7 @@ export const useSpotify = (END_POINT) => {
       })
       .then((res) => res.data);
 
-  const { data, error } = useSWR([END_POINT, state.accessToken], fetcher, {
-    suspense: true,
-  });
+  const { data, error } = useSWR([END_POINT, state.accessToken], fetcher);
 
   return { data, error };
 };

@@ -1,4 +1,4 @@
-import React, { Suspense } from "react";
+import React from "react";
 import { useSpotify } from "../../hooks/useSpotify";
 import TopItemsSkeleton from "../TopItemsSkeleton";
 import TopTrackItems from "./TopTrackItems";
@@ -20,9 +20,7 @@ const TopTracks = ({ duration, limit }) => {
   return (
     <div className="w-full">
       <TopTracksContainer>
-        <Suspense fallback={<TopItemsSkeleton />}>
-          <TopTrackItems data={data} />
-        </Suspense>
+        {data ? <TopTrackItems data={data} /> : <TopItemsSkeleton />}
       </TopTracksContainer>
     </div>
   );

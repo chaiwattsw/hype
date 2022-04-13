@@ -8,7 +8,7 @@ function Header() {
       <div className="flex-row justify-center gap-16 hidden md:flex text-lg">
         <Link to="/">Top Tracks</Link>
         <Link to="recommended">Discover</Link>
-        <Link to="/">Palette</Link>
+        {/* <Link to="/">Palette</Link> */}
       </div>
     </nav>
   );
