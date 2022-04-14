@@ -4,7 +4,7 @@ import TopArtists from "../TopArtists";
 function Home() {
   return (
     <div className="w-full flex justify-center items-center text-center text-white flex-col">
-      <TopTracks duration="long_term" limit="10" />
+      <TopTracks />
       <TopArtists duration="long_term" limit="10" />
 
       {/* FEATURE

@@ -2,7 +2,7 @@ import React from "react";
 
 const TopTrackItems = ({ data }) => {
   return (
-    <div className="flex flex-col-reverse md:flex-row m-6 md:m-0">
+    <div className="flex flex-col-reverse md:flex-row">
       <div className="w-full md:w-1/2">
         <div className="flex flex-col gap-6">
           {data.items.map((item) => (
