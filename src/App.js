@@ -1,6 +1,5 @@
 import { useEffect } from "react";
-import { Routes, Route } from "react-router-dom";
-import { codeFromURL } from "./api/spotify";
+import { Routes, Route, useSearchParams } from "react-router-dom";
 import Home from "./components/Home";
 import Layout from "./components/Layout";
 import Login from "./components/Login";
@@ -11,21 +10,23 @@ import axios from "axios";
 
 function App() {
   const { dispatch } = useAuth();
-  const code = codeFromURL;
+  const [searchParams, setSearchParams] = useSearchParams();
 
   useEffect(() => {
-    if (typeof code === "string") {
+    if (searchParams.has("code")) {
+      const code = searchParams.get("code");
       axios
         .post("http://localhost:3001/login", { code })
         .then((res) => {
           dispatch({ type: "LOG_IN", payload: res.data });
-          window.history.pushState({}, null, "/");
+          searchParams.delete("code");
+          setSearchParams(searchParams);
         })
         .catch((err) => {
           console.error(err);
         });
     }
-  }, [code]);
+  }, []);
 
   return (
     <Routes>

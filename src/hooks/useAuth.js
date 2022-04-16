@@ -1,4 +1,5 @@
 import { useReducer, useContext, createContext } from "react";
+import { useSearchParams } from "react-router-dom";
 
 const initialState = {
   accessToken: "",
@@ -20,7 +21,7 @@ const reducer = (state, action) => {
   }
 };
 
-export const AuthContext = createContext();
+const AuthContext = createContext(initialState);
 
 export const useAuth = () => {
   const context = useContext(AuthContext);
@@ -32,6 +33,7 @@ export const useAuth = () => {
 
 export const AuthProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
+
   return (
     <AuthContext.Provider value={{ state, dispatch }}>
       {children}

@@ -26,25 +26,25 @@ const TopTrackItems = ({ data }) => {
 
       <div className="w-full md:w-1/2 my-auto">
         <div className="max-w-xl my-6 relative h-80 mx-auto md:max-w-sm">
-          <div className="w-64 h-64 absolute left-0 top-10 z-10 shrink-0 md:w-36 md:h-36">
+          <div className="w-32 h-32 absolute left-0 top-10 z-10 shrink-0 md:w-36 md:h-36">
             <img
               src={data.items[1].album.images[1].url}
               alt={data.items[1].name}
-              className="rounded-lg shadow-xl w-64 h-64 md:w-36 md:h-36"
+              className="rounded-lg shadow-xl w-32 h-32 md:w-36 md:h-36"
             />
           </div>
-          <div className="w-80 h-80 absolute left-0 right-0 z-20 top-0 mx-auto shrink-0 md:w-52 md:h-52">
+          <div className="w-40 h-40 absolute left-0 right-0 z-20 top-0 mx-auto shrink-0 md:w-52 md:h-52">
             <img
               src={data.items[0].album.images[1].url}
               alt={data.items[0].name}
-              className="rounded-lg shadow-xl w-80 h-80 md:w-52 md:h-52"
+              className="rounded-lg shadow-xl w-40 h-40 md:w-52 md:h-52"
             />
           </div>
-          <div className="w-64 h-64 absolute right-0 top-10 z-10 shrink-0 md:w-36 md:h-36">
+          <div className="w-32 h-32 absolute right-0 top-10 z-10 shrink-0 md:w-36 md:h-36">
             <img
               src={data.items[2].album.images[1].url}
               alt={data.items[2].name}
-              className="rounded-lg shadow-xl w-64 h-64 md:w-36 md:h-36"
+              className="rounded-lg shadow-xl w-32 h-32 md:w-36 md:h-36"
             />
           </div>
         </div>
