@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { useSpotify } from "../../hooks/useSpotify";
+import TopItemsContainer from "../TopItemsContainer";
 import TopItemsSkeleton from "../TopItemsSkeleton";
 import TopTrackItems from "./TopTrackItems";
-import TopTracksContainer from "./TopTracksContainer";
 
 const TopTracks = () => {
   const [duration, setDuration] = useState("short_term");
@@ -11,9 +11,13 @@ const TopTracks = () => {
   );
 
   return (
-    <TopTracksContainer duration={duration} setDuration={setDuration}>
+    <TopItemsContainer
+      title="Top Tracks"
+      duration={duration}
+      setDuration={setDuration}
+    >
       {data ? <TopTrackItems data={data} /> : <TopItemsSkeleton />}
-    </TopTracksContainer>
+    </TopItemsContainer>
   );
 };
 
