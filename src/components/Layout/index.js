@@ -4,7 +4,7 @@ import Footer from "../Footer";
 
 const Layout = () => {
   return (
-    <div className="bg-black">
+    <div className="bg-gradient-to-b from-blue-700 to-gray-900">
       <Header />
       <main className="min-h-screen max-w-6xl mx-auto mb-12">
         <Outlet />

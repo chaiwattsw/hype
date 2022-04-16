@@ -1,5 +1,4 @@
 import { useReducer, useContext, createContext } from "react";
-import { useSearchParams } from "react-router-dom";
 
 const initialState = {
   accessToken: "",
