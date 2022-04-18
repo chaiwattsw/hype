@@ -17,29 +17,32 @@ const RecommendedItems = ({ data }) => {
   return (
     <div className="grid grid-cols-1 place-items-center md:place-items-start md:grid-cols-5 gap-4 mt-8">
       <audio ref={playerRef}>
-        <source src={previewURL} type="audio/mpeg" />
+        <source src={previewURL} />
       </audio>
-      {data.tracks.map((track) => (
-        <div key={track.id} className="mb-3">
-          <img
-            onClick={() => handlePlayer(track.preview_url)}
-            className="cursor-pointer"
-            src={track.album.images[1].url}
-            alt={track.name}
-          />
+      {data.tracks.map((track, idx) => {
+        return (
+          <div key={track.id} className="mb-3">
+            <img
+              onClick={() => handlePlayer(track.preview_url)}
+              className="cursor-pointer"
+              src={track.album.images[1].url}
+              alt={track.name}
+            />
 
-          <p>{track.name}</p>
-          <p>
-            {track.artists.map((artist, idx) =>
-              track.artists.length === 1 || track.artists.length - 1 === idx ? (
-                <span> {artist.name}</span>
-              ) : (
-                <span>{artist.name}, </span>
-              )
-            )}
-          </p>
-        </div>
-      ))}
+            <p>{track.name}</p>
+            <p>
+              {track.artists.map((artist, idx) =>
+                track.artists.length === 1 ||
+                track.artists.length - 1 === idx ? (
+                  <span key={artist.id}>{artist.name}</span>
+                ) : (
+                  <span key={artist.id}>{artist.name}, </span>
+                )
+              )}
+            </p>
+          </div>
+        );
+      })}
     </div>
   );
 };
