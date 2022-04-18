@@ -18,24 +18,24 @@ const TopItemsContainer = ({ title, duration, setDuration, children }) => {
         <div className="flex gap-4">
           <button
             className={`${
-              duration === "short_term" ? "text-green-500" : ""
-            } hover:text-green-500 font-medium`}
+              duration === "short_term" ? "text-white border-b-4" : ""
+            } hover:text-white text-gray-200 font-bold`}
             onClick={shortTerm}
           >
             4 WEEKS
           </button>
           <button
             className={`${
-              duration === "medium_term" ? "text-green-500" : ""
-            } hover:text-green-500 font-medium`}
+              duration === "medium_term" ? "text-white border-b-4" : ""
+            } hover:text-white text-gray-100 font-bold`}
             onClick={mediumTerm}
           >
             6 MONTHS
           </button>
           <button
             className={`${
-              duration === "long_term" ? "text-green-500" : ""
-            } hover:text-green-500 font-medium`}
+              duration === "long_term" ? "text-white border-b-4" : ""
+            } hover:text-white text-gray-200 font-bold`}
             onClick={longTerm}
           >
             ALL TIME
