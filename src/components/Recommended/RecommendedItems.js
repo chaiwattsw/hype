@@ -19,7 +19,7 @@ const RecommendedItems = ({ data }) => {
       <audio ref={playerRef}>
         <source src={previewURL} />
       </audio>
-      {data.tracks.map((track, idx) => {
+      {data.tracks.map((track) => {
         return (
           <div key={track.id} className="mb-3">
             <img
@@ -29,8 +29,8 @@ const RecommendedItems = ({ data }) => {
               alt={track.name}
             />
 
-            <p>{track.name}</p>
-            <p>
+            <p className="font-bold text-white">{track.name}</p>
+            <p className="font-semibold text-gray-200">
               {track.artists.map((artist, idx) =>
                 track.artists.length === 1 ||
                 track.artists.length - 1 === idx ? (

@@ -10,6 +10,7 @@ const Recommended = () => {
   );
   const topTrackIDs = getTopTracks?.data?.items?.map((item) => [item.id]);
   const topTrackIDsParam = topTrackIDs?.join("%2C");
+
   const { data } = useSpotify(
     `https://api.spotify.com/v1/recommendations?limit=20&seed_tracks=${topTrackIDsParam}`
   );
