@@ -4,6 +4,7 @@ import { useAuth } from "./useAuth";
 
 export const useSpotify = (END_POINT) => {
   const { state } = useAuth();
+  const undefinedEndpoint = END_POINT.includes("undefined");
 
   const fetcher = (url, accessToken) =>
     axios
@@ -14,9 +15,13 @@ export const useSpotify = (END_POINT) => {
       })
       .then((res) => res.data);
 
-  const { data, error } = useSWR([END_POINT, state.accessToken], fetcher, {
-    revalidateOnFocus: false,
-  });
+  const { data, error } = useSWR(
+    !undefinedEndpoint ? [END_POINT, state.accessToken] : null,
+    fetcher,
+    {
+      revalidateOnFocus: false,
+    }
+  );
 
   return { data, error };
 };
