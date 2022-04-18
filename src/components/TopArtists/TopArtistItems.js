@@ -13,7 +13,14 @@ const TopArtistItems = ({ data }) => {
                 className="rounded-full h-16 w-16 mr-4"
               />
               <span className="text-left flex">
-                <span className="font-bold text-white mr-4">{item.name}</span>
+                <a
+                  href={item.external_urls.spotify}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="hover:underline font-bold text-white"
+                >
+                  {item.name}
+                </a>
               </span>
             </div>
           ))}
