@@ -2,8 +2,13 @@ import React from "react";
 import { useSpotify } from "../../hooks/useSpotify";
 
 const Recommended = () => {
+  const getTopTracks = useSpotify(
+    `https://api.spotify.com/v1/me/top/tracks?time_range=short_term&limit=5`
+  );
+  const topTrackIDs = getTopTracks.data.items.map((item) => [item.id]);
+  const topTrackIDsParam = topTrackIDs.join("%2C");
   const { data, error } = useSpotify(
-    `https://api.spotify.com/v1/recommendations?limit=20&seed_tracks=01Evjih77HRm4aG3YeGcX7%2C6FXosxmFjyqoqtFmWHVQHQ%2C2MrffZEpsGbDoqTha96r5W%2C6NEdccy6N1RTqfjOHLkYk0%2C5hDIdz5FLQnf98ymlLWWU9`
+    `https://api.spotify.com/v1/recommendations?limit=20&seed_tracks=${topTrackIDsParam}`
   );
 
   if (error) {
@@ -21,14 +26,17 @@ const Recommended = () => {
         {data.tracks.map((track) => (
           <div key={track.id}>
             <img src={track.album.images[1].url} alt={track.name} />
-            {track.name} -
-            {track.artists.map((artist, idx) =>
-              track.artists.length === 1 || track.artists.length - 1 === idx ? (
-                <span> {artist.name}</span>
-              ) : (
-                <span>{artist.name}, </span>
-              )
-            )}
+            <p>{track.name}</p>
+            <p>
+              {track.artists.map((artist, idx) =>
+                track.artists.length === 1 ||
+                track.artists.length - 1 === idx ? (
+                  <span> {artist.name}</span>
+                ) : (
+                  <span>{artist.name}, </span>
+                )
+              )}
+            </p>
           </div>
         ))}
       </div>
