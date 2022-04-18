@@ -15,6 +15,12 @@ const reducer = (state, action) => {
         refreshToken: action.payload.refreshToken,
         expiresIn: action.payload.expiresIn,
       };
+    case "REFRESH":
+      return {
+        ...state,
+        accessToken: action.payload.accessToken,
+        expiresIn: action.payload.expiresIn,
+      };
     default:
       return state;
   }
