@@ -25,9 +25,9 @@ const TopTracks = () => {
       allowTaint: true,
       useCORS: true,
       width: 400,
-      height: 1488,
+      height: 800,
       windowWidth: 400,
-      windowHeight: 1488,
+      windowHeight: 800,
     });
 
     const data = canvas.toDataURL("image/png");
@@ -59,15 +59,8 @@ const TopTracks = () => {
       </button>
       {data ? <TopTrackItems data={data} /> : <TopItemsSkeleton />}
       {data ? (
-        <div
-          className={
-            !hide
-              ? "hidden w-[764px] h-[1488px]"
-              : "block w-full md:w-[400px] h-[1488px]"
-          }
-          ref={componentRef}
-        >
-          <div className="flex justify-center flex-col bg-gradient-to-tl from-pink-500 via-red-500 to-yellow-500 p-6">
+        <div className={!hide ? "hidden" : "block"} ref={componentRef}>
+          <div className="flex justify-center flex-col bg-gradient-to-tl from-pink-500 via-red-500 to-yellow-500 p-6 w-full md:w-[400px] h-[800px]">
             <div className="text-center flex flex-col mb-6">
               <h1 className="text-4xl font-bold [text-shadow:-2.5px_2.5px_0_#000]">
                 HYPE.
