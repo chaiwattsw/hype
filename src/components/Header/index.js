@@ -8,7 +8,7 @@ function Header() {
       <div className="max-w-6xl flex flex-row items-center mx-auto w-full justify-between">
         <Link
           to="/"
-          className="text-3xl font-bold [text-shadow:-2.5px_2.5px_0_#000] underline-offset-4 underline"
+          className="text-3xl font-bold [text-shadow:-2.5px_2.5px_0_#000]"
         >
           HYPE
         </Link>

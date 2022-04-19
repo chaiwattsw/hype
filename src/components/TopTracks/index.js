@@ -42,8 +42,6 @@ const TopTracks = () => {
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
-    } else {
-      window.open(data);
     }
   }, [componentRef]);
 
