@@ -7,7 +7,13 @@ const RecommendedItems = ({ data }) => {
   const handlePlayer = (url) => {
     playerRef.current.volume = 0.5;
     setPreviewURL(url);
-    if (playerRef.current) {
+    if (
+      playerRef.current &&
+      !playerRef.current.paused &&
+      playerRef.current.currentTime > 0
+    ) {
+      playerRef.current.pause();
+    } else {
       playerRef.current.pause();
       playerRef.current.load();
       playerRef.current.play();
