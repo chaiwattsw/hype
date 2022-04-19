@@ -1,19 +1,17 @@
 import React, { useState, useRef } from "react";
 
 const RecommendedItems = ({ data }) => {
-  const [previewURL, setPreviewURL] = useState(null);
+  const [previewURL, setPreviewURL] = useState();
+
   const playerRef = useRef();
 
   const handlePlayer = (url) => {
     playerRef.current.volume = 0.5;
-    setPreviewURL(url);
-    if (
-      playerRef.current &&
-      !playerRef.current.paused &&
-      playerRef.current.currentTime > 0
-    ) {
+
+    if (playerRef.current.currentSrc === url && !playerRef.current.paused) {
       playerRef.current.pause();
     } else {
+      setPreviewURL(url);
       playerRef.current.pause();
       playerRef.current.load();
       playerRef.current.play();
