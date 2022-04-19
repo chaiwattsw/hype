@@ -7,7 +7,6 @@ import TopTrackItems from "./TopTrackItems";
 
 const TopTracks = () => {
   const [duration, setDuration] = useState("short_term");
-  const [hide, setHide] = useState(true);
   const { data } = useSpotify(
     `https://api.spotify.com/v1/me/top/tracks?time_range=${duration}&limit=10`
   );
@@ -21,16 +20,19 @@ const TopTracks = () => {
 
   const generateImage = useCallback(async () => {
     if (componentRef.current === null) return;
+
     const canvas = await html2canvas(componentRef.current, {
       allowTaint: true,
       useCORS: true,
-      width: 400,
-      height: 800,
-      windowWidth: 400,
-      windowHeight: 800,
+      width: 382,
+      height: 724,
+      scale: 3,
+      onclone: (doc) => {
+        doc.getElementById("share-component").style.display = "block";
+      },
     });
 
-    const data = canvas.toDataURL("image/png");
+    const data = canvas.toDataURL("image/jpeg");
     const link = document.createElement("a");
 
     if (typeof link.download === "string") {
@@ -59,8 +61,8 @@ const TopTracks = () => {
       </button>
       {data ? <TopTrackItems data={data} /> : <TopItemsSkeleton />}
       {data ? (
-        <div className={!hide ? "hidden" : "block"} ref={componentRef}>
-          <div className="flex justify-center flex-col bg-gradient-to-tl from-pink-500 via-red-500 to-yellow-500 p-6 w-full md:w-[400px] h-[800px]">
+        <div id="share-component" className="hidden" ref={componentRef}>
+          <div className="flex justify-center flex-col bg-gradient-to-tl from-pink-500 via-red-500 to-yellow-500 p-6 w-full md:w-1/3">
             <div className="text-center flex flex-col mb-6">
               <h1 className="text-4xl font-bold [text-shadow:-2.5px_2.5px_0_#000]">
                 HYPE.
@@ -78,7 +80,7 @@ const TopTracks = () => {
                 className="flex items-center flex-row gap-6 mb-8"
               >
                 <div className="text-left">
-                  <span className="font-semibold">#{idx + 1}</span>
+                  <span className="font-semibold text-xl">#{idx + 1}</span>
                 </div>
                 <img
                   src={item.album.images[1].url}
@@ -92,21 +94,15 @@ const TopTracks = () => {
                       item.artists.length === 1 ||
                       item.artists.length - 1 === idx ? (
                         <span
-                          className="hover:underline"
                           href={artist.external_urls.spotify}
                           key={artist.id}
-                          target="_blank"
-                          rel="noreferrer"
                         >
                           {artist.name}
                         </span>
                       ) : (
                         <span
-                          className="hover:underline"
                           href={artist.external_urls.spotify}
                           key={artist.id}
-                          target="_blank"
-                          rel="noreferrer"
                         >
                           {artist.name},{" "}
                         </span>
@@ -116,7 +112,7 @@ const TopTracks = () => {
                 </div>
               </div>
             ))}
-            <h3 className="font-bold text-lg mt-4">
+            <h3 className="font-bold text-md mt-4">
               See your top tracks at Hype
             </h3>
           </div>
