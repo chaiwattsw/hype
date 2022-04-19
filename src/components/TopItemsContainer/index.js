@@ -14,7 +14,7 @@ const TopItemsContainer = ({ title, duration, setDuration, children }) => {
   return (
     <div className="w-full px-4 flex flex-col gap-6 my-8">
       <div className="flex justify-between items-center">
-        <h1 className="text-5xl font-bold text-white text-left [text-shadow:-2.5px_2.5px_0_#000]">
+        <h1 className="text-4xl md:text-5xl font-bold text-white text-left [text-shadow:-2.5px_2.5px_0_#000]">
           {title}
         </h1>
         <div className="flex gap-4">
@@ -29,7 +29,7 @@ const TopItemsContainer = ({ title, duration, setDuration, children }) => {
           <button
             className={`${
               duration === "medium_term" ? "text-white border-b-4" : ""
-            } hover:text-white text-gray-100 font-bold`}
+            } hover:text-white text-gray-200 font-bold`}
             onClick={mediumTerm}
           >
             6 MONTHS

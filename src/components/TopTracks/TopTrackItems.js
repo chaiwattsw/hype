@@ -5,8 +5,11 @@ const TopTrackItems = ({ data }) => {
     <div className="flex flex-col-reverse md:flex-row">
       <div className="w-full md:w-1/2">
         <div className="flex flex-col gap-6">
-          {data.items.map((item) => (
+          {data.items.map((item, idx) => (
             <div key={item.id} className="flex items-center">
+              <div className="w-10 text-left">
+                <span className="font-semibold">#{idx + 1}</span>
+              </div>
               <img
                 src={item.album.images[1].url}
                 alt={item.name}
