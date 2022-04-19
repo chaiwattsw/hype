@@ -1,11 +1,11 @@
 import { useEffect } from "react";
 import { Routes, Route, useSearchParams } from "react-router-dom";
+import axios from "axios";
+import { useAuth } from "./hooks/useAuth";
 import Home from "./components/Home";
 import Layout from "./components/Layout";
 import ProtectedRoutes from "./components/ProtectedRoutes";
 import Recommended from "./components/Recommended";
-import { useAuth } from "./hooks/useAuth";
-import axios from "axios";
 
 function App() {
   const { state, dispatch } = useAuth();
@@ -31,18 +31,17 @@ function App() {
 
   useEffect(() => {
     if (!state.refreshToken || !state.expiresIn) return;
-    const countDown = 3600 * 60 - 60; // 1 hour - 60 ms
+    const expires_time = 3600 * 60; // 1 hour
     let interval = setInterval(() => {
       axios
         .post("http://localhost:3001/refresh", { refreshToken })
         .then((res) => {
           dispatch({ type: "REFRESH", payload: res.data });
-          console.log(res);
         })
         .catch((err) => {
           console.error(err);
         });
-    }, countDown);
+    }, expires_time);
     return () => clearInterval(interval);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [state.accessToken]);

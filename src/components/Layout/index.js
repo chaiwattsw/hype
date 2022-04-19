@@ -6,7 +6,7 @@ const Layout = () => {
   return (
     <div className="bg-gradient-to-b from-green-500 to-gray-900">
       <Header />
-      <main className="min-h-screen max-w-6xl mx-auto mb-12">
+      <main className="relative max-w-6xl mx-auto mb-12">
         <Outlet />
       </main>
       <Footer />
