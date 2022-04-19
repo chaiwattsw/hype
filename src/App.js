@@ -31,7 +31,7 @@ function App() {
 
   useEffect(() => {
     if (!state.refreshToken || !state.expiresIn) return;
-    const expires_time = 3600 * 60; // 1 hour
+    const expires_time = 3600 * 1000; // 1 hour
     let interval = setInterval(() => {
       axios
         .post("http://localhost:3001/refresh", { refreshToken })
