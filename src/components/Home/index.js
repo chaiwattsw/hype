@@ -5,7 +5,7 @@ function Home() {
   return (
     <div className="w-full flex justify-center items-center text-center text-white flex-col">
       <TopTracks />
-      <TopArtists duration="long_term" limit="10" />
+      <TopArtists />
 
       {/* FEATURE
 SONG RECOMMENDATION */}

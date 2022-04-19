@@ -13,7 +13,6 @@ function Header() {
       <div className="flex-row justify-center gap-16 hidden md:flex text-lg">
         <Link to="/">Home</Link>
         <Link to="recommendations">Recommendations</Link>
-        {/* <Link to="/">Palette</Link> */}
       </div>
     </nav>
   );
