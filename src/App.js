@@ -51,7 +51,7 @@ function App() {
       <Route element={<ProtectedRoutes />}>
         <Route path="/" element={<Layout />}>
           <Route path="/" element={<Home />} />
-          <Route path="recommended" element={<Recommended />} />
+          <Route path="recommendations" element={<Recommended />} />
           <Route path="share" />
           <Route path="*" element={<div>Page not found</div>} />
         </Route>
