@@ -1,5 +1,5 @@
 import React from "react";
-import { loginURL } from "../../api/spotify";
+import { loginURL } from "../../constants";
 
 const Login = () => {
   return (
