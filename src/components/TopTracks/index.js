@@ -12,7 +12,7 @@ const TopTracks = () => {
   );
   const componentRef = useRef();
 
-  const duartionString = {
+  const durationString = {
     short_term: "This month",
     medium_term: "Last few months",
     long_term: "All time",
@@ -37,12 +37,13 @@ const TopTracks = () => {
 
     if (typeof link.download === "string") {
       link.href = data;
-      link.download = "hype.png";
+      link.download = `hype-top-tracks-${duration}.png`;
 
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [componentRef]);
 
   return (
@@ -68,7 +69,7 @@ const TopTracks = () => {
               <div className="mt-6">
                 <h1 className="text-3xl font-bold">Your Top Tracks</h1>
                 <h2 className="text-lg font-bold">
-                  {duartionString[duration]}
+                  {durationString[duration]}
                 </h2>
               </div>
             </div>
