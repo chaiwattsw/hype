@@ -31,7 +31,7 @@ const TopArtistItems = ({ data }) => {
       </div>
       <div className="w-full md:w-1/2 my-auto">
         <div className="max-w-xl my-6 relative h-52 md:h-80 mx-auto md:max-w-sm">
-          <div className="w-32 h-32 absolute left-0 top-10 z-10 shrink-0 md:w-36 md:h-36">
+          <div className="w-32 h-32 absolute left-5 md:left-0 top-5 md:top-10 z-10 shrink-0 md:w-36 md:h-36">
             <img
               src={data.items[1].images[1].url}
               alt={data.items[1].name}
@@ -45,7 +45,7 @@ const TopArtistItems = ({ data }) => {
               className="rounded-full w-40 h-40 shadow-2xl md:w-52 md:h-52"
             />
           </div>
-          <div className="w-32 h-32 absolute right-0 top-10 z-10 shrink-0 md:w-36 md:h-36">
+          <div className="w-32 h-32 absolute right-5 md:right-0 top-5 md:top-10 z-10 shrink-0 md:w-36 md:h-36">
             <img
               src={data.items[2].images[1].url}
               alt={data.items[2].name}
