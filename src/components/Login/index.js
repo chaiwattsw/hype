@@ -4,9 +4,9 @@ import { loginURL } from "../../api/spotify";
 const Login = () => {
   return (
     <div className="bg-gradient-to-b from-green-500 to-gray-900 flex flex-col justify-center items-center h-screen">
-      <div className="w-1/6 text-center mb-12 text-white">
-        <h2 className="text-5xl mb-12 font-bold [text-shadow:-2.5px_2.5px_0_#000]">
-          Hype
+      <div className="max-w-sm text-center mb-12 text-white">
+        <h2 className="text-8xl mb-12 font-bold [text-shadow:-5px_5px_0_#000]">
+          HYPE
         </h2>
         <p className="font-medium text-md">
           Find your top tracks/artists from Spotify and discover new song from

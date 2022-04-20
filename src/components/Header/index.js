@@ -8,7 +8,7 @@ function Header() {
       <div className="max-w-6xl flex flex-row items-center mx-auto w-full justify-between">
         <Link
           to="/"
-          className="text-3xl font-bold [text-shadow:-2.5px_2.5px_0_#000]"
+          className="text-4xl font-bold [text-shadow:-3px_3px_0_#000]"
         >
           HYPE
         </Link>
@@ -34,12 +34,16 @@ function Header() {
             toggle ? "block" : "hidden"
           } w-full md:flex md:items-center md:w-auto`}
         >
-          <ul className="pt-4 text-white text-lg font-semibold md:flex gap-8 md:justify-between md:pt-0">
+          <ul className="pt-4 text-gray-200 text-lg font-bold md:flex gap-8 md:justify-between md:pt-0">
             <li>
-              <Link to="/">Home</Link>
+              <Link to="/" className="hover:text-white">
+                Home
+              </Link>
             </li>
             <li>
-              <Link to="recommendations">Recommendations</Link>
+              <Link to="recommendations" className="hover:text-white">
+                Recommendations
+              </Link>
             </li>
           </ul>
         </div>

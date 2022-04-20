@@ -28,7 +28,7 @@ const TopTracks = () => {
       height: 724,
       scale: 3,
       onclone: (doc) => {
-        doc.getElementById("share-component").style.display = "block";
+        doc.getElementById("share-tracks").style.display = "block";
       },
     });
 
@@ -60,10 +60,10 @@ const TopTracks = () => {
       </button>
       {data ? <TopTrackItems data={data} /> : <TopItemsSkeleton />}
       {data ? (
-        <div id="share-component" className="hidden" ref={componentRef}>
+        <div id="share-tracks" className="hidden" ref={componentRef}>
           <div className="flex justify-center flex-col bg-gradient-to-tl from-pink-500 via-red-500 to-yellow-500 p-6 w-full md:w-1/3">
             <div className="text-center flex flex-col mb-6">
-              <h1 className="text-4xl font-bold [text-shadow:-2.5px_2.5px_0_#000]">
+              <h1 className="text-4xl font-bold [text-shadow:-3px_3px_0_#000]">
                 HYPE.
               </h1>
               <div className="mt-6">
