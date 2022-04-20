@@ -22,10 +22,12 @@ const ShareTopArtists = ({ data, duration }) => {
               key={item.id}
               className="flex items-center flex-row gap-6 mb-8"
             >
-              <div className="text-left">
-                <span className="font-semibold text-xl">#{idx + 1}</span>
-              </div>
+              <span className="text-left font-semibold text-xl">
+                #{idx + 1}
+              </span>
+
               <img
+                name="share-image"
                 src={item.images[1].url}
                 alt={item.name}
                 className="h-16 w-16 rounded-full"
@@ -34,9 +36,7 @@ const ShareTopArtists = ({ data, duration }) => {
               <p className="text-white text-left font-bold">{item.name}</p>
             </div>
           ))}
-          <h3 className="font-bold text-md mt-4">
-            See your top tracks at Hype
-          </h3>
+          <h3 className="font-bold text-sm">See your top artists at Hype</h3>
         </div>
       </div>
       <button

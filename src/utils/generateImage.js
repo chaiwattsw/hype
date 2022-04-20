@@ -11,6 +11,10 @@ const generateImage = async (componentRef, elementId, fileName) => {
     scale: 3,
     onclone: (doc) => {
       doc.getElementById(elementId).style.display = "block";
+      let imageElem = document.getElementsByName("share-center");
+      for (let i = 0; i < imageElem.length; i++) {
+        imageElem[i].style.marginBottom = "1rem";
+      }
     },
   });
 
@@ -25,7 +29,6 @@ const generateImage = async (componentRef, elementId, fileName) => {
     link.click();
     document.body.removeChild(link);
   }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
 };
 
 export default generateImage;
