@@ -1,7 +1,6 @@
 import React from "react";
 
 const TopItemsContainer = ({ title, duration, setDuration, children }) => {
-  console.log("render");
   const shortTerm = () => {
     setDuration("short_term");
   };
