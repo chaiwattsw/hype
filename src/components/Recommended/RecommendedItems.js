@@ -35,14 +35,7 @@ const RecommendedItems = ({ data }) => {
 
             <p className="font-bold text-white">{track.name}</p>
             <p className="font-semibold text-gray-200">
-              {track.artists.map((artist, idx) =>
-                track.artists.length === 1 ||
-                track.artists.length - 1 === idx ? (
-                  <span key={artist.id}>{artist.name}</span>
-                ) : (
-                  <span key={artist.id}>{artist.name}, </span>
-                )
-              )}
+              {track.artists.map((artist) => artist.name).join(", ")}
             </p>
           </div>
         );

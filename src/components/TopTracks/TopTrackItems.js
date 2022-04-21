@@ -21,30 +21,7 @@ const TopTrackItems = ({ data, duration }) => {
                 <div className="block text-left">
                   <p className="font-bold text-white">{item.name}</p>
                   <p className="font-semibold text-gray-200">
-                    {item.artists.map((artist, idx) =>
-                      item.artists.length === 1 ||
-                      item.artists.length - 1 === idx ? (
-                        <a
-                          className="hover:underline"
-                          href={artist.external_urls.spotify}
-                          key={artist.id}
-                          target="_blank"
-                          rel="noreferrer"
-                        >
-                          {artist.name}
-                        </a>
-                      ) : (
-                        <a
-                          className="hover:underline"
-                          href={artist.external_urls.spotify}
-                          key={artist.id}
-                          target="_blank"
-                          rel="noreferrer"
-                        >
-                          {artist.name},{" "}
-                        </a>
-                      )
-                    )}
+                    {item.artists.map((artist) => artist.name).join(", ")}
                   </p>
                 </div>
               </div>
