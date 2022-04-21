@@ -15,6 +15,13 @@ const reducer = (state, action) => {
         refreshToken: action.payload.refreshToken,
         expiresIn: action.payload.expiresIn,
       };
+    case "LOG_OUT":
+      return {
+        ...state,
+        accessToken: undefined,
+        refreshToken: undefined,
+        expiresIn: undefined,
+      };
     case "REFRESH":
       return {
         ...state,

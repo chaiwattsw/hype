@@ -1,10 +1,18 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { useAuth } from "../../hooks/useAuth";
+import { useSpotify } from "../../hooks/useSpotify";
 
 function Header() {
   const [toggle, setToggle] = useState(false);
+  const { data } = useSpotify("https://api.spotify.com/v1/me");
+  const { dispatch } = useAuth();
+
+  const handleLogOut = () => {
+    dispatch({ type: "LOG_OUT" });
+  };
   return (
-    <nav className="flex sticky top-0 z-50 flex-wrap w-full text-white py-4 px-4 text-lg bg-green-500">
+    <nav className="flex sticky top-0 z-50 flex-wrap w-full text-white py-4 text-lg bg-green-500">
       <div className="max-w-6xl flex flex-row items-center mx-auto w-full justify-between">
         <Link
           to="/"
@@ -47,6 +55,38 @@ function Header() {
             </li>
           </ul>
         </div>
+        {data && (
+          <div className="font-bold flex items-center gap-4">
+            <a href={data.external_urls.spotify}>
+              <img
+                src={data.images[0].url}
+                alt={data.display_name}
+                className="rounded-full h-14 w-14"
+              />
+            </a>
+            <a
+              className="text-gray-200 hover:text-white"
+              href={data.external_urls.spotify}
+            >
+              {data.display_name}
+            </a>
+            <svg
+              onClick={() => handleLogOut()}
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-6 w-6 cursor-pointer text-gray-200 hover:text-white"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"
+              />
+            </svg>
+          </div>
+        )}
       </div>
     </nav>
   );

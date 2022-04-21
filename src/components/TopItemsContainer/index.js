@@ -22,7 +22,7 @@ const TopItemsContainer = ({ title, duration, setDuration, children }) => {
           <button
             className={`${
               duration === "short_term" ? "text-white border-b-4" : ""
-            } hover:text-white text-gray-200 font-bold`}
+            } hover:text-white text-gray-200 font-semibold`}
             onClick={shortTerm}
           >
             4 WEEKS
@@ -30,7 +30,7 @@ const TopItemsContainer = ({ title, duration, setDuration, children }) => {
           <button
             className={`${
               duration === "medium_term" ? "text-white border-b-4" : ""
-            } hover:text-white text-gray-200 font-bold`}
+            } hover:text-white text-gray-200 font-semibold`}
             onClick={mediumTerm}
           >
             6 MONTHS
@@ -38,7 +38,7 @@ const TopItemsContainer = ({ title, duration, setDuration, children }) => {
           <button
             className={`${
               duration === "long_term" ? "text-white border-b-4" : ""
-            } hover:text-white text-gray-200 font-bold`}
+            } hover:text-white text-gray-200 font-semibold`}
             onClick={longTerm}
           >
             ALL TIME
