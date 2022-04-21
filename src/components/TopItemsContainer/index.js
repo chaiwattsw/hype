@@ -12,7 +12,7 @@ const TopItemsContainer = ({ title, duration, setDuration, children }) => {
   };
 
   return (
-    <div className="w-full px-4 md:px-0 flex flex-col gap-6 my-8">
+    <div className="w-full flex flex-col gap-6 my-8">
       <div className="flex justify-between items-end">
         <h1 className="text-4xl md:text-5xl font-bold text-white text-left [text-shadow:-3px_3px_0_#000]">
           {title}
