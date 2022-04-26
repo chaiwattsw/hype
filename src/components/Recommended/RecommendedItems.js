@@ -2,7 +2,6 @@ import React, { useState, useRef } from "react";
 
 const RecommendedItems = ({ data }) => {
   const [previewURL, setPreviewURL] = useState();
-
   const playerRef = useRef();
 
   const handlePlayer = (url) => {
@@ -12,7 +11,6 @@ const RecommendedItems = ({ data }) => {
       playerRef.current.pause();
     } else {
       setPreviewURL(url);
-      playerRef.current.pause();
       playerRef.current.load();
       playerRef.current.play();
     }

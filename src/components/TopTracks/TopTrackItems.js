@@ -28,6 +28,7 @@ const TopTrackItems = ({ data, duration }) => {
                   <div className="font-semibold text-gray-200">
                     {item.artists.map((artist, artistIdx) => (
                       <a
+                        key={artist.id}
                         target="_blank"
                         className="hover:underline"
                         href={artist.external_urls.spotify}

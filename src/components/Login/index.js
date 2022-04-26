@@ -14,7 +14,7 @@ const Login = () => {
         </p>
       </div>
       <a href={loginURL}>
-        <button className="bg-green-600 hover:bg-green-700 px-4 py-2 rounded-3xl text-white font-semibold">
+        <button className=" bg-green-600 hover:bg-green-700 px-4 py-2 rounded-3xl text-white font-semibold">
           Log in with spotify
         </button>
       </a>
