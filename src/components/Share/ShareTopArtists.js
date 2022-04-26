@@ -12,16 +12,13 @@ const ShareTopArtists = ({ data, duration }) => {
     "bg-gradient-to-b from-indigo-200 via-red-200 to-yellow-100",
   ];
 
-  const generateColor = () => {
-    const number = Math.floor(Math.random() * 5);
-    return randomBgColor[number];
-  };
-
   return (
     <>
       <div id="share-artists" className="hidden" ref={componentRef}>
         <div
-          className={`${generateColor()} flex justify-center flex-col px-6 py-2 w-full md:w-1/3`}
+          className={`${
+            randomBgColor[Math.floor(Math.random() * randomBgColor.length)]
+          } flex justify-center flex-col px-6 py-2 w-full md:w-1/3`}
         >
           <div className="text-center flex flex-col mb-6">
             <h1 className="text-4xl font-bold [text-shadow:-3px_3px_0_#000]">

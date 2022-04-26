@@ -28,15 +28,38 @@ const RecommendedItems = ({ data }) => {
           <div key={track.id} className="mb-3">
             <img
               onClick={() => handlePlayer(track.preview_url)}
-              className="cursor-pointer"
+              className="cursor-pointer w-60 h-60 md:w-full md:h-full"
               src={track.album.images[1].url}
               alt={track.name}
             />
 
-            <p className="font-bold text-white">{track.name}</p>
-            <p className="font-semibold text-gray-200">
-              {track.artists.map((artist) => artist.name).join(", ")}
-            </p>
+            <div className="mt-2">
+              <div>
+                <a
+                  target="_blank"
+                  rel="noreferrer"
+                  href={track.external_urls.spotify}
+                  className="font-bold text-white"
+                >
+                  {track.name}
+                </a>
+              </div>
+              <div>
+                {track.artists.map((artist, artistIdx) => (
+                  <a
+                    target="_blank"
+                    rel="noreferrer"
+                    className="hover:underline font-semibold text-gray-200"
+                    href={artist.external_urls.spotify}
+                  >
+                    {track.artists.length === 1 ||
+                    track.artists.length - 1 === artistIdx
+                      ? artist.name
+                      : artist.name + ", "}
+                  </a>
+                ))}
+              </div>
+            </div>
           </div>
         );
       })}

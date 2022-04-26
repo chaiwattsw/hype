@@ -19,10 +19,27 @@ const TopTrackItems = ({ data, duration }) => {
                   className="h-16 w-16 mr-4"
                 />
                 <div className="block text-left">
-                  <p className="font-bold text-white">{item.name}</p>
-                  <p className="font-semibold text-gray-200">
-                    {item.artists.map((artist) => artist.name).join(", ")}
-                  </p>
+                  <a
+                    href={item.external_urls.spotify}
+                    className="font-bold text-white hover:underline"
+                  >
+                    {item.name}
+                  </a>
+                  <div className="font-semibold text-gray-200">
+                    {item.artists.map((artist, artistIdx) => (
+                      <a
+                        target="_blank"
+                        className="hover:underline"
+                        href={artist.external_urls.spotify}
+                        rel="noreferrer"
+                      >
+                        {item.artists.length === 1 ||
+                        item.artists.length - 1 === artistIdx
+                          ? artist.name
+                          : artist.name + ", "}
+                      </a>
+                    ))}
+                  </div>
                 </div>
               </div>
             ))}

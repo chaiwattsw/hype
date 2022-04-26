@@ -9,7 +9,7 @@ const ShareTopTracks = ({ data, duration }) => {
   return (
     <>
       <div id="share-tracks" className="hidden" ref={componentRef}>
-        <div className="flex justify-center flex-col bg-gradient-to-tl from-pink-500 via-red-500 to-yellow-500 px-6 py-2 w-full md:w-1/3">
+        <div className="flex justify-center flex-col bg-gradient-to-tl from-pink-500 via-red-500 to-yellow-500 px-6 py-2 w-full">
           <div className="text-center flex flex-col">
             <h1 className="text-4xl font-bold [text-shadow:-3px_3px_0_#000]">
               HYPE

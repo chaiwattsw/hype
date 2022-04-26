@@ -7,6 +7,7 @@ const scopes = [
   "user-library-modify",
   "user-library-read",
   "user-read-recently-played",
+  "user-read-email",
 ];
 export const authEndPoint = "https://accounts.spotify.com/authorize";
 

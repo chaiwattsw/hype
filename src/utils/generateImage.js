@@ -6,14 +6,12 @@ const generateImage = async (componentRef, elementId, fileName) => {
   const canvas = await html2canvas(componentRef.current, {
     allowTaint: true,
     useCORS: true,
-    width: 382,
-    height: 724,
-    scale: 3,
+    scale: 2,
     onclone: (doc) => {
       doc.getElementById(elementId).style.display = "block";
       let imageElem = document.getElementsByName("share-center");
       for (let i = 0; i < imageElem.length; i++) {
-        imageElem[i].style.marginBottom = "1.5rem";
+        imageElem[i].style.marginBottom = "1rem";
       }
     },
   });
