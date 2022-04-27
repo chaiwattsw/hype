@@ -5,21 +5,14 @@ import { durationString } from "../../constants";
 const ShareTopArtists = ({ data, duration }) => {
   const componentRef = useRef();
 
-  const randomBgColor = [
-    "bg-gradient-to-tl from-pink-500 via-red-500 to-yellow-500",
-    "bg-gradient-to-b from-green-300 via-blue-500 to-purple-600",
-    "bg-gradient-to-b from-pink-300 via-purple-300 to-indigo-400",
-    "bg-gradient-to-b from-indigo-200 via-red-200 to-yellow-100",
-  ];
-
   return (
     <>
-      <div id="share-artists" className="hidden" ref={componentRef}>
-        <div
-          className={`${
-            randomBgColor[Math.floor(Math.random() * randomBgColor.length)]
-          } flex justify-center flex-col px-6 py-2 w-full md:w-1/3`}
-        >
+      <div
+        id="share-artists"
+        className="hidden w-[21.875rem]"
+        ref={componentRef}
+      >
+        <div className="flex justify-center flex-col px-6 py-2 w-full md:w-1/3">
           <div className="text-center flex flex-col mb-6">
             <h1 className="text-4xl font-bold [text-shadow:-3px_3px_0_#000]">
               HYPE

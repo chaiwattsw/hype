@@ -3,13 +3,11 @@ import generateImage from "../../utils/generateImage";
 import { durationString } from "../../constants";
 
 const ShareTopTracks = ({ data, duration }) => {
-  // bg-gradient-to-tl from-pink-500 via-red-500 to-yellow-500
-  // bg-gradient-to-b from-green-500 to-gray-900
   const componentRef = useRef();
   return (
     <>
-      <div id="share-tracks" className="hidden" ref={componentRef}>
-        <div className="flex justify-center flex-col bg-gradient-to-tl from-pink-500 via-red-500 to-yellow-500 px-6 py-2 w-full">
+      <div id="share-tracks" className="w-[21.875rem]" ref={componentRef}>
+        <div className="flex justify-center items-center flex-col bg-gradient-to-b from-green-500 to-gray-900 px-6 py-2">
           <div className="text-center flex flex-col">
             <h1 className="text-4xl font-bold [text-shadow:-3px_3px_0_#000]">
               HYPE
@@ -21,7 +19,7 @@ const ShareTopTracks = ({ data, duration }) => {
               </h2>
             </div>
           </div>
-          <div className="flex flex-col gap-8 my-6">
+          <div className="flex flex-col gap-8 mb-6">
             {data.items.slice(0, 5).map((item, idx) => (
               <div
                 key={item.id}
@@ -39,14 +37,21 @@ const ShareTopTracks = ({ data, duration }) => {
                 <div name="share-center" className="text-white text-left">
                   <p className="font-bold text-sm">{item.name}</p>
                   <div className="text-sm">
-                    {item.artists.map((artist) => artist.name).join(", ")}
+                    {item.artists.map((artist, artistIdx) => (
+                      <span key={artist.id}>
+                        {item.artists.length === 1 ||
+                        item.artists.length - 1 === artistIdx
+                          ? artist.name
+                          : artist.name + ", "}
+                      </span>
+                    ))}
                   </div>
                 </div>
               </div>
             ))}
           </div>
           <h3 className="font-bold text-sm mb-2">
-            See your top tracks at Hype
+            See your top tracks at HYPE
           </h3>
         </div>
       </div>

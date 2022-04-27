@@ -7,7 +7,11 @@ const RecommendedItems = ({ data }) => {
   const handlePlayer = (url) => {
     playerRef.current.volume = 0.5;
 
-    if (playerRef.current.currentSrc === url && !playerRef.current.paused) {
+    if (
+      playerRef.current.currentSrc === url &&
+      !playerRef.current.paused &&
+      playerRef.current.currentTime
+    ) {
       playerRef.current.pause();
     } else {
       setPreviewURL(url);
@@ -17,16 +21,16 @@ const RecommendedItems = ({ data }) => {
   };
 
   return (
-    <div className="grid grid-cols-1 place-items-center md:place-items-start md:grid-cols-5 gap-4 mt-8">
+    <div className="flex flex-row justify-center flex-wrap gap-8 md:gap-16 mt-8">
       <audio ref={playerRef}>
         <source src={previewURL} />
       </audio>
       {data.tracks.map((track) => {
         return (
-          <div key={track.id} className="mb-3">
+          <div key={track.id} className="basis-48">
             <img
               onClick={() => handlePlayer(track.preview_url)}
-              className="cursor-pointer w-60 h-60 md:w-full md:h-full"
+              className="cursor-pointer w-48 h-48"
               src={track.album.images[1].url}
               alt={track.name}
             />
@@ -37,7 +41,7 @@ const RecommendedItems = ({ data }) => {
                   target="_blank"
                   rel="noreferrer"
                   href={track.external_urls.spotify}
-                  className="font-bold text-white"
+                  className="font-bold text-white hover:underline"
                 >
                   {track.name}
                 </a>
@@ -45,6 +49,7 @@ const RecommendedItems = ({ data }) => {
               <div>
                 {track.artists.map((artist, artistIdx) => (
                   <a
+                    key={artist.id}
                     target="_blank"
                     rel="noreferrer"
                     className="hover:underline font-semibold text-gray-200"
