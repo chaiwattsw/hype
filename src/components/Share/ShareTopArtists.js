@@ -12,12 +12,12 @@ const ShareTopArtists = ({ data, duration }) => {
         className="hidden w-[21.875rem]"
         ref={componentRef}
       >
-        <div className="flex justify-center flex-col px-6 py-2 w-full md:w-1/3">
+        <div className="flex justify-center items-center flex-col px-6 py-2 w-full md:w-1/3 bg-gradient-to-b from-green-500 to-gray-900">
           <div className="text-center flex flex-col mb-6">
             <h1 className="text-4xl font-bold [text-shadow:-3px_3px_0_#000]">
               HYPE
             </h1>
-            <div className="my-6">
+            <div className="mt-6 mb-2">
               <h1 className="text-3xl font-bold">Your Top Artists</h1>
               <h2 className="text-lg font-bold mt-4">
                 {durationString[duration]}

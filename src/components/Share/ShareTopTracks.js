@@ -16,14 +16,14 @@ const ShareTopTracks = ({ data, duration }) => {
             <h1 className="text-4xl font-bold [text-shadow:-3px_3px_0_#000]">
               HYPE
             </h1>
-            <div className="my-6">
+            <div className="mt-6 mb-2">
               <h1 className="text-3xl font-bold">Your Top Tracks</h1>
               <h2 className="text-lg font-bold mt-4">
                 {durationString[duration]}
               </h2>
             </div>
           </div>
-          <div className="flex flex-col gap-8 mb-6">
+          <div className="flex flex-col gap-8 my-6">
             {data.items.slice(0, 5).map((item, idx) => (
               <div
                 key={item.id}
