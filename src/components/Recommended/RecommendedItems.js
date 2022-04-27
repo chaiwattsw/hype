@@ -23,7 +23,6 @@ const RecommendedItems = ({ items }) => {
   };
 
   const addSongToLibrary = (songId) => {
-    setLikedSongId([...likedSongId, songId]);
     setTrack({
       ...track,
       method: "put",
@@ -39,15 +38,15 @@ const RecommendedItems = ({ items }) => {
     });
   };
 
-  const handleLikedSong = (songId) => {
+  const handleLikedSong = async (songId) => {
     if (likedSongId.some((item) => item === songId)) {
       const removeSelectedSong = likedSongId.filter((song) => song !== songId);
-      setLikedSongId([...removeSelectedSong]);
       deleteSongFromLibrary(songId);
+      setLikedSongId([...removeSelectedSong]);
       return;
     }
-    setLikedSongId([...likedSongId, songId]);
     addSongToLibrary(songId);
+    setLikedSongId([...likedSongId, songId]);
   };
 
   return (
