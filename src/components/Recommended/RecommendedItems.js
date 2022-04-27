@@ -6,6 +6,7 @@ import { Toaster } from "react-hot-toast";
 const RecommendedItems = ({ items }) => {
   const [previewURL, setPreviewURL] = useState();
   const [track, setTrack] = useState({ method: undefined, url: undefined });
+  const [likedSongId, setLikedSongId] = useState([]);
   const { data } = useSpotify(track);
   const playerRef = useRef();
 
@@ -22,6 +23,7 @@ const RecommendedItems = ({ items }) => {
   };
 
   const addSongToLibrary = (songId) => {
+    setLikedSongId([...likedSongId, songId]);
     setTrack({
       ...track,
       method: "put",
@@ -35,6 +37,17 @@ const RecommendedItems = ({ items }) => {
       method: "delete",
       url: `https://api.spotify.com/v1/me/tracks?ids=${songId}`,
     });
+  };
+
+  const handleLikedSong = (songId) => {
+    if (likedSongId.some((item) => item === songId)) {
+      const removeSelectedSong = likedSongId.filter((song) => song !== songId);
+      setLikedSongId([...removeSelectedSong]);
+      deleteSongFromLibrary(songId);
+      return;
+    }
+    setLikedSongId([...likedSongId, songId]);
+    addSongToLibrary(songId);
   };
 
   return (
@@ -64,8 +77,12 @@ const RecommendedItems = ({ items }) => {
                   {track.name}
                 </a>
                 <HeartIcon
-                  onClick={() => addSongToLibrary(track.id)}
-                  className="w-6 h-6 shrink-0 cursor-pointer text-gray-200 hover:text-white"
+                  onClick={() => handleLikedSong(track.id)}
+                  className={`${
+                    likedSongId.some((item) => item === track.id)
+                      ? "fill-white"
+                      : ""
+                  } w-6 h-6 shrink-0 cursor-pointer text-gray-200 hover:text-white`}
                 />
               </div>
               <div>
