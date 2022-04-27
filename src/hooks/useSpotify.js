@@ -1,22 +1,27 @@
 import axios from "axios";
 import useSWR from "swr";
 import { useAuth } from "./useAuth";
+import toast from "react-hot-toast";
 
-export const useSpotify = (END_POINT) => {
+export const useSpotify = ({ method, url }) => {
   const { state } = useAuth();
-  const undefinedEndpoint = typeof END_POINT === "undefined";
 
-  const fetcher = (url, accessToken) =>
-    axios
-      .get(url, {
-        headers: {
-          Authorization: `Bearer ${accessToken}`,
-        },
-      })
-      .then((res) => res.data);
+  const fetcher = (method, url, accessToken) =>
+    axios({
+      method: method,
+      url: url,
+      headers: { Authorization: `Bearer ${accessToken}` },
+    }).then((res) => {
+      if (res.status === 200 && method === "put") {
+        toast.success("Added to your Liked Songs", {
+          position: "bottom-center",
+        });
+      }
+      return res.data;
+    });
 
   const { data, error } = useSWR(
-    !undefinedEndpoint ? [END_POINT, state.accessToken] : null,
+    url && method ? [method, url, state.accessToken] : null,
     fetcher,
     {
       revalidateOnFocus: false,

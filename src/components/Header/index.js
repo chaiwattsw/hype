@@ -6,7 +6,10 @@ import { MenuIcon, XIcon, LogoutIcon } from "@heroicons/react/outline";
 
 function Header() {
   const [toggle, setToggle] = useState(false);
-  const { data } = useSpotify("https://api.spotify.com/v1/me");
+  const { data } = useSpotify({
+    method: "get",
+    url: "https://api.spotify.com/v1/me",
+  });
   const { dispatch } = useAuth();
 
   const handleLogOut = () => {
@@ -75,8 +78,8 @@ function Header() {
           <Link to="recommendations" className="hover:text-white">
             Recommendations
           </Link>
-          <div class="py-4">
-            <div class="w-full border-t border-2 border-gray-300"></div>
+          <div className="py-4">
+            <div className="w-full border-t border-2 border-gray-300"></div>
           </div>
           <div className="flex items-center gap-4">
             {data && (

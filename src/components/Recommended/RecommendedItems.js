@@ -1,11 +1,12 @@
 import React, { useState, useRef } from "react";
 import { HeartIcon } from "@heroicons/react/outline";
 import { useSpotify } from "../../hooks/useSpotify";
+import { Toaster } from "react-hot-toast";
 
 const RecommendedItems = ({ items }) => {
   const [previewURL, setPreviewURL] = useState();
-  const [addSong, setAddSong] = useState();
-  const { data } = useSpotify(addSong);
+  const [track, setTrack] = useState({ method: undefined, url: undefined });
+  const { data } = useSpotify(track);
   const playerRef = useRef();
 
   const handlePlayer = (url) => {
@@ -20,8 +21,25 @@ const RecommendedItems = ({ items }) => {
     }
   };
 
+  const addSongToLibrary = (songId) => {
+    setTrack({
+      ...track,
+      method: "put",
+      url: `https://api.spotify.com/v1/me/tracks?ids=${songId}`,
+    });
+  };
+
+  const deleteSongFromLibrary = (songId) => {
+    setTrack({
+      ...track,
+      method: "delete",
+      url: `https://api.spotify.com/v1/me/tracks?ids=${songId}`,
+    });
+  };
+
   return (
     <div className="flex flex-row justify-center flex-wrap gap-8 md:gap-16 mt-8">
+      <Toaster />
       <audio ref={playerRef}>
         <source src={previewURL} />
       </audio>
@@ -45,7 +63,10 @@ const RecommendedItems = ({ items }) => {
                 >
                   {track.name}
                 </a>
-                <HeartIcon className="w-6 h-6 cursor-pointer text-gray-200 hover:text-white" />
+                <HeartIcon
+                  onClick={() => addSongToLibrary(track.id)}
+                  className="w-6 h-6 shrink-0 cursor-pointer text-gray-200 hover:text-white"
+                />
               </div>
               <div>
                 {track.artists.map((artist, artistIdx) => (
