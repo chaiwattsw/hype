@@ -6,7 +6,11 @@ const ShareTopTracks = ({ data, duration }) => {
   const componentRef = useRef();
   return (
     <>
-      <div id="share-tracks" className="w-[21.875rem]" ref={componentRef}>
+      <div
+        id="share-tracks"
+        className="hidden w-[21.875rem]"
+        ref={componentRef}
+      >
         <div className="flex justify-center items-center flex-col bg-gradient-to-b from-green-500 to-gray-900 px-6 py-2">
           <div className="text-center flex flex-col">
             <h1 className="text-4xl font-bold [text-shadow:-3px_3px_0_#000]">
