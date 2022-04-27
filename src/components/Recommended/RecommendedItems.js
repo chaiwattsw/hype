@@ -1,17 +1,17 @@
 import React, { useState, useRef } from "react";
+import { HeartIcon } from "@heroicons/react/outline";
+import { useSpotify } from "../../hooks/useSpotify";
 
-const RecommendedItems = ({ data }) => {
+const RecommendedItems = ({ items }) => {
   const [previewURL, setPreviewURL] = useState();
+  const [addSong, setAddSong] = useState();
+  const { data } = useSpotify(addSong);
   const playerRef = useRef();
 
   const handlePlayer = (url) => {
     playerRef.current.volume = 0.5;
 
-    if (
-      playerRef.current.currentSrc === url &&
-      !playerRef.current.paused &&
-      playerRef.current.currentTime
-    ) {
+    if (playerRef.current.currentSrc === url) {
       playerRef.current.pause();
     } else {
       setPreviewURL(url);
@@ -25,7 +25,7 @@ const RecommendedItems = ({ data }) => {
       <audio ref={playerRef}>
         <source src={previewURL} />
       </audio>
-      {data.tracks.map((track) => {
+      {items.tracks.map((track) => {
         return (
           <div key={track.id} className="basis-48">
             <img
@@ -36,7 +36,7 @@ const RecommendedItems = ({ data }) => {
             />
 
             <div className="mt-2">
-              <div>
+              <div className="flex justify-between">
                 <a
                   target="_blank"
                   rel="noreferrer"
@@ -45,6 +45,7 @@ const RecommendedItems = ({ data }) => {
                 >
                   {track.name}
                 </a>
+                <HeartIcon className="w-6 h-6 cursor-pointer text-gray-200 hover:text-white" />
               </div>
               <div>
                 {track.artists.map((artist, artistIdx) => (

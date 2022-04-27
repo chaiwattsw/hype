@@ -4,7 +4,7 @@ import { useAuth } from "./useAuth";
 
 export const useSpotify = (END_POINT) => {
   const { state } = useAuth();
-  const undefinedEndpoint = END_POINT.includes("undefined");
+  const undefinedEndpoint = typeof END_POINT === "undefined";
 
   const fetcher = (url, accessToken) =>
     axios

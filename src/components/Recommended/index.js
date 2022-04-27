@@ -17,7 +17,7 @@ const Recommended = () => {
 
   return (
     <RecommendedContainer>
-      {data ? <RecommendedItems data={data} /> : <RecommendedSkeleton />}
+      {!data ? <RecommendedItems items={data} /> : <RecommendedSkeleton />}
     </RecommendedContainer>
   );
 };
