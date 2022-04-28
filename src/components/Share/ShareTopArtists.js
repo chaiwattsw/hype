@@ -17,9 +17,9 @@ const ShareTopArtists = ({ data, duration }) => {
             <h1 className="text-4xl font-bold [text-shadow:-3px_3px_0_#000]">
               HYPE
             </h1>
-            <div className="mt-6 mb-2">
-              <h1 className="text-3xl font-bold">Your Top Artists</h1>
-              <h2 className="text-lg font-bold mt-4">
+            <div className="mt-4">
+              <h1 className="text-xl font-bold">Your Top Artists</h1>
+              <h2 className="text-lg font-semibold">
                 {durationString[duration]}
               </h2>
             </div>
@@ -47,9 +47,12 @@ const ShareTopArtists = ({ data, duration }) => {
               </div>
             ))}
           </div>
-          <h3 className="font-bold text-sm mb-2">
-            See your top artists at Hype
-          </h3>
+          <div className="mb-2">
+            <p className="text-md font-medium">See your top artists</p>
+            <h3 className="text-xl font-bold [text-shadow:-5px_5px_0_#000]">
+              HYPE
+            </h3>
+          </div>
         </div>
       </div>
       <button
@@ -60,7 +63,7 @@ const ShareTopArtists = ({ data, duration }) => {
             `hype-top-artists-${duration}`
           )
         }
-        className="bg-black px-4 py-1 rounded-2xl w-20 font-semibold"
+        className="bg-gray-900 hover:bg-gray-800 px-4 py-1 rounded-2xl w-20 font-semibold"
       >
         Share
       </button>

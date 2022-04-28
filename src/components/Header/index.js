@@ -40,7 +40,11 @@ function Header() {
 
           {data && (
             <>
-              <a href={data.external_urls.spotify}>
+              <a
+                target="_blank"
+                rel="noreferrer"
+                href={data.external_urls.spotify}
+              >
                 <img
                   src={data.images[0].url}
                   alt={data.display_name}
@@ -48,6 +52,8 @@ function Header() {
                 />
               </a>
               <a
+                target="_blank"
+                rel="noreferrer"
                 className="text-gray-200 hover:text-white"
                 href={data.external_urls.spotify}
               >
@@ -80,6 +86,9 @@ function Header() {
           </Link>
           <Link to="recommendations" className="hover:text-white">
             Recommendations
+          </Link>
+          <Link to="festival-lineup" className="hover:text-white">
+            Festival lineup
           </Link>
           <div className="py-4">
             <div className="w-full border-t border-2 border-gray-300"></div>
