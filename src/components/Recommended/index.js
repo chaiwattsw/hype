@@ -12,14 +12,14 @@ const Recommended = () => {
   const topTrackIDs = getTopTracks?.data?.items?.map((item) => [item.id]);
   const topTrackIDsParam = topTrackIDs?.join("%2C");
 
-  const { data } = useSpotify({
+  const { data, isLoading } = useSpotify({
     method: "get",
     url: `https://api.spotify.com/v1/recommendations?limit=20&seed_tracks=${topTrackIDsParam}`,
   });
 
   return (
     <RecommendedContainer>
-      {data ? <RecommendedItems items={data} /> : <RecommendedSkeleton />}
+      {!isLoading ? <RecommendedItems items={data} /> : <RecommendedSkeleton />}
     </RecommendedContainer>
   );
 };
