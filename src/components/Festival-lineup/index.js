@@ -1,6 +1,5 @@
 import React from "react";
 import { useSpotify } from "../../hooks/useSpotify";
-
 import FestivalPoster from "./festival-poster";
 import FestivalSkeleton from "./festival-skeleton";
 
