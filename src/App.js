@@ -6,6 +6,7 @@ import Home from "./components/Home";
 import Layout from "./components/Layout";
 import ProtectedRoutes from "./components/ProtectedRoutes";
 import Recommended from "./components/Recommended";
+import FestivalLineup from "./components/Festival-lineup";
 
 function App() {
   const { state, dispatch } = useAuth();
@@ -52,10 +53,10 @@ function App() {
         <Route path="/" element={<Layout />}>
           <Route path="/" element={<Home />} />
           <Route path="recommendations" element={<Recommended />} />
-          <Route path="share" />
-          <Route path="*" element={<div>Page not found</div>} />
+          <Route path="festival-lineup" element={<FestivalLineup />} />
         </Route>
       </Route>
+      <Route path="*" element={<div>Page not found</div>} />
     </Routes>
   );
 }

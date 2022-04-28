@@ -34,6 +34,9 @@ function Header() {
           <Link to="recommendations" className="hover:text-white">
             Recommendations
           </Link>
+          <Link to="festival-lineup" className="hover:text-white">
+            Festival lineup
+          </Link>
 
           {data && (
             <>

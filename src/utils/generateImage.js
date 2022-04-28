@@ -8,10 +8,12 @@ const generateImage = async (componentRef, elementId, fileName) => {
     useCORS: true,
     scale: 2,
     onclone: (doc) => {
-      doc.getElementById(elementId).style.display = "block";
-      let imageElem = document.getElementsByName("share-center");
-      for (let i = 0; i < imageElem.length; i++) {
-        imageElem[i].style.marginBottom = "1rem";
+      if (elementId === "share-tracks") {
+        doc.getElementById(elementId).style.display = "block";
+        let imageElem = document.getElementsByName("share-center");
+        for (let i = 0; i < imageElem.length; i++) {
+          imageElem[i].style.marginBottom = "1rem";
+        }
       }
     },
   });

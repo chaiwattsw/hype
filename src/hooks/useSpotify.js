@@ -35,6 +35,7 @@ export const useSpotify = ({ method, url }) => {
     fetcher,
     {
       revalidateOnFocus: false,
+      revalidateIfStale: false,
     }
   );
 
