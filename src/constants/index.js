@@ -20,3 +20,6 @@ export const durationString = {
   medium_term: "Last few months",
   long_term: "All time",
 };
+
+export const FIVE_TOP_TRACKS =
+  "https://api.spotify.com/v1/me/top/tracks?time_range=short_term&limit=5";

@@ -2,9 +2,11 @@ import React, { useState, useRef } from "react";
 import { HeartIcon } from "@heroicons/react/outline";
 import { useSpotify } from "../../hooks/useSpotify";
 import { Toaster } from "react-hot-toast";
+import useAudio from "../../hooks/useAudio";
 
 const RecommendedItems = ({ items }) => {
   const [previewURL, setPreviewURL] = useState();
+  const [, handlePlay] = useAudio(previewURL);
   const [track, setTrack] = useState({ method: undefined, url: undefined });
   const [likedSongId, setLikedSongId] = useState([]);
   const { data } = useSpotify(track);
@@ -12,14 +14,8 @@ const RecommendedItems = ({ items }) => {
 
   const handlePlayer = (url) => {
     playerRef.current.volume = 0.5;
-
-    if (playerRef.current.currentSrc === url) {
-      playerRef.current.pause();
-    } else {
-      setPreviewURL(url);
-      playerRef.current.load();
-      playerRef.current.play();
-    }
+    setPreviewURL(url);
+    handlePlay();
   };
 
   const addSongToLibrary = (songId) => {

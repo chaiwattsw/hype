@@ -1,14 +1,19 @@
 import React from "react";
 
-const RecommendedContainer = ({ children }) => {
+const RecommendedContainer = ({ children, tracks }) => {
   return (
     <div className="w-full flex flex-col my-8 text-white">
       <h1 className="text-4xl md:text-5xl font-bold text-white [text-shadow:-3px_3px_0_#000] mb-2">
         Recommendations
       </h1>
-      <p className="font-medium text-lg">
-        Based on your 5 top tracks from last month
-      </p>
+      <div>
+        <p className="font-medium text-lg">
+          Because you listened to{" "}
+          {tracks?.map((track) => (
+            <span>{track.name}, </span>
+          ))}
+        </p>
+      </div>
       {children}
     </div>
   );
