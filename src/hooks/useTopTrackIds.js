@@ -12,8 +12,10 @@ const useToptrackIds = () => {
   );
   if (data) {
     let id = data.items.map((item) => item.id);
-    return { tracks: data.items, id: id };
+    return { id: id, tracks: data.items };
   }
+
+  return { id: [], tracks: [] };
 };
 
 export default useToptrackIds;
