@@ -7,10 +7,9 @@ import TopArtistItems from "./TopArtistItems";
 const TopArtists = () => {
   const [duration, setDuration] = useState("short_term");
 
-  const { data, isLoading } = useSpotify({
-    method: "get",
-    url: `https://api.spotify.com/v1/me/top/artists?time_range=${duration}&limit=10`,
-  });
+  const { data, isLoading } = useSpotify(
+    `https://api.spotify.com/v1/me/top/artists?time_range=${duration}&limit=10`
+  );
 
   return (
     <TopItemsContainer

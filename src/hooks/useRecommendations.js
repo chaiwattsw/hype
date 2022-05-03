@@ -14,7 +14,7 @@ const useRecommendations = (id) => {
           ]
         : null,
     fetcher,
-    { revalidateOnFocus: false, revalidateIfStale: false }
+    { revalidateOnFocus: false }
   );
 
   return {

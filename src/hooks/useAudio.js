@@ -1,29 +1,52 @@
-import { useState, useEffect, useMemo } from "react";
+import { useState, useEffect, useRef } from "react";
+import toast from "react-hot-toast";
 
 const useAudio = (url) => {
   const [isPlaying, setIsPlaying] = useState(false);
-  const audio = useMemo(() => {
-    if (url) {
-      return new Audio(url);
-    }
-  }, []);
+  const audio = useRef(new Audio(url));
+  const isReady = useRef(false);
 
-  const handlePlay = () => {
+  const toggle = () => {
     setIsPlaying(!isPlaying);
   };
 
+  const play = () => audio.current.play();
+  const pause = () => audio.current.pause();
+
   useEffect(() => {
-    isPlaying ? audio?.play() : audio?.pause();
+    if (isPlaying) {
+      play();
+    } else {
+      pause();
+    }
   }, [isPlaying]);
 
   useEffect(() => {
-    audio?.addEventListener("ended", () => setIsPlaying(false));
+    audio.current.volume = 0.3;
     return () => {
-      audio?.removeEventListener("ended", () => setIsPlaying(false));
+      pause();
     };
   }, []);
 
-  return [isPlaying, handlePlay];
+  useEffect(() => {
+    pause();
+    if (url === null) {
+      toast.error("Oops! This song is unavailable for now.", {
+        position: "bottom-center",
+      });
+      setIsPlaying(false);
+      return;
+    }
+    audio.current = new Audio(url);
+    if (isReady.current) {
+      play();
+    } else {
+      // Set the isReady ref as true for the next pass
+      isReady.current = true;
+    }
+  }, [url]);
+
+  return [toggle];
 };
 
 export default useAudio;

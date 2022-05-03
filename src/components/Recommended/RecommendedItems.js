@@ -1,37 +1,44 @@
-import React, { useState, useRef } from "react";
+import React, { useState } from "react";
 import { HeartIcon } from "@heroicons/react/outline";
-import { useSpotify } from "../../hooks/useSpotify";
 import { Toaster } from "react-hot-toast";
 import useAudio from "../../hooks/useAudio";
+import toast from "react-hot-toast";
+import axios from "axios";
 
 const RecommendedItems = ({ items }) => {
   const [previewURL, setPreviewURL] = useState();
-  const [, handlePlay] = useAudio(previewURL);
-  const [track, setTrack] = useState({ method: undefined, url: undefined });
+  const [toggle] = useAudio(previewURL);
   const [likedSongId, setLikedSongId] = useState([]);
-  const { data } = useSpotify(track);
-  const playerRef = useRef();
 
   const handlePlayer = (url) => {
-    playerRef.current.volume = 0.5;
+    if (url === null) {
+      setPreviewURL(url);
+      return;
+    }
     setPreviewURL(url);
-    handlePlay();
+    toggle();
   };
 
-  const addSongToLibrary = (songId) => {
-    setTrack({
-      ...track,
-      method: "put",
-      url: `https://api.spotify.com/v1/me/tracks?ids=${songId}`,
-    });
+  const addSongToLibrary = async (songId) => {
+    const res = await axios.put(
+      `https://api.spotify.com/v1/me/tracks?ids=${songId}`
+    );
+    if (res.status === 200) {
+      toast.success("Added to your Liked Songs", {
+        position: "bottom-center",
+      });
+    }
   };
 
-  const deleteSongFromLibrary = (songId) => {
-    setTrack({
-      ...track,
-      method: "delete",
-      url: `https://api.spotify.com/v1/me/tracks?ids=${songId}`,
-    });
+  const deleteSongFromLibrary = async (songId) => {
+    const res = await axios.delete(
+      `https://api.spotify.com/v1/me/tracks?ids=${songId}`
+    );
+    if (res.status === 200) {
+      toast.success("Removed from your Liked Songs", {
+        position: "bottom-center",
+      });
+    }
   };
 
   const handleLikedSong = async (songId) => {
@@ -48,9 +55,6 @@ const RecommendedItems = ({ items }) => {
   return (
     <div className="flex flex-row justify-center flex-wrap gap-8 md:gap-16 mt-8">
       <Toaster />
-      <audio ref={playerRef}>
-        <source src={previewURL} />
-      </audio>
       {items.tracks.map((track) => {
         return (
           <div key={track.id} className="basis-48">
