@@ -6,9 +6,11 @@ export const useSpotify = (url) => {
   const { state } = useAuth();
 
   const fetcher = (url, accessToken) =>
-    axios.get(url, { Authorization: `Bearer ${accessToken}` }).then((res) => {
-      return res.data;
-    });
+    axios
+      .get(url, { headers: { Authorization: `Bearer ${accessToken}` } })
+      .then((res) => {
+        return res.data;
+      });
 
   const { data, error } = useSWR(
     url ? [url, state.accessToken] : null,
