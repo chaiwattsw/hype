@@ -13,7 +13,7 @@ const Login = () => {
           your top tracks!
         </p>
       </div>
-      <a href={process.env.LOGIN_URL || loginURL}>
+      <a href={process.env.REACT_APP_LOGIN_URL || loginURL}>
         <button className=" bg-green-600 hover:bg-green-700 px-4 py-2 rounded-3xl text-white font-semibold">
           Log in with spotify
         </button>
