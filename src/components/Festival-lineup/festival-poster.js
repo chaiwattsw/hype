@@ -28,7 +28,7 @@ const FestivalPoster = ({ data }) => {
               MUSIC FESTIVAL
             </p>
           </div>
-          <div className="w-11/12 mt-4">
+          <div className="w-11/12 mt-4 mb-6">
             <div className="relative flex items-center">
               <div className="flex-grow border-t border-2 border-white"></div>
               <span
@@ -47,7 +47,7 @@ const FestivalPoster = ({ data }) => {
                   <span
                     name="festival-artists-head"
                     key={artist.id}
-                    className="text-2xl md:text-6xl font-bold"
+                    className="text-2xl md:text-5xl font-bold"
                   >
                     {artist.name} &bull;{" "}
                   </span>
