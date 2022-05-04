@@ -1,9 +1,11 @@
 import React, { useRef } from "react";
 import generateImage from "../../utils/generateImage";
-import { getTodayDate } from "../../utils/getDate";
+import { getTodayDate } from "../../utils/getTodayDate";
 
 const FestivalPoster = ({ data }) => {
   const componentRef = useRef();
+  const today = getTodayDate().toUpperCase();
+
   return (
     <>
       <button
@@ -20,11 +22,9 @@ const FestivalPoster = ({ data }) => {
         className="h-[750px] w-full md:h-[901px] md:w-[660px] bg-[url('../src/assets/images/festival-lineup/bg.jpg')] bg-no-repeat bg-center bg-cover"
       >
         <div className="w-full py-6 px-8 md:px-12 flex flex-col justify-center items-center">
-          <div className="mb-2">
-            <h2 className="text-5xl font-bold [text-shadow:-5px_5px_0_#000]">
-              HYPE
-            </h2>
-            <p className="text-2xl font-bold [text-shadow:-5px_5px_0_#000]">
+          <div className="mb-2 font-bold [text-shadow:-3px_3px_0_#000]">
+            <h2 className="text-5xl">HYPE</h2>
+            <p id="music-festival" className="text-2xl">
               MUSIC FESTIVAL
             </p>
           </div>
@@ -35,7 +35,7 @@ const FestivalPoster = ({ data }) => {
                 id="festival-date"
                 className="flex-shrink mx-4 text-lg font-semibold"
               >
-                {getTodayDate()}
+                {today}
               </span>
               <div className="flex-grow border-t border-2 border-white"></div>
             </div>
@@ -88,10 +88,8 @@ const FestivalPoster = ({ data }) => {
           </div>
 
           <div className="absolute bottom-8">
-            <p className="text-lg font-medium">Get your own music festival</p>
-            <h4 className="text-3xl font-bold [text-shadow:-5px_5px_0_#000]">
-              HYPE
-            </h4>
+            <p className="text-md font-medium">Get your own music festival</p>
+            <h4 className="text-xl font-bold">HYPE-SIGMA.VERCEL.APP</h4>
           </div>
         </div>
       </div>

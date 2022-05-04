@@ -12,7 +12,7 @@ const RecommendedItems = ({ items }) => {
 
   const handlePlayer = (url) => {
     if (url === null) {
-      setPreviewURL(url);
+      setPreviewURL(null);
       return;
     }
     setPreviewURL(url);

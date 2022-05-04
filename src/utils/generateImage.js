@@ -20,6 +20,7 @@ const generateImage = async (componentRef, elementId, fileName) => {
       doc.getElementById(elementId).style.height = "901px";
       doc.getElementById("festival-date").style.marginBottom = "1.25rem";
       doc.getElementById("festival-artists").style.marginTop = "-1.25rem";
+      doc.getElementById("music-festival").style.marginTop = "0.5rem";
       let head = doc.getElementsByName("festival-artists-head");
       let second = doc.getElementsByName("festival-artists-second");
       let third = doc.getElementsByName("festival-artists-third");
