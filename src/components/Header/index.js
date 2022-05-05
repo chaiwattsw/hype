@@ -7,7 +7,8 @@ import { MenuIcon, XIcon, LogoutIcon } from "@heroicons/react/outline";
 function Header() {
   const [toggle, setToggle] = useState(false);
   const { data } = useSpotify("https://api.spotify.com/v1/me");
-  console.log("SPOTIFY PROFILE", data);
+  console.log(data);
+
   const { dispatch } = useAuth();
 
   const handleLogOut = () => {
@@ -96,7 +97,7 @@ function Header() {
               <>
                 <a href={data.external_urls.spotify}>
                   <img
-                    src={data.images[0].url}
+                    src={data?.images[0]?.url}
                     alt={data.display_name}
                     className="rounded-full h:10 w-10 md:h-14 md:w-14"
                   />
