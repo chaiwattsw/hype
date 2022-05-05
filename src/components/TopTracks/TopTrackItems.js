@@ -8,34 +8,34 @@ const TopTrackItems = ({ data, duration }) => {
       <div className="flex flex-col-reverse md:flex-row">
         <div className="w-full md:w-1/2">
           <div className="flex flex-col gap-6">
-            {data.items.map((item, idx) => (
+            {data?.items?.map((item, idx) => (
               <div key={item.id} className="flex items-center">
                 <div className="w-10 text-left">
                   <span className="font-semibold">#{idx + 1}</span>
                 </div>
                 <img
-                  src={item.album.images[1].url}
-                  alt={item.name}
+                  src={item?.album?.images[1]?.url}
+                  alt={item?.name}
                   className="h-16 w-16 mr-4"
                 />
                 <div className="block text-left">
                   <a
-                    href={item.external_urls.spotify}
+                    href={item?.external_urls?.spotify}
                     className="font-bold text-white hover:underline"
                   >
-                    {item.name}
+                    {item?.name}
                   </a>
                   <div className="font-semibold text-gray-200">
-                    {item.artists.map((artist, artistIdx) => (
+                    {item?.artists?.map((artist, artistIdx) => (
                       <a
-                        key={artist.id}
+                        key={artist?.id}
                         target="_blank"
                         className="hover:underline"
-                        href={artist.external_urls.spotify}
+                        href={artist?.external_urls?.spotify}
                         rel="noreferrer"
                       >
-                        {item.artists.length === 1 ||
-                        item.artists.length - 1 === artistIdx
+                        {item?.artists.length === 1 ||
+                        item?.artists.length - 1 === artistIdx
                           ? artist.name
                           : artist.name + ", "}
                       </a>

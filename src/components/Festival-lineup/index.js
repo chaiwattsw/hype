@@ -9,7 +9,7 @@ const FestivalLineup = () => {
   );
 
   return (
-    <div className="bg-[url('../src/assets/images/festival-lineup/bg.jpg')] bg-no-repeat bg-center bg-cover w-full flex flex-wrap flex-col mb-8 text-white justify-center items-center text-center">
+    <div className="bg-[url('../src/assets/images/festival-lineup/bg.jpg')] bg-no-repeat bg-center bg-cover w-full flex flex-wrap flex-col text-white justify-center items-center text-center">
       {!isLoading ? <FestivalPoster data={data} /> : <FestivalSkeleton />}
     </div>
   );

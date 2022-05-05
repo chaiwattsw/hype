@@ -3,7 +3,7 @@ import { loginURL } from "../../constants";
 
 const Login = () => {
   return (
-    <div className="bg-gradient-to-b from-green-500 to-gray-900 flex flex-col justify-center items-center h-screen">
+    <div className="bg-gradient-to-t from-gray-900 via-purple-900 to-violet-600 flex flex-col justify-center items-center h-screen">
       <div className="max-w-sm text-center mb-12 text-white">
         <h2 className="text-8xl mb-12 font-bold [text-shadow:-5px_5px_0_#000]">
           HYPE

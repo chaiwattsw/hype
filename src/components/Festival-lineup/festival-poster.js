@@ -19,7 +19,7 @@ const FestivalPoster = ({ data }) => {
       <div
         ref={componentRef}
         id="festival-lineup"
-        className="shadow-black shadow-2xl relative h-[750px] w-full md:h-[901px] md:w-[660px] mt-8 mb-12 bg-[url('../src/assets/images/festival-lineup/bg.jpg')] bg-no-repeat bg-center bg-cover"
+        className="shadow-black shadow-2xl relative h-[850px] w-full md:h-[901px] md:w-[660px] mt-8 mb-24 bg-[url('../src/assets/images/festival-lineup/bg.jpg')] bg-no-repeat bg-center bg-cover"
       >
         <div className="w-full py-6 px-8 md:px-12 flex flex-col justify-center items-center">
           <div className="mb-2 font-bold [text-shadow:-3px_3px_0_#000]">

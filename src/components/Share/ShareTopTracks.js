@@ -11,7 +11,7 @@ const ShareTopTracks = ({ data, duration }) => {
         className="hidden w-[21.875rem]"
         ref={componentRef}
       >
-        <div className="flex justify-center items-center flex-col bg-gradient-to-b from-green-500 to-gray-900 px-6 py-2">
+        <div className="flex justify-center items-center flex-col bg-gradient-to-t from-gray-900 via-purple-900 to-violet-600 px-6 py-2">
           <div className="text-center flex flex-col">
             <h1 className="text-4xl font-bold [text-shadow:-3px_3px_0_#000]">
               HYPE
@@ -55,10 +55,8 @@ const ShareTopTracks = ({ data, duration }) => {
             ))}
           </div>
           <div className="mb-2">
-            <p className="text-md font-medium">See your top tracks</p>
-            <h4 className="text-md md:text-lg font-bold">
-              HYPE-SIGMA.VERCEL.APP
-            </h4>
+            <p className="text-xs font-medium">See your top tracks</p>
+            <h4 className="text-xs font-bold">HYPE-SIGMA.VERCEL.APP</h4>
           </div>
         </div>
       </div>

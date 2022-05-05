@@ -12,10 +12,6 @@ const generateImage = async (componentRef, elementId, fileName) => {
     onclone: (doc) => {
       if (elementId === "share-tracks" || elementId === "share-artists") {
         doc.getElementById(elementId).style.display = "block";
-        let imageElem = document.getElementsByName("share-center");
-        for (let i = 0; i < imageElem.length; i++) {
-          imageElem[i].style.marginBottom = "1rem";
-        }
         return;
       }
       doc.getElementById(elementId).style.width = "660px";
