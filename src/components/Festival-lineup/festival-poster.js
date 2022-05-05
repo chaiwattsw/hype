@@ -12,14 +12,14 @@ const FestivalPoster = ({ data }) => {
         onClick={() =>
           generateImage(componentRef, "festival-lineup", "hype-festival-lineup")
         }
-        className="bg-gray-900 hover:bg-gray-800 px-4 py-1 rounded-2xl w-20 font-semibold mb-4"
+        className="bg-gray-900 hover:bg-gray-800 px-4 py-1 rounded-2xl w-20 font-semibold mt-8"
       >
         Share
       </button>
       <div
         ref={componentRef}
         id="festival-lineup"
-        className="h-[750px] w-full md:h-[901px] md:w-[660px] bg-[url('../src/assets/images/festival-lineup/bg.jpg')] bg-no-repeat bg-center bg-cover"
+        className="shadow-black shadow-2xl relative h-[750px] w-full md:h-[901px] md:w-[660px] mt-8 mb-12 bg-[url('../src/assets/images/festival-lineup/bg.jpg')] bg-no-repeat bg-center bg-cover"
       >
         <div className="w-full py-6 px-8 md:px-12 flex flex-col justify-center items-center">
           <div className="mb-2 font-bold [text-shadow:-3px_3px_0_#000]">
@@ -29,7 +29,7 @@ const FestivalPoster = ({ data }) => {
             </p>
           </div>
           <div className="w-11/12 mt-4 mb-6">
-            <div className="relative flex items-center">
+            <div className="flex items-center">
               <div className="flex-grow border-t border-2 border-white"></div>
               <span
                 id="festival-date"
@@ -98,7 +98,7 @@ const FestivalPoster = ({ data }) => {
             })}
           </div>
 
-          <div className="absolute bottom-4">
+          <div className="absolute bottom-6">
             <p className="text-sm md:text-md font-medium">
               Get your own music festival
             </p>
