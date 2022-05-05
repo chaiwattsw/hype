@@ -55,7 +55,7 @@ const RecommendedItems = ({ items }) => {
   return (
     <div className="flex flex-row justify-center flex-wrap gap-8 md:gap-16 mt-8">
       <Toaster />
-      {items.tracks.map((track) => {
+      {items?.tracks?.map((track) => {
         return (
           <div key={track.id} className="basis-48">
             <img
@@ -85,7 +85,7 @@ const RecommendedItems = ({ items }) => {
                 />
               </div>
               <div>
-                {track.artists.map((artist, artistIdx) => (
+                {track?.artists?.map((artist, artistIdx) => (
                   <a
                     key={artist.id}
                     target="_blank"
