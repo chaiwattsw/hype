@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useAuth } from "../../hooks/useAuth";
 import { HeartIcon } from "@heroicons/react/outline";
 import { Toaster } from "react-hot-toast";
 import useAudio from "../../hooks/useAudio";
@@ -9,6 +10,7 @@ const RecommendedItems = ({ items }) => {
   const [previewURL, setPreviewURL] = useState();
   const [toggle] = useAudio(previewURL);
   const [likedSongId, setLikedSongId] = useState([]);
+  const { state } = useAuth();
 
   const handlePlayer = (url) => {
     if (url === null) {
@@ -21,7 +23,8 @@ const RecommendedItems = ({ items }) => {
 
   const addSongToLibrary = async (songId) => {
     const res = await axios.put(
-      `https://api.spotify.com/v1/me/tracks?ids=${songId}`
+      `https://api.spotify.com/v1/me/tracks?ids=${songId}`,
+      { headers: { Authorization: `Bearer ${state.accessToken}` } }
     );
     if (res.status === 200) {
       toast.success("Added to your Liked Songs", {
@@ -32,7 +35,8 @@ const RecommendedItems = ({ items }) => {
 
   const deleteSongFromLibrary = async (songId) => {
     const res = await axios.delete(
-      `https://api.spotify.com/v1/me/tracks?ids=${songId}`
+      `https://api.spotify.com/v1/me/tracks?ids=${songId}`,
+      { headers: { Authorization: `Bearer ${state.accessToken}` } }
     );
     if (res.status === 200) {
       toast.success("Removed from your Liked Songs", {

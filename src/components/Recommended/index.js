@@ -7,7 +7,6 @@ import RecommendedSkeleton from "./RecommendedSkeleton";
 
 const Recommended = () => {
   const { tracks, id } = useToptrackIds();
-  console.log("SPOTIFY TOP TRACKS", tracks, id);
   const { data, isLoading } = useRecommendations(id);
 
   return (
