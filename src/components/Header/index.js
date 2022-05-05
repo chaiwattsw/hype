@@ -39,17 +39,19 @@ function Header() {
 
           {data && (
             <>
-              <a
-                target="_blank"
-                rel="noreferrer"
-                href={data.external_urls.spotify}
-              >
-                <img
-                  src={data.images[0].url}
-                  alt={data.display_name}
-                  className="rounded-full h-14 w-14"
-                />
-              </a>
+              {data.images.length > 0 && (
+                <a
+                  target="_blank"
+                  rel="noreferrer"
+                  href={data.external_urls.spotify}
+                >
+                  <img
+                    src={data.images[0].url}
+                    alt={data.display_name}
+                    className="rounded-full h-14 w-14"
+                  />
+                </a>
+              )}
               <a
                 target="_blank"
                 rel="noreferrer"
