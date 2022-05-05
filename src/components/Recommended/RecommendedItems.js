@@ -12,8 +12,6 @@ const RecommendedItems = ({ items }) => {
   const [likedSongId, setLikedSongId] = useState([]);
   const { state } = useAuth();
 
-  console.log(state.accessToken);
-
   const handlePlayer = (url) => {
     if (url === null) {
       setPreviewURL(null);
@@ -24,13 +22,12 @@ const RecommendedItems = ({ items }) => {
   };
 
   const addSongToLibrary = async (songId) => {
-    console.log(songId);
     const res = await axios.put(
       `https://api.spotify.com/v1/me/tracks?ids=${songId}`,
       {},
       { headers: { Authorization: `Bearer ${state.accessToken}` } }
     );
-    console.log(res);
+
     if (res.status === 200) {
       toast.success("Added to your Liked Songs", {
         position: "bottom-center",

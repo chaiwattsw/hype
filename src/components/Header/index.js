@@ -7,7 +7,6 @@ import { MenuIcon, XIcon, LogoutIcon } from "@heroicons/react/outline";
 function Header() {
   const [toggle, setToggle] = useState(false);
   const { data } = useSpotify("https://api.spotify.com/v1/me");
-  console.log(data);
 
   const { dispatch } = useAuth();
 
