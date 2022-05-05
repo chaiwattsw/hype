@@ -95,13 +95,15 @@ function Header() {
           <div className="flex items-center gap-4">
             {data && (
               <>
-                <a href={data.external_urls.spotify}>
-                  <img
-                    src={data?.images[0]?.url}
-                    alt={data.display_name}
-                    className="rounded-full h:10 w-10 md:h-14 md:w-14"
-                  />
-                </a>
+                {data.images.length > 0 && (
+                  <a href={data.external_urls.spotify}>
+                    <img
+                      src={data.images[0].url}
+                      alt={data.display_name}
+                      className="rounded-full h:10 w-10 md:h-14 md:w-14"
+                    />
+                  </a>
+                )}
                 <a
                   className="text-gray-200 hover:text-white"
                   href={data.external_urls.spotify}
