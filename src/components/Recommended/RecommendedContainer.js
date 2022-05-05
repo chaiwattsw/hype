@@ -7,10 +7,10 @@ const RecommendedContainer = ({ children, tracks }) => {
         Recommendations
       </h1>
       <div className="font-medium text-lg">
-        <div className="flex flex-row items-center ">
-          <div>
-            <span className="mr-1">Because you listened to</span>
-            {tracks.length > 0 ? (
+        <div className="flex">
+          <span className="mr-1">
+            Because you listened to{" "}
+            {tracks.length > 0 &&
               tracks.map((track, trackIdx) => {
                 if (tracks.length - 1 === trackIdx) {
                   return <span key={track.id}>{track.name}</span>;
@@ -20,11 +20,8 @@ const RecommendedContainer = ({ children, tracks }) => {
                     {track.name},
                   </span>
                 );
-              })
-            ) : (
-              <div className="animate-pulse w-3/4 h-4 rounded-2xl bg-slate-200 ml-1"></div>
-            )}
-          </div>
+              })}
+          </span>
         </div>
       </div>
       {children}

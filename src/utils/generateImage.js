@@ -8,6 +8,7 @@ const generateImage = async (componentRef, elementId, fileName) => {
     useCORS: true,
     scrollX: 0,
     scrollY: -window.scrollY,
+    scale: 2,
     onclone: (doc) => {
       if (elementId === "share-tracks" || elementId === "share-artists") {
         doc.getElementById(elementId).style.display = "block";
