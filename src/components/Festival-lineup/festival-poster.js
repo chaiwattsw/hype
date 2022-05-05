@@ -75,6 +75,17 @@ const FestivalPoster = ({ data }) => {
                   </span>
                 );
               }
+              if (artistIdx === data.items.length - 1) {
+                return (
+                  <span
+                    name="festival-artists-third"
+                    key={artist.id}
+                    className="text-md md:text-2xl"
+                  >
+                    {artist.name}
+                  </span>
+                );
+              }
               return (
                 <span
                   name="festival-artists-third"
@@ -87,9 +98,13 @@ const FestivalPoster = ({ data }) => {
             })}
           </div>
 
-          <div className="absolute bottom-8">
-            <p className="text-md font-medium">Get your own music festival</p>
-            <h4 className="text-xl font-bold">HYPE-SIGMA.VERCEL.APP</h4>
+          <div className="absolute bottom-4">
+            <p className="text-sm md:text-md font-medium">
+              Get your own music festival
+            </p>
+            <h4 className="text-md md:text-lg font-bold">
+              HYPE-SIGMA.VERCEL.APP
+            </h4>
           </div>
         </div>
       </div>

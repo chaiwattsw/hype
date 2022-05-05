@@ -56,9 +56,9 @@ const ShareTopTracks = ({ data, duration }) => {
           </div>
           <div className="mb-2">
             <p className="text-md font-medium">See your top tracks</p>
-            <h3 className="text-xl font-bold [text-shadow:-5px_5px_0_#000]">
-              HYPE
-            </h3>
+            <h4 className="text-md md:text-lg font-bold">
+              HYPE-SIGMA.VERCEL.APP
+            </h4>
           </div>
         </div>
       </div>

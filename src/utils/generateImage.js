@@ -6,7 +6,8 @@ const generateImage = async (componentRef, elementId, fileName) => {
   const canvas = await html2canvas(componentRef.current, {
     allowTaint: true,
     useCORS: true,
-    scale: 2,
+    scrollX: 0,
+    scrollY: -window.scrollY,
     onclone: (doc) => {
       if (elementId === "share-tracks" || elementId === "share-artists") {
         doc.getElementById(elementId).style.display = "block";

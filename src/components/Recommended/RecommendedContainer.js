@@ -8,21 +8,23 @@ const RecommendedContainer = ({ children, tracks }) => {
       </h1>
       <div className="font-medium text-lg">
         <div className="flex flex-row items-center ">
-          <span className="mr-1">Because you listened to</span>
-          {tracks.length > 0 ? (
-            tracks.map((track, trackIdx) => {
-              if (tracks.length - 1 === trackIdx) {
-                return <span key={track.id}>{track.name}</span>;
-              }
-              return (
-                <span key={track.id} className="mr-1">
-                  {track.name},
-                </span>
-              );
-            })
-          ) : (
-            <div className="animate-pulse w-3/4 h-4 rounded-2xl bg-slate-200 ml-1"></div>
-          )}
+          <div>
+            <span className="mr-1">Because you listened to</span>
+            {tracks.length > 0 ? (
+              tracks.map((track, trackIdx) => {
+                if (tracks.length - 1 === trackIdx) {
+                  return <span key={track.id}>{track.name}</span>;
+                }
+                return (
+                  <span key={track.id} className="mr-1">
+                    {track.name},
+                  </span>
+                );
+              })
+            ) : (
+              <div className="animate-pulse w-3/4 h-4 rounded-2xl bg-slate-200 ml-1"></div>
+            )}
+          </div>
         </div>
       </div>
       {children}
