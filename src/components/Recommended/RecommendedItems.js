@@ -23,8 +23,8 @@ const RecommendedItems = ({ items }) => {
 
   const addSongToLibrary = async (songId) => {
     const res = await axios.put(
-      `https://api.spotify.com/v1/me/tracks?ids=${songId}`,
-      {},
+      `https://api.spotify.com/v1/me/tracks`,
+      { ids: [songId] },
       { headers: { Authorization: `Bearer ${state.accessToken}` } }
     );
 
