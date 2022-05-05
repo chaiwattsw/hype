@@ -25,20 +25,14 @@ const ShareTopTracks = ({ data, duration }) => {
           </div>
           <div className="flex flex-col gap-8 my-6">
             {data.items.slice(0, 5).map((item, idx) => (
-              <div
-                key={item.id}
-                className="flex flex-row items-center gap-6 w-full"
-              >
-                <span name="share-center" className="font-semibold text-xl w-5">
-                  #{idx + 1}
-                </span>
-
+              <div key={item.id} className="flex items-center gap-6 w-full">
+                <span className="font-semibold text-xl w-5">#{idx + 1}</span>
                 <img
                   src={item.album.images[1].url}
                   alt={item.name}
-                  className="h-16 w-16"
+                  className="h-16 w-16 mt-4"
                 />
-                <div name="share-center" className="text-white text-left">
+                <div className="text-white text-left">
                   <p className="font-bold text-sm">{item.name}</p>
                   <div className="text-sm">
                     {item.artists.map((artist, artistIdx) => (

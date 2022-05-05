@@ -13,11 +13,17 @@ const TopArtistItems = ({ data, duration }) => {
                 <div className="w-10 text-left">
                   <span className="font-semibold">#{idx + 1}</span>
                 </div>
-                <img
-                  src={item?.images[1]?.url}
-                  alt={item?.name}
-                  className="rounded-full h-16 w-16 mr-4"
-                />
+                <a
+                  href={item?.external_urls?.spotify}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  <img
+                    src={item?.images[1]?.url}
+                    alt={item?.name}
+                    className="rounded-full h-16 w-16 mr-4"
+                  />
+                </a>
                 <span className="text-left flex">
                   <a
                     href={item?.external_urls?.spotify}

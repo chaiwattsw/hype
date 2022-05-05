@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useAuth } from "../../hooks/useAuth";
-import { HeartIcon } from "@heroicons/react/outline";
+import { HeartIcon, PlayIcon, PauseIcon } from "@heroicons/react/outline";
 import { Toaster } from "react-hot-toast";
 import useAudio from "../../hooks/useAudio";
 import toast from "react-hot-toast";
@@ -8,7 +8,7 @@ import axios from "axios";
 
 const RecommendedItems = ({ items }) => {
   const [previewURL, setPreviewURL] = useState();
-  const [toggle] = useAudio(previewURL);
+  const [isPlaying, toggle] = useAudio(previewURL);
   const [likedSongId, setLikedSongId] = useState([]);
   const { state } = useAuth();
 
@@ -64,12 +64,23 @@ const RecommendedItems = ({ items }) => {
       {items?.tracks?.map((track) => {
         return (
           <div key={track.id} className="basis-48">
-            <img
+            <div
+              className="relative cursor-pointer w-48 h-48"
               onClick={() => handlePlayer(track.preview_url)}
-              className="cursor-pointer w-48 h-48"
-              src={track.album.images[1].url}
-              alt={track.name}
-            />
+            >
+              <img
+                className="w-48 h-48"
+                src={track.album.images[1].url}
+                alt={track.name}
+              />
+              <div className="opacity-0 hover:opacity-100 duration-300 absolute inset-0 z-10 flex justify-center items-center">
+                {previewURL === track.preview_url && isPlaying ? (
+                  <PauseIcon className="h-16 w-16 opacity-75" />
+                ) : (
+                  <PlayIcon className="h-16 w-16 opacity-75" />
+                )}
+              </div>
+            </div>
 
             <div className="mt-2">
               <div className="flex justify-between">

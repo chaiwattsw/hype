@@ -26,24 +26,17 @@ const ShareTopArtists = ({ data, duration }) => {
           </div>
           <div className="flex flex-col gap-8 mb-6">
             {data.items.slice(0, 5).map((item, idx) => (
-              <div key={item.id} className="flex items-center flex-row gap-6">
-                <span name="share-center" className="font-semibold text-xl w-5">
-                  #{idx + 1}
-                </span>
-
+              <div
+                key={item.id}
+                className="flex items-center flex-row gap-6 w-full"
+              >
+                <span className="font-semibold text-xl w-5">#{idx + 1}</span>
                 <img
-                  name="share-image"
                   src={item.images[1].url}
                   alt={item.name}
-                  className="h-16 w-16 rounded-full"
+                  className="h-16 w-16 rounded-full mt-4"
                 />
-
-                <p
-                  name="share-center"
-                  className="text-white text-left font-bold"
-                >
-                  {item.name}
-                </p>
+                <p className="text-white text-left font-bold">{item.name}</p>
               </div>
             ))}
           </div>

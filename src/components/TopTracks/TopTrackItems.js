@@ -13,14 +13,22 @@ const TopTrackItems = ({ data, duration }) => {
                 <div className="w-10 text-left">
                   <span className="font-semibold">#{idx + 1}</span>
                 </div>
-                <img
-                  src={item?.album?.images[1]?.url}
-                  alt={item?.name}
-                  className="h-16 w-16 mr-4"
-                />
+                <a
+                  href={item?.external_urls?.spotify}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  <img
+                    src={item?.album?.images[1]?.url}
+                    alt={item?.name}
+                    className="h-16 w-16 mr-4"
+                  />
+                </a>
                 <div className="block text-left">
                   <a
                     href={item?.external_urls?.spotify}
+                    target="_blank"
+                    rel="noreferrer"
                     className="font-bold text-white hover:underline"
                   >
                     {item?.name}
