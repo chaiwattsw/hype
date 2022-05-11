@@ -32,8 +32,8 @@ function Header() {
           {/* <Link to="recommendations" className="hover:text-white">
             Recommendations
           </Link> */}
-          <Link to="festival-lineup" className="hover:text-white">
-            Festival lineup
+          <Link to="top" className="hover:text-white">
+            Top Tracks/Artists
           </Link>
 
           {data && (
@@ -87,8 +87,8 @@ function Header() {
           {/* <Link to="recommendations" className="hover:text-white">
             Recommendations
           </Link> */}
-          <Link to="festival-lineup" className="hover:text-white">
-            Festival lineup
+          <Link to="top" className="hover:text-white">
+            Top Tracks/Artists
           </Link>
           <div className="py-4">
             <div className="w-full border-t border-2 border-gray-300"></div>
