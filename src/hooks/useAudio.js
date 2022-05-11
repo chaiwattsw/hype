@@ -14,11 +14,7 @@ const useAudio = (url) => {
   const pause = () => audio.current.pause();
 
   useEffect(() => {
-    if (isPlaying) {
-      play();
-    } else {
-      pause();
-    }
+    isPlaying ? play() : pause();
   }, [isPlaying]);
 
   useEffect(() => {

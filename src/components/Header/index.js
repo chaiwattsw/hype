@@ -29,9 +29,9 @@ function Header() {
           <Link to="/" className="hover:text-white">
             Home
           </Link>
-          <Link to="recommendations" className="hover:text-white">
+          {/* <Link to="recommendations" className="hover:text-white">
             Recommendations
-          </Link>
+          </Link> */}
           <Link to="festival-lineup" className="hover:text-white">
             Festival lineup
           </Link>
@@ -84,9 +84,9 @@ function Header() {
           <Link to="/" className="hover:text-white">
             Home
           </Link>
-          <Link to="recommendations" className="hover:text-white">
+          {/* <Link to="recommendations" className="hover:text-white">
             Recommendations
-          </Link>
+          </Link> */}
           <Link to="festival-lineup" className="hover:text-white">
             Festival lineup
           </Link>

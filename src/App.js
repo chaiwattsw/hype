@@ -56,7 +56,7 @@ function App() {
       <Route element={<ProtectedRoutes />}>
         <Route path="/" element={<Layout />}>
           <Route path="/" element={<Home />} />
-          <Route path="recommendations" element={<Recommended />} />
+          {/* <Route path="recommendations" element={<Recommended />} /> */}
           <Route path="festival-lineup" element={<FestivalLineup />} />
         </Route>
       </Route>
