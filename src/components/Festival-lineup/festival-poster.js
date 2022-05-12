@@ -14,7 +14,7 @@ const FestivalPoster = ({ data }) => {
         }
         className="bg-gray-900 hover:bg-gray-800 px-4 py-1 rounded-2xl w-20 font-semibold mt-8"
       >
-        Share
+        Download
       </button>
       <div
         ref={componentRef}

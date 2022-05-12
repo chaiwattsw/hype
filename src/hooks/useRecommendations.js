@@ -1,9 +1,17 @@
 import useSWR from "swr";
-import fetcher from "../utils/fetcher";
+import axios from "axios";
 import { useAuth } from "./useAuth";
 
 const useRecommendations = (id) => {
   const { state } = useAuth();
+  const fetcher = (url, accessToken) => {
+    axios
+      .get(url, { headers: { Authorization: `Bearer ${accessToken}` } })
+      .then((res) => {
+        return res.data;
+      });
+  };
+
   const { data, error } = useSWR(
     () =>
       id.length > 0
