@@ -3,7 +3,7 @@ import useSWR from "swr";
 import { useAuth } from "./useAuth";
 
 type TUseSpotify = {
-  data: object | undefined;
+  data: {} | undefined;
   error: string | undefined;
   isLoading: boolean;
 };
@@ -11,7 +11,7 @@ type TUseSpotify = {
 export const useSpotify = (url: string): TUseSpotify => {
   const { accessToken } = useAuth();
 
-  const fetcher = (url: string, accessToken: string): Promise<object> =>
+  const fetcher = (url: string, accessToken: string): Promise<{}> =>
     axios
       .get(url, { headers: { Authorization: `Bearer ${accessToken}` } })
       .then((res) => {
