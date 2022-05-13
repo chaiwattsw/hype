@@ -2,10 +2,16 @@ import axios from "axios";
 import useSWR from "swr";
 import { useAuth } from "./useAuth";
 
-export const useSpotify = (url) => {
+type TUseSpotify = {
+  data: object | undefined;
+  error: string | undefined;
+  isLoading: boolean;
+};
+
+export const useSpotify = (url: string): TUseSpotify => {
   const { state } = useAuth();
 
-  const fetcher = (url, accessToken) =>
+  const fetcher = (url: string, accessToken: string): Promise<object> =>
     axios
       .get(url, { headers: { Authorization: `Bearer ${accessToken}` } })
       .then((res) => {
