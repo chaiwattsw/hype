@@ -5,9 +5,8 @@ import { useSpotify } from "../../hooks/useSpotify";
 import { MenuIcon, XIcon, LogoutIcon } from "@heroicons/react/outline";
 
 function Header() {
-  const [toggle, setToggle] = useState(false);
+  const [toggle, setToggle] = useState<Boolean>(false);
   const { data } = useSpotify("https://api.spotify.com/v1/me");
-
   const { dispatch } = useAuth();
 
   const handleLogOut = () => {
