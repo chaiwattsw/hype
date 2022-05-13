@@ -9,7 +9,7 @@ type TUseSpotify = {
 };
 
 export const useSpotify = (url: string): TUseSpotify => {
-  const { state } = useAuth();
+  const { accessToken } = useAuth();
 
   const fetcher = (url: string, accessToken: string): Promise<object> =>
     axios
@@ -18,14 +18,10 @@ export const useSpotify = (url: string): TUseSpotify => {
         return res.data;
       });
 
-  const { data, error } = useSWR(
-    url ? [url, state.accessToken] : null,
-    fetcher,
-    {
-      revalidateOnFocus: false,
-      revalidateIfStale: false,
-    }
-  );
+  const { data, error } = useSWR(url ? [url, accessToken] : null, fetcher, {
+    revalidateOnFocus: false,
+    revalidateIfStale: false,
+  });
 
   return { data, error, isLoading: !error && !data };
 };
