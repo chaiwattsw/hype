@@ -1,10 +1,15 @@
 import { FIVE_TOP_TRACKS } from "../constants";
-import { useSpotify } from "./useSpotify";
+import useSpotify from "./useSpotify";
 
-const useToptrackIds = () => {
+interface UseTopTrackIds {
+  id: number[];
+  tracks: {}[];
+}
+
+const useToptrackIds = (): UseTopTrackIds => {
   const { data } = useSpotify(FIVE_TOP_TRACKS);
   if (data) {
-    let id = data.items.map((item) => item.id);
+    let id = data.items.map((item: { id: number }) => item.id);
     return { id: id, tracks: data.items };
   }
 

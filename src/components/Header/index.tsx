@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { useAuth } from "../../hooks/useAuth";
-import { useSpotify } from "../../hooks/useSpotify";
-import { MenuIcon, XIcon, LogoutIcon } from "@heroicons/react/outline";
+import useAuth from "hooks/useAuth";
+import useSpotify from "hooks/useSpotify";
+import { XIcon, MenuIcon, LogoutIcon } from "@heroicons/react/outline";
 
 function Header() {
   const [toggle, setToggle] = useState<boolean>(false);
@@ -28,9 +28,9 @@ function Header() {
           <Link to="/" className="hover:text-white">
             Home
           </Link>
-          {/* <Link to="recommendations" className="hover:text-white">
+          <Link to="recommendations" className="hover:text-white">
             Recommendations
-          </Link> */}
+          </Link>
           <Link to="top" className="hover:text-white">
             Top Tracks/Artists
           </Link>
@@ -83,9 +83,9 @@ function Header() {
           <Link to="/" className="hover:text-white">
             Home
           </Link>
-          {/* <Link to="recommendations" className="hover:text-white">
+          <Link to="recommendations" className="hover:text-white">
             Recommendations
-          </Link> */}
+          </Link>
           <Link to="top" className="hover:text-white">
             Top Tracks/Artists
           </Link>

@@ -1,14 +1,14 @@
 import axios from "axios";
 import useSWR from "swr";
-import { useAuth } from "./useAuth";
+import useAuth from "./useAuth";
 
 interface UseSpotify {
-  data: {} | undefined;
-  error: string | undefined;
+  data: { items: { id: number }[] } | undefined;
+  error: any;
   isLoading: boolean;
 }
 
-export const useSpotify = (url: string): UseSpotify => {
+const useSpotify = (url: string) => {
   const { state } = useAuth();
 
   const fetcher = (url: string, accessToken: string) =>
@@ -29,3 +29,5 @@ export const useSpotify = (url: string): UseSpotify => {
 
   return { data, error, isLoading: !error && !data };
 };
+
+export default useSpotify;

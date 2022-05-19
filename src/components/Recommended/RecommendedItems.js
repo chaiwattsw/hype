@@ -1,31 +1,39 @@
 import React, { useState } from "react";
-import { useAuth } from "../../hooks/useAuth";
+import useAuth from "hooks/useAuth";
 import { HeartIcon, PlayIcon, PauseIcon } from "@heroicons/react/outline";
 import { Toaster } from "react-hot-toast";
-import useAudio from "../../hooks/useAudio";
 import toast from "react-hot-toast";
 import axios from "axios";
+import { useAudio } from "react-use";
 
 const RecommendedItems = ({ items }) => {
   const [previewURL, setPreviewURL] = useState();
-  const [isPlaying, toggle] = useAudio(previewURL);
   const [likedSongId, setLikedSongId] = useState([]);
-  const { state } = useAuth();
+  const {
+    state: { accessToken },
+  } = useAuth();
+  const [audio, state, controls] = useAudio({
+    src: previewURL,
+    autoPlay: true,
+  });
 
   const handlePlayer = (url) => {
     if (url === null) {
-      setPreviewURL(null);
+      return;
+    }
+    if (state.playing) {
+      controls.pause();
       return;
     }
     setPreviewURL(url);
-    toggle();
+    controls.play();
   };
 
   const addSongToLibrary = async (songId) => {
     const res = await axios.put(
       `https://api.spotify.com/v1/me/tracks`,
       { ids: [songId] },
-      { headers: { Authorization: `Bearer ${state.accessToken}` } }
+      { headers: { Authorization: `Bearer ${accessToken}` } }
     );
 
     if (res.status === 200) {
@@ -38,7 +46,7 @@ const RecommendedItems = ({ items }) => {
   const deleteSongFromLibrary = async (songId) => {
     const res = await axios.delete(
       `https://api.spotify.com/v1/me/tracks?ids=${songId}`,
-      { headers: { Authorization: `Bearer ${state.accessToken}` } }
+      { headers: { Authorization: `Bearer ${accessToken}` } }
     );
     if (res.status === 200) {
       toast.success("Removed from your Liked Songs", {
@@ -61,6 +69,7 @@ const RecommendedItems = ({ items }) => {
   return (
     <div className="flex flex-row justify-center flex-wrap gap-8 md:gap-16 mt-8">
       <Toaster />
+      <>{audio}</>
       {items?.tracks?.map((track) => {
         return (
           <div key={track.id} className="basis-48">
@@ -74,7 +83,7 @@ const RecommendedItems = ({ items }) => {
                 alt={track.name}
               />
               <div className="opacity-0 hover:opacity-100 duration-300 absolute inset-0 z-10 flex justify-center items-center">
-                {previewURL === track.preview_url && isPlaying ? (
+                {previewURL === track.preview_url && state.playing ? (
                   <PauseIcon className="h-16 w-16 opacity-75" />
                 ) : (
                   <PlayIcon className="h-16 w-16 opacity-75" />

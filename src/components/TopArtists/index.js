@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useSpotify } from "../../hooks/useSpotify";
+import useSpotify from "hooks/useSpotify";
 import TopItemsContainer from "../TopItemsContainer";
 import TopItemsSkeleton from "../TopItemsSkeleton";
 import TopArtistItems from "./TopArtistItems";

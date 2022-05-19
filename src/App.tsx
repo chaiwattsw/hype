@@ -1,7 +1,7 @@
-import { useEffect } from "react";
+import React, { useEffect } from "react";
 import { Routes, Route, useSearchParams } from "react-router-dom";
 import axios from "axios";
-import { useAuth } from "./hooks/useAuth";
+import useAuth from "./hooks/useAuth";
 import Home from "./components/Home";
 import Layout from "./components/Layout";
 import ProtectedRoutes from "./components/ProtectedRoutes";
@@ -56,7 +56,7 @@ function App() {
       <Route element={<ProtectedRoutes />}>
         <Route path="/" element={<Layout />}>
           <Route path="/top" element={<Home />} />
-          {/* <Route path="recommendations" element={<Recommended />} /> */}
+          <Route path="recommendations" element={<Recommended />} />
           <Route path="/" element={<FestivalLineup />} />
         </Route>
       </Route>
