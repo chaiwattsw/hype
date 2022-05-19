@@ -1,4 +1,4 @@
-import React, { useReducer, useContext, createContext } from "react";
+import React, { createContext, useReducer } from "react";
 
 interface State {
   accessToken: string | undefined;
@@ -49,14 +49,6 @@ const AuthContext = createContext<{
   dispatch: React.Dispatch<any>;
 }>({ state: initialState, dispatch: () => null });
 
-export const useAuth = () => {
-  const context = useContext(AuthContext);
-  if (context === undefined) {
-    throw new Error("useAuth must be used within a AuthProvider");
-  }
-  return context;
-};
-
 export const AuthProvider: React.FC<{ children?: React.ReactNode }> = ({
   children,
 }) => {
@@ -68,3 +60,5 @@ export const AuthProvider: React.FC<{ children?: React.ReactNode }> = ({
     </AuthContext.Provider>
   );
 };
+
+export default AuthContext;

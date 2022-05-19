@@ -9,7 +9,7 @@ interface UseSpotify {
 }
 
 export const useSpotify = (url: string): UseSpotify => {
-  const { accessToken } = useAuth();
+  const { state } = useAuth();
 
   const fetcher = (url: string, accessToken: string) =>
     axios
@@ -18,10 +18,14 @@ export const useSpotify = (url: string): UseSpotify => {
         return res.data;
       });
 
-  const { data, error } = useSWR(url ? [url, accessToken] : null, fetcher, {
-    revalidateOnFocus: false,
-    revalidateIfStale: false,
-  });
+  const { data, error } = useSWR(
+    url ? [url, state.accessToken] : null,
+    fetcher,
+    {
+      revalidateOnFocus: false,
+      revalidateIfStale: false,
+    }
+  );
 
   return { data, error, isLoading: !error && !data };
 };
