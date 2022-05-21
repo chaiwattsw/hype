@@ -1,9 +1,21 @@
-import React, { useRef } from "react";
+import React, { ReactNode, useRef } from "react";
 import generateImage from "../../utils/generateImage";
 import { getTodayDate } from "../../utils/getTodayDate";
 
-const FestivalPoster = ({ artists }) => {
-  const componentRef = useRef();
+interface ArtistProps {
+  id: number;
+  external_urls: { spotify: string };
+  images: { url: string }[];
+  name: string;
+}
+
+interface FestivalPosterProps {
+  artists: ArtistProps[];
+  children?: ReactNode;
+}
+
+const FestivalPoster: React.FC<FestivalPosterProps> = ({ artists }) => {
+  const componentRef = useRef<HTMLInputElement | null>(null);
   const today = getTodayDate().toUpperCase();
 
   return (
@@ -51,7 +63,7 @@ const FestivalPoster = ({ artists }) => {
               if (artistIdx <= 2) {
                 return (
                   <span
-                    name="festival-artists-head"
+                    id="festival-artists-head"
                     key={artist.id}
                     className="text-2xl md:text-5xl font-bold"
                   >
@@ -62,7 +74,7 @@ const FestivalPoster = ({ artists }) => {
               if (artistIdx <= 20) {
                 return (
                   <span
-                    name="festival-artists-second"
+                    id="festival-artists-second"
                     key={artist.id}
                     className="text-xl md:text-4xl font-semibold"
                   >
@@ -73,7 +85,7 @@ const FestivalPoster = ({ artists }) => {
               if (artistIdx >= 21 && artistIdx <= 48) {
                 return (
                   <span
-                    name="festival-artists-third"
+                    id="festival-artists-third"
                     key={artist.id}
                     className="text-md md:text-2xl"
                   >
@@ -84,7 +96,7 @@ const FestivalPoster = ({ artists }) => {
               if (artistIdx === artists.length - 1) {
                 return (
                   <span
-                    name="festival-artists-third"
+                    id="festival-artists-third"
                     key={artist.id}
                     className="text-md md:text-2xl"
                   >
@@ -94,7 +106,7 @@ const FestivalPoster = ({ artists }) => {
               }
               return (
                 <span
-                  name="festival-artists-third"
+                  id="festival-artists-third"
                   key={artist.id}
                   className="text-md md:text-2xl"
                 >

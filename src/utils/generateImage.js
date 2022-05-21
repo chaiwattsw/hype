@@ -19,9 +19,9 @@ const generateImage = async (componentRef, elementId, fileName) => {
       doc.getElementById("festival-date").style.marginBottom = "1.25rem";
       doc.getElementById("festival-artists").style.marginTop = "-2.25rem";
       doc.getElementById("music-festival").style.marginTop = "0.5rem";
-      let head = doc.getElementsByName("festival-artists-head");
-      let second = doc.getElementsByName("festival-artists-second");
-      let third = doc.getElementsByName("festival-artists-third");
+      let head = doc.getElementsById("festival-artists-head");
+      let second = doc.getElementById("festival-artists-second");
+      let third = doc.getElementById("festival-artists-third");
       for (let i = 0; i < head.length; i++) {
         head[i].style.fontSize = "3rem";
         head[i].style.lineHeight = 1;
