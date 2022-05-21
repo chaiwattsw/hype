@@ -1,5 +1,5 @@
 import React, { ReactNode, useRef } from "react";
-import generateImage from "utils/generateImage";
+import generateImage from "../../utils/generateImage";
 import { durationString } from "../../constants";
 
 interface ArtistProps {

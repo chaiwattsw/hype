@@ -1,5 +1,5 @@
 import React, { ReactNode, useState } from "react";
-import useAuth from "hooks/useAuth";
+import useAuth from "../../hooks/useAuth";
 import { HeartIcon, PlayIcon, PauseIcon } from "@heroicons/react/outline";
 import { Toaster } from "react-hot-toast";
 import toast from "react-hot-toast";
@@ -7,7 +7,14 @@ import axios from "axios";
 import { useAudio } from "react-use";
 
 interface RecommendedItemsProps {
-  tracks: [];
+  tracks: {
+    id: string;
+    preview_url: string;
+    name: string;
+    artists: { id: string; external_urls: { spotify: string }; name: string }[];
+    external_urls: { spotify: string };
+    album: { images: { url: string }[] };
+  }[];
   children?: ReactNode;
 }
 
@@ -18,11 +25,11 @@ const RecommendedItems: React.FC<RecommendedItemsProps> = ({ tracks }) => {
     state: { accessToken },
   } = useAuth();
   const [audio, state, controls] = useAudio({
-    src: previewURL,
+    src: previewURL ?? "",
     autoPlay: true,
   });
 
-  const handlePlayer = (url: string | null) => {
+  const handlePlayer = (url: string) => {
     if (url === null) return;
     if (state.playing) return controls.pause();
 
@@ -71,7 +78,7 @@ const RecommendedItems: React.FC<RecommendedItemsProps> = ({ tracks }) => {
     <div className="flex flex-row justify-center flex-wrap gap-8 md:gap-16 mt-8">
       <Toaster />
       <>{audio}</>
-      {items?.tracks?.map((track) => {
+      {tracks?.map((track) => {
         return (
           <div key={track.id} className="basis-48">
             <div

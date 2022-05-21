@@ -1,10 +1,21 @@
 import React from "react";
-import ShareTopTracks from "../Share/ShareTopTracks";
+// import ShareTopTracks from "../../components/Share/ShareTopTracks";
 
-const TopTrackItems = ({ tracks, duration }) => {
+interface TopTrackItemsProps {
+  tracks: {
+    id: string;
+    name: string;
+    external_urls: { spotify: string };
+    album: { images: { url: string }[] };
+    artists: { id: string; name: string; external_urls: { spotify: string } }[];
+  }[];
+  duration: string;
+}
+
+const TopTrackItems: React.FC<TopTrackItemsProps> = ({ tracks, duration }) => {
   return (
     <>
-      <ShareTopTracks tracks={tracks} duration={duration} />
+      {/* <ShareTopTracks tracks={tracks} duration={duration} /> */}
       <div className="flex flex-col-reverse md:flex-row">
         <div className="w-full md:w-1/2">
           <div className="flex flex-col gap-6">

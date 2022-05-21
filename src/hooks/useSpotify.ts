@@ -2,11 +2,11 @@ import axios from "axios";
 import useSWR from "swr";
 import useAuth from "./useAuth";
 
-interface UseSpotify {
-  data: {} | undefined;
-  error: any;
-  isLoading: boolean;
-}
+// interface UseSpotify {
+//   data: {} | undefined;
+//   error: any;
+//   isLoading: boolean;
+// }
 
 const useSpotify = (url: string) => {
   const { state } = useAuth();

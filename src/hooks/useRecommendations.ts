@@ -3,7 +3,7 @@ import axios from "axios";
 import useAuth from "./useAuth";
 
 interface UseRecommendations {
-  data: { tracks: {}[]; seeds: {}[] } | void;
+  data: { tracks: {}[]; seeds: {}[] };
   error: any;
   isLoading: boolean;
 }

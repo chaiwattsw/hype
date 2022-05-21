@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import useAuth from "hooks/useAuth";
-import useSpotify from "hooks/useSpotify";
+import useAuth from "../../hooks/useAuth";
+import useSpotify from "../../hooks/useSpotify";
 import { XIcon, MenuIcon, LogoutIcon } from "@heroicons/react/outline";
 
 const Header: React.FC = () => {

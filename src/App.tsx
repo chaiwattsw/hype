@@ -10,7 +10,7 @@ import FestivalLineup from "./components/Festival-lineup";
 
 function App() {
   const { state, dispatch } = useAuth();
-  const { refreshToken } = state;
+  const { refreshToken } = state || {};
   const [searchParams, setSearchParams] = useSearchParams();
 
   useEffect(() => {

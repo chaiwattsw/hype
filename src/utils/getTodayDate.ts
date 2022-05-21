@@ -13,7 +13,7 @@ const months = [
   "December",
 ];
 
-export const getTodayDate = () => {
+export const getTodayDate = (): string => {
   const date = new Date();
   const day = date.getDate();
   const month = months[date.getMonth()];

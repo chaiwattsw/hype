@@ -15,7 +15,7 @@ interface FestivalPosterProps {
 }
 
 const FestivalPoster: React.FC<FestivalPosterProps> = ({ artists }) => {
-  const componentRef = useRef<HTMLInputElement | null>(null);
+  const componentRef = useRef<HTMLDivElement>(null);
   const today = getTodayDate().toUpperCase();
 
   return (
