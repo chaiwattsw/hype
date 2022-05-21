@@ -1,9 +1,31 @@
 import React, { useRef } from "react";
-import generateImage from "../../utils/generateImage";
+import generateImage from "utils/generateImage";
 import { durationString } from "../../constants";
 
-const ShareTopTracks = ({ tracks, duration }) => {
-  const componentRef = useRef();
+interface ArtistProps {
+  id: number;
+  external_urls: { spotify: string };
+  images: { url: string }[];
+  name: string;
+}
+
+interface TrackProps {
+  id: number;
+  album: { images: { url: string }[] };
+  name: string;
+  artists: ArtistProps[];
+}
+
+interface ShareTopTracksProps {
+  tracks: TrackProps[];
+  duration: string;
+}
+
+const ShareTopTracks: React.FC<ShareTopTracksProps> = ({
+  tracks,
+  duration,
+}) => {
+  const componentRef = useRef<HTMLInputElement | null>(null);
   return (
     <>
       <div

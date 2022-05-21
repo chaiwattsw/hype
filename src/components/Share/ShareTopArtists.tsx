@@ -1,9 +1,25 @@
-import { useRef } from "react";
-import generateImage from "../../utils/generateImage";
+import React, { ReactNode, useRef } from "react";
+import generateImage from "utils/generateImage";
 import { durationString } from "../../constants";
 
-const ShareTopArtists = ({ data, duration }) => {
-  const componentRef = useRef();
+interface ArtistProps {
+  id: number;
+  external_urls: { spotify: string };
+  images: { url: string }[];
+  name: string;
+}
+
+interface ShareTopArtistsProps {
+  artists: ArtistProps[];
+  duration: string;
+  children?: ReactNode;
+}
+
+const ShareTopArtists: React.FC<ShareTopArtistsProps> = ({
+  artists,
+  duration,
+}) => {
+  const componentRef = useRef<HTMLInputElement | null>(null);
 
   return (
     <>
@@ -25,18 +41,18 @@ const ShareTopArtists = ({ data, duration }) => {
             </div>
           </div>
           <div className="flex flex-col gap-8 mb-6">
-            {data.items.slice(0, 5).map((item, idx) => (
+            {artists.slice(0, 5).map((artist, idx) => (
               <div
-                key={item.id}
+                key={artist.id}
                 className="flex items-center flex-row gap-6 w-full"
               >
                 <span className="font-semibold text-xl w-5">#{idx + 1}</span>
                 <img
-                  src={item.images[1].url}
-                  alt={item.name}
+                  src={artist.images[1].url}
+                  alt={artist.name}
                   className="h-16 w-16 rounded-full mt-4"
                 />
-                <p className="text-white text-left font-bold">{item.name}</p>
+                <p className="text-white text-left font-bold">{artist.name}</p>
               </div>
             ))}
           </div>

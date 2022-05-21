@@ -2,7 +2,7 @@ import React, { useRef } from "react";
 import generateImage from "../../utils/generateImage";
 import { getTodayDate } from "../../utils/getTodayDate";
 
-const FestivalPoster = ({ data }) => {
+const FestivalPoster = ({ artists }) => {
   const componentRef = useRef();
   const today = getTodayDate().toUpperCase();
 
@@ -47,7 +47,7 @@ const FestivalPoster = ({ data }) => {
             </div>
           </div>
           <div id="festival-artists">
-            {data?.items?.map((artist, artistIdx) => {
+            {artists?.map((artist, artistIdx) => {
               if (artistIdx <= 2) {
                 return (
                   <span
@@ -81,7 +81,7 @@ const FestivalPoster = ({ data }) => {
                   </span>
                 );
               }
-              if (artistIdx === data.items.length - 1) {
+              if (artistIdx === artists.length - 1) {
                 return (
                   <span
                     name="festival-artists-third"

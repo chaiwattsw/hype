@@ -11,6 +11,8 @@ const TopArtists = () => {
     `https://api.spotify.com/v1/me/top/artists?time_range=${duration}&limit=10`
   );
 
+  const { items: artists } = data || {};
+
   return (
     <TopItemsContainer
       title="Top Artists"
@@ -18,7 +20,7 @@ const TopArtists = () => {
       setDuration={setDuration}
     >
       {!isLoading ? (
-        <TopArtistItems data={data} duration={duration} />
+        <TopArtistItems artists={artists} duration={duration} />
       ) : (
         <TopItemsSkeleton rounded />
       )}

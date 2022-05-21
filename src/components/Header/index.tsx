@@ -4,10 +4,12 @@ import useAuth from "hooks/useAuth";
 import useSpotify from "hooks/useSpotify";
 import { XIcon, MenuIcon, LogoutIcon } from "@heroicons/react/outline";
 
-function Header() {
+const Header = () => {
   const [toggle, setToggle] = useState<boolean>(false);
   const { data } = useSpotify("https://api.spotify.com/v1/me");
   const { dispatch } = useAuth();
+
+  const handleToggle = () => setToggle((prevState) => !prevState);
 
   const handleLogOut = () => {
     dispatch({ type: "LOG_OUT" });
@@ -59,7 +61,7 @@ function Header() {
                 {data.display_name}
               </a>
               <LogoutIcon
-                onClick={() => handleLogOut()}
+                onClick={handleLogOut}
                 className="h-6 w-6 text-gray-200 hover:text-white cursor-pointer"
               />
             </>
@@ -68,7 +70,7 @@ function Header() {
         <button
           type="button"
           aria-label="Toggle mobile menu"
-          onClick={() => setToggle(!toggle)}
+          onClick={handleToggle}
           className="rounded md:hidden focus:outline-none"
         >
           {!toggle ? (
@@ -118,6 +120,6 @@ function Header() {
       )}
     </div>
   );
-}
+};
 
 export default Header;
