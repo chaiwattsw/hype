@@ -1,8 +1,9 @@
+import React from "react";
 import { Outlet } from "react-router-dom";
 import Header from "../Header";
 import Footer from "../Footer";
 
-const Layout = () => {
+const Layout: React.FC = () => {
   return (
     <div className="bg-gradient-to-t from-gray-900 via-purple-900 to-violet-600">
       <Header />
