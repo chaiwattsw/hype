@@ -1,7 +1,7 @@
 import React from "react";
 import { loginURL } from "../../constants";
 
-const Login = () => {
+const Login: React.FC = () => {
   return (
     <div className="bg-gradient-to-t from-gray-900 via-purple-900 to-violet-600 flex flex-col justify-center items-center h-screen">
       <div className="max-w-sm text-center mb-12 text-white">
