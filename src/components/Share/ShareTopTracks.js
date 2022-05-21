@@ -54,18 +54,20 @@ const ShareTopTracks = ({ data, duration }) => {
           </div>
         </div>
       </div>
-      <button
-        onClick={() =>
-          generateImage(
-            componentRef,
-            "share-tracks",
-            `hype-top-tracks-${duration}`
-          )
-        }
-        className="bg-gray-900 hover:bg-gray-800 px-4 py-1 rounded-2xl w-20 font-semibold"
-      >
-        Download
-      </button>
+      <div className="mr-auto">
+        <button
+          onClick={() =>
+            generateImage(
+              componentRef,
+              "share-tracks",
+              `hype-top-tracks-${duration}`
+            )
+          }
+          className="bg-gray-900 hover:bg-gray-800 px-4 py-1 rounded-2xl font-semibold"
+        >
+          Download
+        </button>
+      </div>
     </>
   );
 };

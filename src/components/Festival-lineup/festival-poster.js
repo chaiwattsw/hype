@@ -8,14 +8,20 @@ const FestivalPoster = ({ data }) => {
 
   return (
     <>
-      <button
-        onClick={() =>
-          generateImage(componentRef, "festival-lineup", "hype-festival-lineup")
-        }
-        className="bg-gray-900 hover:bg-gray-800 px-4 py-1 rounded-2xl w-20 font-semibold mt-8"
-      >
-        Download
-      </button>
+      <div>
+        <button
+          onClick={() =>
+            generateImage(
+              componentRef,
+              "festival-lineup",
+              "hype-festival-lineup"
+            )
+          }
+          className="bg-gray-900 hover:bg-gray-800 px-4 py-1 rounded-2xl font-semibold mt-8"
+        >
+          Download
+        </button>
+      </div>
       <div
         ref={componentRef}
         id="festival-lineup"
