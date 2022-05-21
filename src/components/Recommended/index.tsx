@@ -5,13 +5,19 @@ import RecommendedContainer from "./RecommendedContainer";
 import RecommendedItems from "./RecommendedItems";
 import RecommendedSkeleton from "./RecommendedSkeleton";
 
-const Recommended = () => {
-  const { tracks, id } = useToptrackIds();
+const Recommended: React.FC = () => {
+  const { tracks: topTracks, id } = useToptrackIds();
   const { data, isLoading } = useRecommendations(id);
 
+  // const {items:tracks} = data || {};
+
   return (
-    <RecommendedContainer tracks={tracks}>
-      {!isLoading ? <RecommendedItems items={data} /> : <RecommendedSkeleton />}
+    <RecommendedContainer tracks={topTracks}>
+      {!isLoading ? (
+        <RecommendedItems tracks={data} />
+      ) : (
+        <RecommendedSkeleton />
+      )}
     </RecommendedContainer>
   );
 };

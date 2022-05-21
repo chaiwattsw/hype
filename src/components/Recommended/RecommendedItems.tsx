@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { ReactNode, useState } from "react";
 import useAuth from "hooks/useAuth";
 import { HeartIcon, PlayIcon, PauseIcon } from "@heroicons/react/outline";
 import { Toaster } from "react-hot-toast";
@@ -6,9 +6,14 @@ import toast from "react-hot-toast";
 import axios from "axios";
 import { useAudio } from "react-use";
 
-const RecommendedItems = ({ items }) => {
-  const [previewURL, setPreviewURL] = useState();
-  const [likedSongId, setLikedSongId] = useState([]);
+interface RecommendedItemsProps {
+  tracks: [];
+  children?: ReactNode;
+}
+
+const RecommendedItems: React.FC<RecommendedItemsProps> = ({ tracks }) => {
+  const [previewURL, setPreviewURL] = useState<string | null>(null);
+  const [likedSongId, setLikedSongId] = useState<string[]>([]);
   const {
     state: { accessToken },
   } = useAuth();
@@ -17,7 +22,7 @@ const RecommendedItems = ({ items }) => {
     autoPlay: true,
   });
 
-  const handlePlayer = (url) => {
+  const handlePlayer = (url: string | null) => {
     if (url === null) return;
     if (state.playing) return controls.pause();
 
@@ -25,7 +30,7 @@ const RecommendedItems = ({ items }) => {
     controls.play();
   };
 
-  const addSongToLibrary = async (songId) => {
+  const addSongToLibrary = async (songId: string) => {
     const res = await axios.put(
       `https://api.spotify.com/v1/me/tracks`,
       { ids: [songId] },
@@ -39,7 +44,7 @@ const RecommendedItems = ({ items }) => {
     }
   };
 
-  const deleteSongFromLibrary = async (songId) => {
+  const deleteSongFromLibrary = async (songId: string) => {
     const res = await axios.delete(
       `https://api.spotify.com/v1/me/tracks?ids=${songId}`,
       { headers: { Authorization: `Bearer ${accessToken}` } }
@@ -51,7 +56,7 @@ const RecommendedItems = ({ items }) => {
     }
   };
 
-  const handleLikedSong = async (songId) => {
+  const handleLikedSong = async (songId: string) => {
     if (likedSongId.some((item) => item === songId)) {
       const removeSelectedSong = likedSongId.filter((song) => song !== songId);
       deleteSongFromLibrary(songId);

@@ -1,6 +1,18 @@
-import React from "react";
+import React, { ReactNode } from "react";
 
-const TopItemsContainer = ({ title, duration, setDuration, children }) => {
+interface TopItemsContainerProps {
+  title: string;
+  duration: string;
+  setDuration: (term: string) => void;
+  children: ReactNode;
+}
+
+const TopItemsContainer: React.FC<TopItemsContainerProps> = ({
+  title,
+  duration,
+  setDuration,
+  children,
+}) => {
   const shortTerm = () => {
     setDuration("short_term");
   };

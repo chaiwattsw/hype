@@ -1,6 +1,14 @@
-import React from "react";
+import React, { ReactNode } from "react";
 
-const RecommendedContainer = ({ children, tracks }) => {
+interface RecommendedContainerProps {
+  tracks: { id: string; name: string }[];
+  children?: ReactNode;
+}
+
+const RecommendedContainer: React.FC<RecommendedContainerProps> = ({
+  children,
+  tracks,
+}) => {
   return (
     <div className="w-full flex flex-col my-8 text-white">
       <h1 className="text-4xl md:text-5xl font-bold text-white [text-shadow:-3px_3px_0_#000] mb-2">

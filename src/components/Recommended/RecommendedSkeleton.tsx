@@ -1,6 +1,6 @@
 import React from "react";
 
-const RecommendedSkeleton = () => {
+const RecommendedSkeleton: React.FC = () => {
   return (
     <div className="flex flex-row flex-wrap justify-center gap-8 md:gap-16 mt-8">
       {[...Array(20)].map((_, idx) => (

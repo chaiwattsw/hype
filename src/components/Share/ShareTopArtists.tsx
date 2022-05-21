@@ -3,7 +3,7 @@ import generateImage from "utils/generateImage";
 import { durationString } from "../../constants";
 
 interface ArtistProps {
-  id: number;
+  id: string;
   external_urls: { spotify: string };
   images: { url: string }[];
   name: string;

@@ -2,7 +2,7 @@ import React, { ReactNode } from "react";
 import ShareTopArtists from "../Share/ShareTopArtists";
 
 interface ArtistProps {
-  id: number;
+  id: string;
   external_urls: { spotify: string };
   images: { url: string }[];
   name: string;

@@ -8,7 +8,7 @@ interface UseRecommendations {
   isLoading: boolean;
 }
 
-const useRecommendations = (id: number[]): UseRecommendations => {
+const useRecommendations = (id: string[]): UseRecommendations => {
   const { state } = useAuth();
   const fetcher = (url: string, accessToken: string) => {
     return axios
