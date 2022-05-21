@@ -3,7 +3,7 @@ import useSWR from "swr";
 import useAuth from "./useAuth";
 
 interface UseSpotify {
-  data: { items: { id: number }[] } | undefined;
+  data: {} | undefined;
   error: any;
   isLoading: boolean;
 }

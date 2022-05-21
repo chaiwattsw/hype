@@ -9,6 +9,7 @@ const TopTracks = () => {
   const { data, isLoading } = useSpotify(
     `https://api.spotify.com/v1/me/top/tracks?time_range=${duration}&limit=10`
   );
+  const { items } = data;
 
   return (
     <TopItemsContainer
@@ -17,7 +18,7 @@ const TopTracks = () => {
       setDuration={setDuration}
     >
       {!isLoading ? (
-        <TopTrackItems data={data} duration={duration} />
+        <TopTrackItems tracks={items} duration={duration} />
       ) : (
         <TopItemsSkeleton />
       )}
