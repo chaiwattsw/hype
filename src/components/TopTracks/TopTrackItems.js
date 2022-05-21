@@ -4,7 +4,7 @@ import ShareTopTracks from "../Share/ShareTopTracks";
 const TopTrackItems = ({ tracks, duration }) => {
   return (
     <>
-      <ShareTopTracks data={tracks} duration={duration} />
+      <ShareTopTracks tracks={tracks} duration={duration} />
       <div className="flex flex-col-reverse md:flex-row">
         <div className="w-full md:w-1/2">
           <div className="flex flex-col gap-6">

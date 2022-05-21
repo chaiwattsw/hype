@@ -2,7 +2,7 @@ import React, { useRef } from "react";
 import generateImage from "../../utils/generateImage";
 import { durationString } from "../../constants";
 
-const ShareTopTracks = ({ data, duration }) => {
+const ShareTopTracks = ({ tracks, duration }) => {
   const componentRef = useRef();
   return (
     <>
@@ -24,21 +24,21 @@ const ShareTopTracks = ({ data, duration }) => {
             </div>
           </div>
           <div className="flex flex-col gap-8 my-6">
-            {data.items.slice(0, 5).map((item, idx) => (
-              <div key={item.id} className="flex items-center gap-6 w-full">
+            {tracks.slice(0, 5).map((track, idx) => (
+              <div key={track.id} className="flex items-center gap-6 w-full">
                 <span className="font-semibold text-xl w-5">#{idx + 1}</span>
                 <img
-                  src={item.album.images[1].url}
-                  alt={item.name}
+                  src={track.album.images[1].url}
+                  alt={track.name}
                   className="h-16 w-16 mt-4"
                 />
                 <div className="text-white text-left">
-                  <p className="font-bold text-sm">{item.name}</p>
+                  <p className="font-bold text-sm">{track.name}</p>
                   <div className="text-sm">
-                    {item.artists.map((artist, artistIdx) => (
+                    {track.artists.map((artist, artistIdx) => (
                       <span key={artist.id}>
-                        {item.artists.length === 1 ||
-                        item.artists.length - 1 === artistIdx
+                        {track.artists.length === 1 ||
+                        track.artists.length - 1 === artistIdx
                           ? artist.name
                           : artist.name + ", "}
                       </span>
