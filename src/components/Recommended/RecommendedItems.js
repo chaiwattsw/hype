@@ -18,13 +18,9 @@ const RecommendedItems = ({ items }) => {
   });
 
   const handlePlayer = (url) => {
-    if (url === null) {
-      return;
-    }
-    if (state.playing) {
-      controls.pause();
-      return;
-    }
+    if (url === null) return;
+    if (state.playing) return controls.pause();
+
     setPreviewURL(url);
     controls.play();
   };
