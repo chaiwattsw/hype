@@ -18,7 +18,7 @@ export const getTodayDate = (): string => {
   const day = date.getDate();
   const month = months[date.getMonth()];
   const year = date.getFullYear();
-
+  if (day > 3 && day < 21) return `${month} ${day}th ${year}`;
   switch (day % 10) {
     case 1:
       return `${month} ${day}st ${year}`;

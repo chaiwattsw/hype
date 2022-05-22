@@ -1,13 +1,8 @@
-interface DurationStringType {
-  readonly short_term: string;
-  readonly medium_term: string;
-  readonly long_term: string;
-  readonly [index: string]: string;
-}
+type durationType = "short_term" | "medium_term" | "long_term";
 
 export const loginURL: string = "http://localhost:8888/login";
 
-export const durationString: DurationStringType = {
+export const durationString: Record<durationType, string> = {
   short_term: "This month",
   medium_term: "Last few months",
   long_term: "All time",
