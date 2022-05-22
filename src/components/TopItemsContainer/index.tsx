@@ -63,7 +63,6 @@ const TopItemsContainer: React.FC<TopItemsContainerProps> = ({
           </button>
         </div>
       </div>
-
       {children}
     </div>
   );

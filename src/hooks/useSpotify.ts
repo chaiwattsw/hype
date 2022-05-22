@@ -2,18 +2,28 @@ import axios from "axios";
 import useSWR from "swr";
 import useAuth from "./useAuth";
 
-// interface UseSpotify {
-//   data: {} | undefined;
-//   error: any;
-//   isLoading: boolean;
-// }
+interface UseSpotify {
+  data: {
+    items: {
+      id: string;
+      name: string;
+      album: { images: { url: string }[] };
+      external_urls: { spotify: string };
+      artists: [];
+    }[];
+  };
+  error: any;
+  isLoading: boolean;
+}
 
 const useSpotify = (url: string) => {
   const { state } = useAuth();
 
   const fetcher = (url: string, accessToken: string) =>
     axios
-      .get(url, { headers: { Authorization: `Bearer ${accessToken}` } })
+      .get(url, {
+        headers: { Authorization: `Bearer ${accessToken}` },
+      })
       .then((res) => {
         return res.data;
       });
