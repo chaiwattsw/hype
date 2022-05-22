@@ -32,7 +32,9 @@ const RecommendedContainer: React.FC<RecommendedContainerProps> = ({
           </span>
         </div>
       </div>
-      {children}
+      <div className="flex flex-row justify-center flex-wrap gap-8 md:gap-16 mt-8">
+        {children}
+      </div>
     </div>
   );
 };

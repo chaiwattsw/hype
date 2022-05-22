@@ -3,7 +3,17 @@ import axios from "axios";
 import useAuth from "./useAuth";
 
 interface UseRecommendations {
-  data: { tracks: {}[]; seeds: {}[] };
+  data: {
+    tracks: {
+      id: string;
+      name: string;
+      artists: [];
+      preview_url: string;
+      album: { images: { url: string }[] };
+      external_urls: { spotify: string };
+    }[];
+    seeds: {}[];
+  };
   error: any;
   isLoading: boolean;
 }
