@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
-import useSpotify from "../../hooks/useSpotify";
+import useSpotifyProfile from "../../hooks/useSpotifyProfile";
 import { XIcon, MenuIcon, LogoutIcon } from "@heroicons/react/outline";
 
 const Header: React.FC = () => {
   const [toggle, setToggle] = useState<boolean>(false);
-  const { data } = useSpotify("https://api.spotify.com/v1/me");
+  const { data } = useSpotifyProfile();
   const { dispatch } = useAuth();
 
   const handleToggle = () => setToggle((prevState) => !prevState);

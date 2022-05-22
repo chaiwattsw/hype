@@ -10,3 +10,5 @@ export const durationString: Record<durationType, string> = {
 
 export const FIVE_TOP_TRACKS: string =
   "https://api.spotify.com/v1/me/top/tracks?time_range=short_term&limit=5";
+
+export const SPOTIFY_PROFILE: string = "https://api.spotify.com/v1/me";

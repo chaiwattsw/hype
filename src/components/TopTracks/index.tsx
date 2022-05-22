@@ -18,18 +18,49 @@ const TopTracks: React.FC = () => {
       duration={duration}
       setDuration={setDuration}
     >
-      {!isLoading && <ShareTopTracks tracks={tracks} duration={duration} />}
       {!isLoading ? (
-        tracks.map((track, trackIdx: number) => (
-          <TopTrackItems
-            trackIdx={trackIdx}
-            key={track.id}
-            name={track.name}
-            img={track.album.images[1].url}
-            href={track.external_urls.spotify}
-            artists={track.artists}
-          />
-        ))
+        <>
+          <ShareTopTracks tracks={tracks} duration={duration} />
+          <div className="flex flex-row">
+            <div className="flex w-full md:w-1/2 flex-col gap-6">
+              {tracks.map((track, trackIdx: number) => (
+                <TopTrackItems
+                  trackIdx={trackIdx}
+                  key={track.id}
+                  name={track.name}
+                  img={track.album.images[1].url}
+                  href={track.external_urls.spotify}
+                  artists={track.artists}
+                />
+              ))}
+            </div>
+            <div className="hidden md:flex flex-col w-1/2 justify-center items-center">
+              <div className="relative w-full h-full">
+                <div className="w-32 h-32 absolute mx-auto my-auto top-0 bottom-0 left-20 z-10 shrink-0 md:w-36 md:h-36">
+                  <img
+                    src={tracks[1].album.images[1].url}
+                    alt={tracks[1].name}
+                    className="rounded-lg shadow-2xl w-32 h-32 md:w-36 md:h-36"
+                  />
+                </div>
+                <div className="w-40 h-40 absolute inset-0 my-auto mx-auto shrink-0 z-20 md:w-52 md:h-52">
+                  <img
+                    src={tracks[0].album.images[1].url}
+                    alt={tracks[0].name}
+                    className="rounded-lg shadow-2xl w-40 h-40 md:w-52 md:h-52"
+                  />
+                </div>
+                <div className="w-32 h-32 absolute mx-auto my-auto top-0 bottom-0 right-20 z-10 shrink-0 md:w-36 md:h-36">
+                  <img
+                    src={tracks[2].album?.images[1].url}
+                    alt={tracks[2].name}
+                    className="rounded-lg shadow-2xl w-32 h-32 md:w-36 md:h-36"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </>
       ) : (
         <TopItemsSkeleton />
       )}
