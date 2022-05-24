@@ -3,7 +3,7 @@ import React, { createContext, useReducer } from "react";
 interface State {
   accessToken: string | undefined;
   refreshToken: string | undefined;
-  expiresIn: number | undefined;
+  expiresIn: string | undefined;
 }
 
 interface Action {
@@ -14,7 +14,7 @@ interface Action {
 const initialState = {
   accessToken: "",
   refreshToken: "",
-  expiresIn: undefined,
+  expiresIn: "",
 };
 
 const reducer = (state: State, action: Action) => {

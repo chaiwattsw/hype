@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useCallback, useMemo } from "react";
 import { Toaster } from "react-hot-toast";
 import toast from "react-hot-toast";
 import axios from "axios";
@@ -44,7 +44,7 @@ const Recommended: React.FC = () => {
     }
   };
 
-  const handleLikedSong = async (songId: string) => {
+  const handleLikedSong = (songId: string) => {
     if (likedSongId.some((item) => item === songId)) {
       const removeSelectedSong = likedSongId.filter((song) => song !== songId);
       deleteSongFromLibrary(songId);
@@ -68,7 +68,7 @@ const Recommended: React.FC = () => {
             src={track.preview_url}
             img={track.album.images[1].url}
             href={track.external_urls.spotify}
-            onClickSong={() => handleLikedSong(track.id)}
+            onClickSong={handleLikedSong}
             liked={likedSongId.some((item) => item === track.id)}
           />
         ))

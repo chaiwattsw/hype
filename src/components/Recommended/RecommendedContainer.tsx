@@ -1,8 +1,8 @@
-import React, { ReactNode } from "react";
+import React from "react";
 
 interface RecommendedContainerProps {
   tracks: { id: string; name: string }[];
-  children?: ReactNode;
+  children?: React.ReactNode;
 }
 
 const RecommendedContainer: React.FC<RecommendedContainerProps> = ({
