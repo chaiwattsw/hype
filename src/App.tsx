@@ -4,7 +4,7 @@ import axios from "axios";
 import useAuth from "./hooks/useAuth";
 import Home from "./components/Home";
 import Layout from "./components/Layout";
-import ProtectedRoutes from "./components/ProtectedRoutes";
+import ProtectedRoute from "./components/ProtectedRoute";
 import Recommended from "./components/Recommended";
 import FestivalLineup from "./components/Festival-lineup";
 
@@ -53,7 +53,7 @@ function App() {
 
   return (
     <Routes>
-      <Route element={<ProtectedRoutes />}>
+      <Route element={<ProtectedRoute />}>
         <Route path="/" element={<Layout />}>
           <Route path="/top" element={<Home />} />
           <Route path="recommendations" element={<Recommended />} />

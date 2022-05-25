@@ -1,10 +1,12 @@
 import useSWR from "swr";
 import axios from "axios";
+import { FIVE_TOP_TRACKS } from "../constants";
 import useAuth from "./useAuth";
 
 interface UseRecommendations {
   data: {
-    tracks: {
+    seeds: { id: string; name: string }[];
+    items: {
       id: string;
       name: string;
       artists: [];
@@ -12,28 +14,34 @@ interface UseRecommendations {
       album: { images: { url: string }[] };
       external_urls: { spotify: string };
     }[];
-    seeds: {}[];
   };
   error: any;
   isLoading: boolean;
 }
 
-const useRecommendations = (id: string[]): UseRecommendations => {
+const useRecommendations = (): UseRecommendations => {
   const { state } = useAuth();
-  const fetcher = (url: string, accessToken: string) => {
-    return axios
+  const fetcher = async (url: string, accessToken: string) =>
+    axios
       .get(url, { headers: { Authorization: `Bearer ${accessToken}` } })
       .then((res) => {
         return res.data;
       })
       .catch((err) => console.error(err.message));
-  };
 
-  const { data, error } = useSWR(
+  const { data: topTracks = {} } = useSWR(
+    [FIVE_TOP_TRACKS, state.accessToken],
+    fetcher,
+    { revalidateOnFocus: false, revalidateIfStale: false }
+  );
+
+  const topTracksId = topTracks?.items?.map((track) => track.id);
+
+  const { data: recommendTracks = {}, error } = useSWR(
     () =>
-      id.length > 0
+      topTracksId.length > 0
         ? [
-            `https://api.spotify.com/v1/recommendations?limit=20&seed_tracks=${id}`,
+            `https://api.spotify.com/v1/recommendations?limit=20&seed_tracks=${topTracksId}`,
             state.accessToken,
           ]
         : null,
@@ -42,9 +50,9 @@ const useRecommendations = (id: string[]): UseRecommendations => {
   );
 
   return {
-    data,
+    data: { seeds: topTracks.items, items: recommendTracks.tracks },
     error,
-    isLoading: !error && !data,
+    isLoading: !error && !recommendTracks,
   };
 };
 

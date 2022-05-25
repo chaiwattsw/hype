@@ -3,7 +3,7 @@ import { Outlet } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 import Login from "../Login";
 
-const ProtectedRoutes: React.FC = () => {
+const ProtectedRoute: React.FC = () => {
   const { state } = useAuth();
 
   if (!state?.accessToken) {
@@ -13,4 +13,4 @@ const ProtectedRoutes: React.FC = () => {
   return <Outlet />;
 };
 
-export default ProtectedRoutes;
+export default ProtectedRoute;

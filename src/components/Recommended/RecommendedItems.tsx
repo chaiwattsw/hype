@@ -1,4 +1,4 @@
-import React, { ReactNode, useState, memo } from "react";
+import React, { ReactNode, useState } from "react";
 import ArtistLink from "../../components/ArtistLink";
 import { HeartIcon, PlayIcon, PauseIcon } from "@heroicons/react/outline";
 import { useAudio } from "react-use";
@@ -99,4 +99,4 @@ const RecommendedItems: React.FC<RecommendedItemsProps> = ({
   );
 };
 
-export default memo(RecommendedItems);
+export default RecommendedItems;

@@ -4,7 +4,6 @@ import toast from "react-hot-toast";
 import axios from "axios";
 import useAuth from "../../hooks/useAuth";
 import useRecommendations from "../../hooks/useRecommendations";
-import useToptrackIds from "../../hooks/useTopTrackIds";
 import RecommendedContainer from "./RecommendedContainer";
 import RecommendedItems from "./RecommendedItems";
 import RecommendedSkeleton from "./RecommendedSkeleton";
@@ -14,9 +13,8 @@ const Recommended: React.FC = () => {
     state: { accessToken },
   } = useAuth();
   const [likedSongId, setLikedSongId] = useState<string[]>([]);
-  const { tracks: topTracks, id } = useToptrackIds();
-  const { data, isLoading } = useRecommendations(id);
-  const { tracks } = data || {};
+  const { data, isLoading } = useRecommendations();
+  const { items: tracks, seeds } = data || {};
 
   const addSongToLibrary = async (songId: string) => {
     const res = await axios.put(
@@ -56,22 +54,25 @@ const Recommended: React.FC = () => {
   };
 
   return (
-    <RecommendedContainer tracks={topTracks}>
+    <RecommendedContainer tracks={seeds}>
       <Toaster />
       {!isLoading ? (
-        tracks.map((track) => (
-          <RecommendedItems
-            key={track.id}
-            id={track.id}
-            track={track.name}
-            artists={track.artists}
-            src={track.preview_url}
-            img={track.album.images[1].url}
-            href={track.external_urls.spotify}
-            onClickSong={handleLikedSong}
-            liked={likedSongId.some((item) => item === track.id)}
-          />
-        ))
+        tracks.map((track) => {
+          const isLiked = likedSongId.some((item) => item === track.id);
+          return (
+            <RecommendedItems
+              key={track.id}
+              id={track.id}
+              track={track.name}
+              artists={track.artists}
+              src={track.preview_url}
+              img={track.album.images[1].url}
+              href={track.external_urls.spotify}
+              onClickSong={handleLikedSong}
+              liked={isLiked}
+            />
+          );
+        })
       ) : (
         <RecommendedSkeleton />
       )}
