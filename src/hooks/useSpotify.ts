@@ -1,5 +1,5 @@
 import axios from "axios";
-import useSWR from "swr";
+import useSWRImmutable from "swr/immutable";
 import useAuth from "./useAuth";
 
 interface UseSpotify {
@@ -28,13 +28,9 @@ const useSpotify = (url: string) => {
         return res.data;
       });
 
-  const { data, error } = useSWR(
+  const { data, error } = useSWRImmutable(
     url ? [url, state.accessToken] : null,
-    fetcher,
-    {
-      revalidateOnFocus: false,
-      revalidateIfStale: false,
-    }
+    fetcher
   );
 
   return { data, error, isLoading: !error && !data };

@@ -1,4 +1,4 @@
-import useSWR from "swr";
+import useSWRImmutable from "swr/immutable";
 import axios from "axios";
 import { FIVE_TOP_TRACKS } from "../constants";
 import useAuth from "./useAuth";
@@ -29,15 +29,14 @@ const useRecommendations = (): UseRecommendations => {
       })
       .catch((err) => console.error(err.message));
 
-  const { data: topTracks = {} } = useSWR(
+  const { data: topTracks = {} } = useSWRImmutable(
     [FIVE_TOP_TRACKS, state.accessToken],
-    fetcher,
-    { revalidateOnFocus: false, revalidateIfStale: false }
+    fetcher
   );
 
   const topTracksId = topTracks?.items?.map((track) => track.id);
 
-  const { data: recommendTracks = {}, error } = useSWR(
+  const { data: recommendTracks = {}, error } = useSWRImmutable(
     () =>
       topTracksId.length > 0
         ? [
@@ -45,8 +44,7 @@ const useRecommendations = (): UseRecommendations => {
             state.accessToken,
           ]
         : null,
-    fetcher,
-    { revalidateOnFocus: false, revalidateIfStale: false }
+    fetcher
   );
 
   return {

@@ -1,4 +1,4 @@
-import useSWR from "swr";
+import useSWRImmutable from "swr/immutable";
 import axios from "axios";
 import { SPOTIFY_PROFILE } from "../constants";
 import useAuth from "./useAuth";
@@ -13,7 +13,7 @@ const useSpotifyProfile = () => {
       .then((res) => {
         return res.data;
       });
-  const { data, error } = useSWR(
+  const { data, error } = useSWRImmutable(
     [SPOTIFY_PROFILE, state.accessToken],
     fetcher,
     {
