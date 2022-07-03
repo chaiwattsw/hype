@@ -16,7 +16,7 @@ interface UseSpotify {
   isLoading: boolean;
 }
 
-const useSpotify = (url: string) => {
+const useSpotify = (url: string): UseSpotify => {
   const { state } = useAuth();
 
   const fetcher = (url: string, accessToken: string) =>

@@ -22,10 +22,11 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "dev": "env-cmd -f .env.local react-scripts start",
+    "dev": "REACT_APP_LOGIN_URL=http://localhost:8080/login react-scripts start",
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "jest --watch --detectOpenHandles",
+    "test": "jest",
+    "test:watch": "npm run test -- --watch",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {

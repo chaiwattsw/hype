@@ -6,6 +6,8 @@ const generateImage = async (
   elementId: string,
   fileName: string
 ) => {
+  const isShareElement =
+    elementId === "share-tracks" || elementId === "share-artists";
   if (componentRef.current === null) return;
 
   const canvas = await html2canvas(componentRef.current, {
@@ -15,7 +17,7 @@ const generateImage = async (
     scrollY: -window.scrollY,
     scale: 2,
     onclone: (doc) => {
-      if (elementId === "share-tracks" || elementId === "share-artists") {
+      if (isShareElement) {
         doc.getElementById(elementId)!.style.display = "block";
         return;
       }
@@ -27,21 +29,6 @@ const generateImage = async (
         "-2.25rem";
       (doc.getElementById("music-festival") as HTMLElement).style.marginTop =
         "0.5rem";
-      // let head = doc.getElementById("festival-artists-head");
-      // let second = doc.getElementById("festival-artists-second");
-      // let third = doc.getElementById("festival-artists-third");
-      // for (let i = 0; i < head.length; i++) {
-      //   head[i].style.fontSize = "3rem";
-      //   head[i].style.lineHeight = 1;
-      // }
-      // for (let i = 0; i < second.length; i++) {
-      //   second[i].style.fontSize = "2.25rem";
-      //   second[i].style.lineHeight = "2.5rem";
-      // }
-      // for (let i = 0; i < third.length; i++) {
-      //   third[i].style.fontSize = "1.5rem";
-      //   third[i].style.lineHeight = "2rem";
-      // }
     },
   });
 

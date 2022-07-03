@@ -18,8 +18,8 @@ const RecommendedContainer: React.FC<RecommendedContainerProps> = ({
         <div className="flex">
           <span className="mr-1">
             Because you listened to{" "}
-            {tracks.length > 0 &&
-              tracks.map((track, trackIdx) => {
+            {tracks?.length > 0 &&
+              tracks?.map((track, trackIdx) => {
                 if (tracks.length - 1 === trackIdx) {
                   return <span key={track.id}>{track.name}</span>;
                 }

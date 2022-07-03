@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useMemo } from "react";
+import React, { useState } from "react";
 import { Toaster } from "react-hot-toast";
 import toast from "react-hot-toast";
 import axios from "axios";
@@ -7,14 +7,17 @@ import useRecommendations from "../../hooks/useRecommendations";
 import RecommendedContainer from "./RecommendedContainer";
 import RecommendedItems from "./RecommendedItems";
 import RecommendedSkeleton from "./RecommendedSkeleton";
+import useAudio from "hooks/useAudio";
 
 const Recommended: React.FC = () => {
   const {
     state: { accessToken },
   } = useAuth();
   const [likedSongId, setLikedSongId] = useState<string[]>([]);
+  const [currentSong, setCurrentSong] = useState<string | null>(null);
   const { data, isLoading } = useRecommendations();
   const { items: tracks, seeds } = data || {};
+  const [playing, toggle] = useAudio(currentSong);
 
   const addSongToLibrary = async (songId: string) => {
     const res = await axios.put(
@@ -42,6 +45,11 @@ const Recommended: React.FC = () => {
     }
   };
 
+  const handlePlay = (url: string | null) => {
+    setCurrentSong(url);
+    toggle();
+  };
+
   const handleLikedSong = (songId: string) => {
     if (likedSongId.some((item) => item === songId)) {
       const removeSelectedSong = likedSongId.filter((song) => song !== songId);
@@ -57,7 +65,7 @@ const Recommended: React.FC = () => {
     <RecommendedContainer tracks={seeds}>
       <Toaster />
       {!isLoading ? (
-        tracks.map((track) => {
+        tracks?.map((track) => {
           const isLiked = likedSongId.some((item) => item === track.id);
           return (
             <RecommendedItems
@@ -68,8 +76,10 @@ const Recommended: React.FC = () => {
               src={track.preview_url}
               img={track.album.images[1].url}
               href={track.external_urls.spotify}
+              onPlay={handlePlay}
               onClickSong={handleLikedSong}
-              liked={isLiked}
+              isLiked={isLiked}
+              isPlaying={playing}
             />
           );
         })

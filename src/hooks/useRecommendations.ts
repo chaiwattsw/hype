@@ -15,7 +15,7 @@ interface UseRecommendations {
       external_urls: { spotify: string };
     }[];
   };
-  error: any;
+  error: unknown;
   isLoading: boolean;
 }
 
@@ -34,7 +34,9 @@ const useRecommendations = (): UseRecommendations => {
     fetcher
   );
 
-  const topTracksId = topTracks?.items?.map((track) => track.id);
+  const topTracksId = topTracks?.items?.map(
+    (track: { id: string }) => track.id
+  );
 
   const { data: recommendTracks = {}, error } = useSWRImmutable(
     () =>
@@ -50,7 +52,7 @@ const useRecommendations = (): UseRecommendations => {
   return {
     data: { seeds: topTracks.items, items: recommendTracks.tracks },
     error,
-    isLoading: !error && !recommendTracks,
+    isLoading: !error && Object.keys(recommendTracks).length === 0,
   };
 };
 
