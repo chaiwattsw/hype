@@ -1,38 +1,10 @@
 import { useQuery } from "react-query";
 import fetcher from "utils/fetcher";
-
-interface Image {
-  height: number | null;
-  url: string;
-  width: number | null;
-}
-
-interface IUseProfile {
-  country: string;
-  display_name: string;
-  email: string;
-  explicit_content: {
-    filter_enabled: boolean;
-    filter_locked: boolean;
-  };
-  external_urls: {
-    spotify: string;
-  };
-  followers: {
-    href: string | null;
-    total: number;
-  };
-  href: string;
-  id: string;
-  images: Image[];
-  product: "open" | "free" | "premium";
-  type: "user";
-  uri: string;
-}
+import type { Profile } from "types";
 
 const useProfile = () => {
   const config = { method: "get", url: "/me" };
-  const { data, isLoading, error } = useQuery<IUseProfile, Error>(
+  const { data, isLoading, error } = useQuery<Profile, Error>(
     ["profile", config],
     () => fetcher(config)
   );
