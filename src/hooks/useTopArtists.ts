@@ -1,6 +1,6 @@
 import { useQuery } from "react-query";
 import fetcher from "utils/fetcher";
-import type { TopArtists } from "types";
+import { TopArtists } from "types";
 
 const useTopArtists = (duration: string, limit: string) => {
   const config = {

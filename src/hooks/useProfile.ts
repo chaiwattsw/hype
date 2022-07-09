@@ -1,6 +1,6 @@
 import { useQuery } from "react-query";
 import fetcher from "utils/fetcher";
-import type { Profile } from "types";
+import { Profile } from "types";
 
 const useProfile = () => {
   const config = { method: "get", url: "/me" };

@@ -108,7 +108,7 @@ interface TopArtists {
   uri: string;
 }
 
-export type {
+export {
   Artists,
   Image,
   Album,

@@ -1,6 +1,6 @@
 import { useQuery } from "react-query";
 import fetcher from "utils/fetcher";
-import type { Recommendation } from "types";
+import { Recommendation } from "types";
 
 const useRecommendation = () => {
   const topTracksconfig = { method: "get", url: "/me/top/tracks?limit=5" };

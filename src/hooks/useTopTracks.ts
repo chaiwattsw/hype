@@ -1,6 +1,6 @@
 import { useQuery } from "react-query";
 import fetcher from "utils/fetcher";
-import type { Tracks } from "types";
+import { Tracks } from "types";
 
 const useTopTracks = (duration: string) => {
   const config = {
