@@ -1,23 +1,10 @@
 import React, { useRef } from "react";
-import generateImage from "../../utils/generateImage";
+import generateImage from "utils/generateImage";
 import { durationString } from "../../constants";
-
-interface ArtistProps {
-  id: string;
-  external_urls: { spotify: string };
-  images: { url: string }[];
-  name: string;
-}
-
-interface TrackProps {
-  id: string;
-  album: { images: { url: string }[] };
-  name: string;
-  artists: ArtistProps[];
-}
+import { Tracks } from "types";
 
 interface ShareTopTracksProps {
-  tracks: TrackProps[];
+  tracks: Tracks[];
   duration: string;
 }
 
