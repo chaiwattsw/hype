@@ -6,7 +6,7 @@ const useAudio = (url: string): [boolean, () => void] => {
   const isReady = useRef(false);
 
   const toggle = () => {
-    setPlaying(!playing);
+    setPlaying((prevState) => !prevState);
     if (playing && audio.current.currentSrc === url) {
       audio.current.pause();
       return;
@@ -29,7 +29,6 @@ const useAudio = (url: string): [boolean, () => void] => {
   // Handle setup when changing tracks
   useEffect(() => {
     audio.current.pause();
-
     audio.current = new Audio(url);
 
     if (isReady.current) {
