@@ -1,23 +1,19 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import useAuth from "../../hooks/useAuth";
-import useSpotifyProfile from "../../hooks/useSpotifyProfile";
+import { useAuth, useProfile } from "hooks";
 import { XIcon, MenuIcon, LogoutIcon } from "@heroicons/react/outline";
 
 const Header: React.FC = () => {
   const [toggle, setToggle] = useState<boolean>(false);
-  const { data } = useSpotifyProfile();
+  const { data: profile } = useProfile();
   const { dispatch } = useAuth();
 
   const handleToggle = () => setToggle((prevState) => !prevState);
-
-  const handleLogOut = () => {
-    dispatch({ type: "LOG_OUT" });
-  };
+  const handleLogOut = () => dispatch({ type: "LOG_OUT" });
 
   return (
-    <div className="sticky top-0 z-50 bg-purple-600">
-      <div className="max-w-7xl mx-auto flex items-center justify-between px-8 py-4">
+    <div className="sticky top-0 z-50 bg-[#06060699] backdrop-blur">
+      <div className="max-w-7xl mx-auto flex items-center justify-between px-8 py-2">
         <div className="flex items-center">
           <Link
             to="/"
@@ -37,18 +33,18 @@ const Header: React.FC = () => {
             Top Tracks/Artists
           </Link>
 
-          {data && (
+          {profile && (
             <>
-              {data.images.length > 0 && (
+              {profile.images?.length > 0 && (
                 <a
                   target="_blank"
                   rel="noreferrer"
-                  href={data.external_urls.spotify}
+                  href={profile.external_urls.spotify}
                 >
                   <img
-                    src={data.images[0].url}
-                    alt={data.display_name}
-                    className="rounded-full h-14 w-14"
+                    src={profile.images[0].url}
+                    alt={profile.display_name}
+                    className="rounded-full h-12 w-12"
                   />
                 </a>
               )}
@@ -56,9 +52,9 @@ const Header: React.FC = () => {
                 target="_blank"
                 rel="noreferrer"
                 className="text-gray-200 hover:text-white"
-                href={data.external_urls.spotify}
+                href={profile.external_urls.spotify}
               >
-                {data.display_name}
+                {profile.display_name}
               </a>
               <LogoutIcon
                 onClick={handleLogOut}
@@ -95,22 +91,22 @@ const Header: React.FC = () => {
             <div className="w-full border-t border-2 border-gray-300"></div>
           </div>
           <div className="flex items-center gap-4">
-            {data && (
+            {profile && (
               <>
-                {data.images.length > 0 && (
-                  <a href={data.external_urls.spotify}>
+                {profile.images?.length > 0 && (
+                  <a href={profile.external_urls.spotify}>
                     <img
-                      src={data.images[0].url}
-                      alt={data.display_name}
-                      className="rounded-full h:10 w-10 md:h-14 md:w-14"
+                      src={profile.images[0].url}
+                      alt={profile.display_name}
+                      className="rounded-full h:10 w-10 md:h-12 md:w-12"
                     />
                   </a>
                 )}
                 <a
                   className="text-gray-200 hover:text-white"
-                  href={data.external_urls.spotify}
+                  href={profile.external_urls.spotify}
                 >
-                  {data.display_name}
+                  {profile.display_name}
                 </a>
                 <div className="flex flex-col">Log out</div>
               </>
