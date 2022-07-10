@@ -1,16 +1,16 @@
-import React from "react";
+import { PropsWithChildren } from "react";
+import { Tracks } from "types";
 
 interface RecommendedContainerProps {
-  tracks: { id: string; name: string }[];
-  children?: React.ReactNode;
+  tracks: Tracks[];
 }
 
-const RecommendedContainer: React.FC<RecommendedContainerProps> = ({
-  children,
+const RecommendedContainer = ({
   tracks,
-}) => {
+  children,
+}: PropsWithChildren<RecommendedContainerProps>) => {
   return (
-    <div className="w-full flex flex-col my-8 text-white">
+    <div className="w-full flex flex-col mt-8 text-white">
       <h1 className="text-4xl md:text-5xl font-bold text-white [text-shadow:-3px_3px_0_#000] mb-2">
         Recommendations
       </h1>
@@ -19,7 +19,7 @@ const RecommendedContainer: React.FC<RecommendedContainerProps> = ({
           <span className="mr-1">
             Because you listened to{" "}
             {tracks?.length > 0 &&
-              tracks?.map((track, trackIdx) => {
+              tracks.map((track, trackIdx) => {
                 if (tracks.length - 1 === trackIdx) {
                   return <span key={track.id}>{track.name}</span>;
                 }
@@ -32,7 +32,7 @@ const RecommendedContainer: React.FC<RecommendedContainerProps> = ({
           </span>
         </div>
       </div>
-      <div className="flex flex-row justify-center flex-wrap gap-8 md:gap-16 mt-8">
+      <div className="flex flex-row justify-center flex-wrap gap-8 md:gap-16 my-8">
         {children}
       </div>
     </div>

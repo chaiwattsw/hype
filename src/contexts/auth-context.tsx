@@ -1,4 +1,4 @@
-import React, { createContext, useReducer } from "react";
+import React, { useContext, createContext, useReducer } from "react";
 
 interface State {
   accessToken: string | undefined;
@@ -28,10 +28,9 @@ const reducer = (state: State, action: Action) => {
       };
     case "LOG_OUT":
       return {
-        ...state,
-        accessToken: undefined,
-        refreshToken: undefined,
-        expiresIn: undefined,
+        accessToken: "",
+        refreshToken: "",
+        expiresIn: "",
       };
     case "REFRESH":
       return {
@@ -44,14 +43,24 @@ const reducer = (state: State, action: Action) => {
   }
 };
 
+export const useAuth = () => {
+  const context = useContext(AuthContext);
+  if (context === undefined) {
+    throw new Error("useAuth must be used within a AuthProvider");
+  }
+  return context;
+};
+
 const AuthContext = createContext<{
   state: State;
   dispatch: React.Dispatch<any>;
 }>({ state: initialState, dispatch: () => null });
+AuthContext.displayName = "AuthContext";
 
-export const AuthProvider: React.FC<{ children?: React.ReactNode }> = ({
-  children,
-}) => {
+export const AuthProvider = ({ children }: { children?: React.ReactNode }) => {
+  // const login = useCallback(() => {}, []);
+  // const logout = useCallback(() => {}, []);
+  // const value = useMemo(() => {}, []);
   const [state, dispatch] = useReducer(reducer, initialState);
 
   return (

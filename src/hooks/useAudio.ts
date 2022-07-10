@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 
 const useAudio = (url: string): [boolean, () => void] => {
-  const audio = useRef(new Audio(url));
+  const audio = useRef<HTMLAudioElement>(new Audio(url));
   const [playing, setPlaying] = useState(false);
   const isReady = useRef(false);
 

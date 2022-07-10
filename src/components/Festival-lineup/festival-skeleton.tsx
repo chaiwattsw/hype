@@ -1,6 +1,4 @@
-import React from "react";
-
-const FestivalSkeleton: React.FC = () => {
+const FestivalSkeleton = () => {
   return (
     <div className="animate-pulse flex justify-center items-center flex-col w-full">
       <div className="bg-slate-200 px-4 py-1 rounded-2xl w-20 h-8 mb-4"></div>

@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import { useRef } from "react";
 import generateImage from "../../utils/generateImage";
 import { durationString } from "../../constants";
 import { TopArtists } from "types";
@@ -8,8 +8,8 @@ interface ShareTopArtists {
   duration: string;
 }
 
-const ShareTopArtists: React.FC<ShareTopArtists> = ({ artists, duration }) => {
-  const componentRef = useRef<HTMLInputElement | null>(null);
+const ShareTopArtists = ({ artists, duration }: ShareTopArtists) => {
+  const componentRef = useRef<HTMLDivElement | null>(null);
 
   return (
     <>

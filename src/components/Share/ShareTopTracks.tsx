@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import { useRef } from "react";
 import generateImage from "utils/generateImage";
 import { durationString } from "../../constants";
 import { Tracks } from "types";
@@ -8,11 +8,8 @@ interface ShareTopTracksProps {
   duration: string;
 }
 
-const ShareTopTracks: React.FC<ShareTopTracksProps> = ({
-  tracks,
-  duration,
-}) => {
-  const componentRef = useRef<HTMLInputElement | null>(null);
+const ShareTopTracks = ({ tracks, duration }: ShareTopTracksProps) => {
+  const componentRef = useRef<HTMLDivElement | null>(null);
   return (
     <>
       <div

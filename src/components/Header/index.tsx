@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useAuth, useProfile } from "hooks";
 import { XIcon, MenuIcon, LogoutIcon } from "@heroicons/react/outline";
 
-const Header: React.FC = () => {
+const Header = () => {
   const [toggle, setToggle] = useState<boolean>(false);
   const { data: profile } = useProfile();
   const { dispatch } = useAuth();

@@ -18,7 +18,7 @@ const generateImage = async (
     scale: 2,
     onclone: (doc) => {
       if (isShareElement) {
-        doc.getElementById(elementId)!.style.display = "block";
+        (doc.getElementById(elementId) as HTMLElement).style.display = "block";
         return;
       }
       (doc.getElementById(elementId) as HTMLElement).style.width = "660px";

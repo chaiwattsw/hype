@@ -1,22 +1,18 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Toaster } from "react-hot-toast";
 import toast from "react-hot-toast";
 import axios from "axios";
-import useAuth from "../../hooks/useAuth";
-import useRecommendations from "../../hooks/useRecommendations";
+import { useAudio, useRecommendation, useAuth } from "hooks";
 import RecommendedContainer from "./RecommendedContainer";
-import RecommendedItems from "./RecommendedItems";
-import RecommendedSkeleton from "./RecommendedSkeleton";
-import useAudio from "hooks/useAudio";
+import RecommendedItem from "./RecommendedItem";
 
-const Recommended: React.FC = () => {
+const Recommended = () => {
   const {
     state: { accessToken },
   } = useAuth();
   const [likedSongId, setLikedSongId] = useState<string[]>([]);
-  const [currentSong, setCurrentSong] = useState<string | null>(null);
-  const { data, isLoading } = useRecommendations();
-  const { items: tracks, seeds } = data || {};
+  const [currentSong, setCurrentSong] = useState<string>("");
+  const { data: recommendation } = useRecommendation();
   const [playing, toggle] = useAudio(currentSong);
 
   const addSongToLibrary = async (songId: string) => {
@@ -45,7 +41,7 @@ const Recommended: React.FC = () => {
     }
   };
 
-  const handlePlay = (url: string | null) => {
+  const handlePlay = (url: string) => {
     setCurrentSong(url);
     toggle();
   };
@@ -62,30 +58,26 @@ const Recommended: React.FC = () => {
   };
 
   return (
-    <RecommendedContainer tracks={seeds}>
+    <RecommendedContainer tracks={recommendation.seeds}>
       <Toaster />
-      {!isLoading ? (
-        tracks?.map((track) => {
-          const isLiked = likedSongId.some((item) => item === track.id);
-          return (
-            <RecommendedItems
-              key={track.id}
-              id={track.id}
-              track={track.name}
-              artists={track.artists}
-              src={track.preview_url}
-              img={track.album.images[1].url}
-              href={track.external_urls.spotify}
-              onPlay={handlePlay}
-              onClickSong={handleLikedSong}
-              isLiked={isLiked}
-              isPlaying={playing}
-            />
-          );
-        })
-      ) : (
-        <RecommendedSkeleton />
-      )}
+      {recommendation.tracks?.map((track) => {
+        const isLiked = likedSongId.some((item) => item === track.id);
+        return (
+          <RecommendedItem
+            key={track.id}
+            id={track.id}
+            track={track.name}
+            artists={track.artists}
+            src={track.preview_url}
+            img={track.album.images[1].url}
+            href={track.external_urls.spotify}
+            onPlay={handlePlay}
+            onClickSong={handleLikedSong}
+            isLiked={isLiked}
+            isPlaying={playing}
+          />
+        );
+      })}
     </RecommendedContainer>
   );
 };

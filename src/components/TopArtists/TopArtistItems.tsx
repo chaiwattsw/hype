@@ -1,5 +1,3 @@
-import React from "react";
-
 interface TopArtistItemsProps {
   artistIdx: number;
   img: string;
@@ -7,12 +5,12 @@ interface TopArtistItemsProps {
   href: string;
 }
 
-const TopArtistItems: React.FC<TopArtistItemsProps> = ({
+const TopArtistItems = ({
   name,
   img,
   href,
   artistIdx,
-}) => {
+}: TopArtistItemsProps) => {
   return (
     <div className="flex flex-row justify-start items-center gap-6">
       <span className="font-semibold w-3">#{artistIdx + 1}</span>

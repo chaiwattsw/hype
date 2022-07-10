@@ -1,4 +1,3 @@
-import React from "react";
 import ArtistLink from "../ArtistLink";
 
 interface TopTrackItemsProps {
@@ -9,13 +8,13 @@ interface TopTrackItemsProps {
   artists: { id: string; name: string; external_urls: { spotify: string } }[];
 }
 
-const TopTrackItems: React.FC<TopTrackItemsProps> = ({
+const TopTrackItems = ({
   name,
   href,
   img,
   artists,
   trackIdx,
-}) => {
+}: TopTrackItemsProps) => {
   return (
     <div className="flex flex-row items-center justify-start gap-6">
       <span className="font-semibold w-3">#{trackIdx + 1}</span>

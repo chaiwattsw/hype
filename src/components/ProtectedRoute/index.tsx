@@ -1,9 +1,8 @@
-import React from "react";
 import { Outlet } from "react-router-dom";
-import useAuth from "../../hooks/useAuth";
+import { useAuth } from "hooks";
 import Login from "../Login";
 
-const ProtectedRoute: React.FC = () => {
+const ProtectedRoute = () => {
   const { state } = useAuth();
 
   if (!state?.accessToken) {

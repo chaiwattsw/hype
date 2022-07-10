@@ -1,20 +1,13 @@
-import React, { ReactNode, useRef } from "react";
-import generateImage from "../../utils/generateImage";
-import { getTodayDate } from "../../utils/getTodayDate";
-
-interface ArtistProps {
-  id: string;
-  external_urls: { spotify: string };
-  images: { url: string }[];
-  name: string;
-}
+import { useRef } from "react";
+import generateImage from "utils/generateImage";
+import { getTodayDate } from "utils/getTodayDate";
+import { TopArtists } from "types";
 
 interface FestivalPosterProps {
-  artists: ArtistProps[];
-  children?: ReactNode;
+  artists: TopArtists[];
 }
 
-const FestivalPoster: React.FC<FestivalPosterProps> = ({ artists }) => {
+const FestivalPoster = ({ artists }: FestivalPosterProps) => {
   const componentRef = useRef<HTMLDivElement>(null);
   const today = getTodayDate().toUpperCase();
 

@@ -1,11 +1,11 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useTopTracks } from "hooks";
 import ShareTopTracks from "../Share/ShareTopTracks";
 import TopItemsContainer from "../TopItemsContainer";
 import TopItemsSkeleton from "../TopItemsSkeleton";
 import TopTrackItems from "./TopTrackItems";
 
-const TopTracks: React.FC = () => {
+const TopTracks = () => {
   const [duration, setDuration] = useState<string>("short_term");
   const { data: tracks, isLoading } = useTopTracks(duration);
 

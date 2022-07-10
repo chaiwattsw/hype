@@ -1,6 +1,4 @@
-import React from "react";
-
-const TopItemsSkeleton: React.FC<{ rounded?: boolean }> = ({ rounded }) => {
+const TopItemsSkeleton = ({ rounded }: { rounded?: boolean }) => {
   return (
     <div className="w-full flex gap-6 flex-col">
       {[...Array(10)].map((_, idx) => (
