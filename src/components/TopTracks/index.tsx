@@ -1,16 +1,13 @@
 import React, { useState } from "react";
-import ShareTopTracks from "../../components/Share/ShareTopTracks";
-import useSpotify from "../../hooks/useSpotify";
+import { useTopTracks } from "hooks";
+import ShareTopTracks from "../Share/ShareTopTracks";
 import TopItemsContainer from "../TopItemsContainer";
 import TopItemsSkeleton from "../TopItemsSkeleton";
 import TopTrackItems from "./TopTrackItems";
 
 const TopTracks: React.FC = () => {
   const [duration, setDuration] = useState<string>("short_term");
-  const { data, isLoading } = useSpotify(
-    `https://api.spotify.com/v1/me/top/tracks?time_range=${duration}&limit=10`
-  );
-  const { items: tracks } = data || {};
+  const { data: tracks, isLoading } = useTopTracks(duration);
 
   return (
     <TopItemsContainer
@@ -18,7 +15,7 @@ const TopTracks: React.FC = () => {
       duration={duration}
       setDuration={setDuration}
     >
-      {!isLoading ? (
+      {!isLoading && tracks ? (
         <>
           <ShareTopTracks tracks={tracks} duration={duration} />
           <div className="flex flex-row">
