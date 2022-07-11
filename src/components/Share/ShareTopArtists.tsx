@@ -1,25 +1,15 @@
-import React, { ReactNode, useRef } from "react";
+import { useRef } from "react";
 import generateImage from "../../utils/generateImage";
 import { durationString } from "../../constants";
+import { TopArtists } from "types";
 
-interface ArtistProps {
-  id: string;
-  external_urls: { spotify: string };
-  images: { url: string }[];
-  name: string;
+interface ShareTopArtists {
+  artists: TopArtists[];
+  duration: keyof typeof durationString;
 }
 
-interface ShareTopArtistsProps {
-  artists: ArtistProps[];
-  duration: string;
-  children?: ReactNode;
-}
-
-const ShareTopArtists: React.FC<ShareTopArtistsProps> = ({
-  artists,
-  duration,
-}) => {
-  const componentRef = useRef<HTMLInputElement | null>(null);
+const ShareTopArtists = ({ artists, duration }: ShareTopArtists) => {
+  const componentRef = useRef<HTMLDivElement | null>(null);
 
   return (
     <>

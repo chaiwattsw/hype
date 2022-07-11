@@ -1,16 +1,19 @@
-import React, { useEffect } from "react";
-import { Routes, Route, useSearchParams } from "react-router-dom";
+import { useEffect, lazy, Suspense } from "react";
+import { Routes, Route, useSearchParams, Navigate } from "react-router-dom";
 import axios from "axios";
 import useAuth from "./hooks/useAuth";
-import Home from "./components/Home";
 import Layout from "./components/Layout";
 import ProtectedRoute from "./components/ProtectedRoute";
-import Recommended from "./components/Recommended";
-import FestivalLineup from "./components/Festival-lineup";
+import RecommendedSkeleton from "components/Recommended/RecommendedSkeleton";
+import FestivalSkeleton from "components/Festival-lineup/festival-skeleton";
+import Loader from "components/Loader";
+
+const Top = lazy(() => import("./components/Top"));
+const Recommended = lazy(() => import("./components/Recommended"));
+const FestivalLineup = lazy(() => import("./components/Festival-lineup"));
 
 function App() {
-  const { state, dispatch } = useAuth();
-  const { refreshToken, expiresIn } = state || {};
+  const { dispatch } = useAuth();
   const [searchParams, setSearchParams] = useSearchParams();
 
   useEffect(() => {
@@ -29,39 +32,42 @@ function App() {
         expiresIn: searchParams.get("expires_in"),
       };
       dispatch({ type: "LOG_IN", payload: token });
+      window.localStorage.setItem("hype_client_token", token.accessToken ?? "");
+      window.localStorage.setItem(
+        "hype_refresh_token",
+        token.refreshToken ?? ""
+      );
       setSearchParams({});
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  // useEffect(() => {
-  //   if (!state.refreshToken || !state.expiresIn) return;
-  //   const expires_time = 3600 * 1000; // 1 hour
-  //   let interval = setInterval(() => {
-  //     axios
-  //       .post("http://localhost:8888/refresh_token", { refreshToken })
-  //       .then((res) => {
-  //         dispatch({ type: "REFRESH", payload: res.data });
-  //       })
-  //       .catch((err) => {
-  //         console.error(err);
-  //       });
-  //   }, expires_time);
-  //   return () => clearInterval(interval);
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, [state.accessToken]);
+  }, [dispatch, searchParams, setSearchParams]);
 
   return (
-    <Routes>
-      <Route element={<ProtectedRoute />}>
-        <Route path="/" element={<Layout />}>
-          <Route path="/top" element={<Home />} />
-          <Route path="recommendations" element={<Recommended />} />
-          <Route path="/" element={<FestivalLineup />} />
+    <Suspense fallback={<Loader />}>
+      <Routes>
+        <Route element={<ProtectedRoute />}>
+          <Route path="/" element={<Layout />}>
+            <Route path="/top" element={<Top />} />
+            <Route
+              path="recommendations"
+              element={
+                <Suspense fallback={<RecommendedSkeleton />}>
+                  <Recommended />
+                </Suspense>
+              }
+            />
+            <Route
+              path="/"
+              element={
+                <Suspense fallback={<FestivalSkeleton />}>
+                  <FestivalLineup />
+                </Suspense>
+              }
+            />
+          </Route>
         </Route>
-      </Route>
-      <Route path="*" element={<div>Page not found</div>} />
-    </Routes>
+        <Route path="*" element={<Navigate replace to="/" />} />
+      </Routes>
+    </Suspense>
   );
 }
 

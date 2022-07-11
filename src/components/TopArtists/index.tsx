@@ -1,16 +1,14 @@
-import React, { useState } from "react";
+import { useState } from "react";
+import { useTopArtists } from "hooks";
 import ShareTopArtists from "../Share/ShareTopArtists";
-import useSpotify from "../../hooks/useSpotify";
 import TopItemsContainer from "../TopItemsContainer";
 import TopItemsSkeleton from "../TopItemsSkeleton";
 import TopArtistItems from "./TopArtistItems";
+import { DurationState } from "types";
 
 const TopArtists = () => {
-  const [duration, setDuration] = useState("short_term");
-  const { data, isLoading } = useSpotify(
-    `https://api.spotify.com/v1/me/top/artists?time_range=${duration}&limit=10`
-  );
-  const { items: artists } = data || {};
+  const [duration, setDuration] = useState<DurationState>("short_term");
+  const { data: artists, isLoading } = useTopArtists(duration, "10");
 
   return (
     <TopItemsContainer
@@ -18,12 +16,12 @@ const TopArtists = () => {
       duration={duration}
       setDuration={setDuration}
     >
-      {!isLoading ? (
+      {!isLoading && artists ? (
         <>
           <ShareTopArtists artists={artists} duration={duration} />
           <div className="flex flex-row">
             <div className="flex flex-col w-full md:w-1/2 gap-6">
-              {artists.map((artist, artistIdx: number) => (
+              {artists.map((artist, artistIdx) => (
                 <TopArtistItems
                   artistIdx={artistIdx}
                   key={artist.id}

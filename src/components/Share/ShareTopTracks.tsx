@@ -1,31 +1,15 @@
-import React, { useRef } from "react";
-import generateImage from "../../utils/generateImage";
+import { useRef } from "react";
+import generateImage from "utils/generateImage";
 import { durationString } from "../../constants";
-
-interface ArtistProps {
-  id: string;
-  external_urls: { spotify: string };
-  images: { url: string }[];
-  name: string;
-}
-
-interface TrackProps {
-  id: string;
-  album: { images: { url: string }[] };
-  name: string;
-  artists: ArtistProps[];
-}
+import { Tracks } from "types";
 
 interface ShareTopTracksProps {
-  tracks: TrackProps[];
-  duration: string;
+  tracks: Tracks[];
+  duration: keyof typeof durationString;
 }
 
-const ShareTopTracks: React.FC<ShareTopTracksProps> = ({
-  tracks,
-  duration,
-}) => {
-  const componentRef = useRef<HTMLInputElement | null>(null);
+const ShareTopTracks = ({ tracks, duration }: ShareTopTracksProps) => {
+  const componentRef = useRef<HTMLDivElement | null>(null);
   return (
     <>
       <div

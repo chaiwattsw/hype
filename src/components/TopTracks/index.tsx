@@ -1,24 +1,23 @@
-import React, { useState } from "react";
-import ShareTopTracks from "../../components/Share/ShareTopTracks";
-import useSpotify from "../../hooks/useSpotify";
-import TopItemsContainer from "../TopItemsContainer";
+import { useState } from "react";
+import { useTopTracks } from "hooks";
+import ShareTopTracks from "../Share/ShareTopTracks";
 import TopItemsSkeleton from "../TopItemsSkeleton";
 import TopTrackItems from "./TopTrackItems";
+import TopItemsDuration from "components/TopItemsDuration";
+import { DurationState } from "types";
 
-const TopTracks: React.FC = () => {
-  const [duration, setDuration] = useState<string>("short_term");
-  const { data, isLoading } = useSpotify(
-    `https://api.spotify.com/v1/me/top/tracks?time_range=${duration}&limit=10`
-  );
-  const { items: tracks } = data || {};
+const TopTracks = () => {
+  const [duration, setDuration] = useState<DurationState>("short_term");
+  const { data: tracks, isLoading } = useTopTracks(duration);
 
   return (
-    <TopItemsContainer
-      title="Top Tracks"
-      duration={duration}
-      setDuration={setDuration}
-    >
-      {!isLoading ? (
+    <div className="w-full flex flex-col gap-6 my-8">
+      <TopItemsDuration
+        title="Top Tracks"
+        duration={duration}
+        setDuration={setDuration}
+      />
+      {!isLoading && tracks ? (
         <>
           <ShareTopTracks tracks={tracks} duration={duration} />
           <div className="flex flex-row">
@@ -52,7 +51,7 @@ const TopTracks: React.FC = () => {
                 </div>
                 <div className="w-32 h-32 absolute mx-auto my-auto top-0 bottom-0 right-20 z-10 shrink-0 md:w-36 md:h-36">
                   <img
-                    src={tracks[2].album?.images[1].url}
+                    src={tracks[2].album.images[1].url}
                     alt={tracks[2].name}
                     className="rounded-lg shadow-2xl w-32 h-32 md:w-36 md:h-36"
                   />
@@ -64,7 +63,7 @@ const TopTracks: React.FC = () => {
       ) : (
         <TopItemsSkeleton />
       )}
-    </TopItemsContainer>
+    </div>
   );
 };
 

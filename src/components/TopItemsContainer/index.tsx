@@ -1,18 +1,18 @@
-import React, { ReactNode } from "react";
+import { PropsWithChildren } from "react";
+import { setDurationState } from "types";
 
 interface TopItemsContainerProps {
   title: string;
   duration: string;
-  setDuration: (term: string) => void;
-  children: ReactNode;
+  setDuration: setDurationState;
 }
 
-const TopItemsContainer: React.FC<TopItemsContainerProps> = ({
+const TopItemsContainer = ({
   title,
   duration,
   setDuration,
   children,
-}) => {
+}: PropsWithChildren<TopItemsContainerProps>) => {
   const shortTerm = () => {
     setDuration("short_term");
   };

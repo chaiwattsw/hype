@@ -1,12 +1,12 @@
 import { useState, useEffect, useRef } from "react";
 
-const useAudio = (url: string): [boolean, () => void] => {
-  const audio = useRef(new Audio(url));
+const useAudio = (url: string) => {
+  const audio = useRef<HTMLAudioElement>(new Audio(url));
   const [playing, setPlaying] = useState(false);
   const isReady = useRef(false);
 
   const toggle = () => {
-    setPlaying(!playing);
+    setPlaying((prevState) => !prevState);
     if (playing && audio.current.currentSrc === url) {
       audio.current.pause();
       return;
@@ -18,6 +18,7 @@ const useAudio = (url: string): [boolean, () => void] => {
   useEffect(() => {
     audio.current.pause();
     return () => {
+      setPlaying(false);
       audio.current.pause();
     };
   }, []);
@@ -29,7 +30,6 @@ const useAudio = (url: string): [boolean, () => void] => {
   // Handle setup when changing tracks
   useEffect(() => {
     audio.current.pause();
-
     audio.current = new Audio(url);
 
     if (isReady.current) {
@@ -42,7 +42,7 @@ const useAudio = (url: string): [boolean, () => void] => {
     }
   }, [url]);
 
-  return [playing, toggle];
+  return [playing, toggle] as const;
 };
 
 export default useAudio;
