@@ -5,7 +5,7 @@ import { Tracks } from "types";
 
 interface ShareTopTracksProps {
   tracks: Tracks[];
-  duration: string;
+  duration: keyof typeof durationString;
 }
 
 const ShareTopTracks = ({ tracks, duration }: ShareTopTracksProps) => {

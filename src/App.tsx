@@ -37,19 +37,12 @@ function App() {
   }, [dispatch, searchParams, setSearchParams]);
 
   return (
-    <Suspense fallback={<div>Loading...</div>}>
+    <Suspense fallback={<div>loading...</div>}>
       <Routes>
         <Route element={<ProtectedRoute />}>
           <Route path="/" element={<Layout />}>
             <Route path="/top" element={<Top />} />
-            <Route
-              path="recommendations"
-              element={
-                <Suspense fallback={<RecommendedSkeleton />}>
-                  <Recommended />
-                </Suspense>
-              }
-            />
+            <Route path="recommendations" element={<RecommendedSkeleton />} />
             <Route
               path="/"
               element={

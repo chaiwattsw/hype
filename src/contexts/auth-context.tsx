@@ -12,7 +12,7 @@ interface Action {
 }
 
 const initialState = {
-  accessToken: "",
+  accessToken: window.localStorage.getItem("hype_client_token") ?? "",
   refreshToken: "",
   expiresIn: "",
 };

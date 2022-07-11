@@ -1,9 +1,10 @@
 import { PropsWithChildren } from "react";
+import { setDurationState } from "types";
 
 interface TopItemsContainerProps {
   title: string;
   duration: string;
-  setDuration: (term: string) => void;
+  setDuration: setDurationState;
 }
 
 const TopItemsContainer = ({

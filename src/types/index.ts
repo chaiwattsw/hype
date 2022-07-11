@@ -108,6 +108,9 @@ interface TopArtists {
   uri: string;
 }
 
+type DurationState = "short_term" | "medium_term" | "long_term";
+type setDurationState = React.Dispatch<React.SetStateAction<DurationState>>;
+
 export {
   Artists,
   Image,
@@ -117,4 +120,6 @@ export {
   Recommendation,
   Profile,
   TopArtists,
+  DurationState,
+  setDurationState,
 };

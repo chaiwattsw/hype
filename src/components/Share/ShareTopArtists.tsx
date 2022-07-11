@@ -5,7 +5,7 @@ import { TopArtists } from "types";
 
 interface ShareTopArtists {
   artists: TopArtists[];
-  duration: string;
+  duration: keyof typeof durationString;
 }
 
 const ShareTopArtists = ({ artists, duration }: ShareTopArtists) => {

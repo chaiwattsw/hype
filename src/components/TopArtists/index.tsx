@@ -4,9 +4,10 @@ import ShareTopArtists from "../Share/ShareTopArtists";
 import TopItemsContainer from "../TopItemsContainer";
 import TopItemsSkeleton from "../TopItemsSkeleton";
 import TopArtistItems from "./TopArtistItems";
+import { DurationState } from "types";
 
 const TopArtists = () => {
-  const [duration, setDuration] = useState("short_term");
+  const [duration, setDuration] = useState<DurationState>("short_term");
   const { data: artists, isLoading } = useTopArtists(duration, "10");
 
   return (
