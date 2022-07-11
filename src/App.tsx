@@ -12,7 +12,7 @@ const Recommended = lazy(() => import("./components/Recommended"));
 const FestivalLineup = lazy(() => import("./components/Festival-lineup"));
 
 function App() {
-  const { state, dispatch } = useAuth();
+  const { dispatch } = useAuth();
   const [searchParams, setSearchParams] = useSearchParams();
 
   useEffect(() => {
@@ -32,6 +32,10 @@ function App() {
       };
       dispatch({ type: "LOG_IN", payload: token });
       window.localStorage.setItem("hype_client_token", token.accessToken ?? "");
+      window.localStorage.setItem(
+        "hype_refresh_token",
+        token.refreshToken ?? ""
+      );
       setSearchParams({});
     }
   }, [dispatch, searchParams, setSearchParams]);

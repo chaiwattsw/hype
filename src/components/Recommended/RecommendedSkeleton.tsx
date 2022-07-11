@@ -5,7 +5,7 @@ const RecommendedSkeleton = () => {
         <h1 className="text-4xl md:text-5xl font-bold text-white [text-shadow:-3px_3px_0_#000] mb-4">
           Recommendations
         </h1>
-        <div className="h-4 bg-slate-200 rounded w-1/2"></div>
+        <div className="animate-pulse h-4 bg-slate-200 rounded w-1/2"></div>
       </div>
       <div className="flex flex-row flex-wrap gap-16">
         {[...Array(20)].map((_, idx) => (

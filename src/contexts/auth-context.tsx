@@ -12,7 +12,7 @@ interface Action {
 }
 
 const initialState = {
-  accessToken: window.localStorage.getItem("hype_client_token") ?? "",
+  accessToken: "",
   refreshToken: "",
   expiresIn: "",
 };
@@ -27,6 +27,8 @@ const reducer = (state: State, action: Action) => {
         expiresIn: action.payload.expiresIn,
       };
     case "LOG_OUT":
+      window.localStorage.removeItem("hype_client_token");
+      window.localStorage.removeItem("hype_refresh_token");
       return {
         accessToken: "",
         refreshToken: "",
@@ -55,12 +57,10 @@ const AuthContext = createContext<{
   state: State;
   dispatch: React.Dispatch<any>;
 }>({ state: initialState, dispatch: () => null });
+
 AuthContext.displayName = "AuthContext";
 
-export const AuthProvider = ({ children }: { children?: React.ReactNode }) => {
-  // const login = useCallback(() => {}, []);
-  // const logout = useCallback(() => {}, []);
-  // const value = useMemo(() => {}, []);
+export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
   return (
