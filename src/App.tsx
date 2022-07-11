@@ -42,7 +42,14 @@ function App() {
         <Route element={<ProtectedRoute />}>
           <Route path="/" element={<Layout />}>
             <Route path="/top" element={<Top />} />
-            <Route path="recommendations" element={<RecommendedSkeleton />} />
+            <Route
+              path="recommendations"
+              element={
+                <Suspense fallback={<RecommendedSkeleton />}>
+                  <Recommended />
+                </Suspense>
+              }
+            />
             <Route
               path="/"
               element={
