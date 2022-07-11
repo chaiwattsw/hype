@@ -6,6 +6,7 @@ import Layout from "./components/Layout";
 import ProtectedRoute from "./components/ProtectedRoute";
 import RecommendedSkeleton from "components/Recommended/RecommendedSkeleton";
 import FestivalSkeleton from "components/Festival-lineup/festival-skeleton";
+import Loader from "components/Loader";
 
 const Top = lazy(() => import("./components/Top"));
 const Recommended = lazy(() => import("./components/Recommended"));
@@ -41,7 +42,7 @@ function App() {
   }, [dispatch, searchParams, setSearchParams]);
 
   return (
-    <Suspense fallback={<div>loading...</div>}>
+    <Suspense fallback={<Loader />}>
       <Routes>
         <Route element={<ProtectedRoute />}>
           <Route path="/" element={<Layout />}>
