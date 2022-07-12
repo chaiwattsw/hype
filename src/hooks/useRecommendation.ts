@@ -4,7 +4,7 @@ import { Recommendation } from "types";
 
 const useRecommendation = () => {
   const topTracksconfig = { method: "get", url: "/me/top/tracks?limit=5" };
-  const { data: topTracks } = useQuery(["5-top-track", topTracksconfig], () =>
+  const { data: topTracks } = useQuery(["5_TOP_TRACKS", topTracksconfig], () =>
     fetcher(topTracksconfig)
   );
   const topTracksId = topTracks?.items?.map(
@@ -17,7 +17,7 @@ const useRecommendation = () => {
   const {
     data: recommendation,
     isLoading,
-    error,
+    isError,
   } = useQuery<Recommendation>(
     ["recommendation", recommendationConfig],
     () => fetcher(recommendationConfig),
@@ -29,7 +29,7 @@ const useRecommendation = () => {
       seeds: topTracks?.items,
     },
     isLoading,
-    error,
+    isError,
   };
 };
 
