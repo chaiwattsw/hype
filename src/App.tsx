@@ -14,7 +14,7 @@ const Recommended = lazy(() => import("./components/Recommended"));
 const FestivalLineup = lazy(() => import("./components/Festival-lineup"));
 
 function App() {
-  const { state, dispatch } = useAuth();
+  const { dispatch } = useAuth();
   const [searchParams, setSearchParams] = useSearchParams();
   const callbackURL = process.env.REACT_APP_CALLBACK as string;
 
@@ -35,7 +35,7 @@ function App() {
           expiresIn: searchParams.get("expires_in"),
         };
         Cookies.set("spotify_auth_state", token.accessToken ?? "", {
-          sameSite: "strict",
+          path: "",
         });
         dispatch({ type: "LOG_IN", payload: token });
         setSearchParams({});
