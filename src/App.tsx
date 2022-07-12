@@ -14,29 +14,34 @@ const Recommended = lazy(() => import("./components/Recommended"));
 const FestivalLineup = lazy(() => import("./components/Festival-lineup"));
 
 function App() {
-  const { dispatch } = useAuth();
+  const { state, dispatch } = useAuth();
   const [searchParams, setSearchParams] = useSearchParams();
   const callbackURL = process.env.REACT_APP_CALLBACK as string;
 
   useEffect(() => {
-    if (searchParams.has("code") && searchParams.has("state")) {
-      const code = searchParams.get("code");
-      const stateParam = searchParams.get("state");
-      axios.post(callbackURL, {
-        code: code,
-        stateParam,
-      });
+    async function handleLogin() {
+      if (searchParams.has("code") && searchParams.has("state")) {
+        const code = searchParams.get("code");
+        const stateParam = searchParams.get("state");
+        await axios.post(callbackURL, {
+          code: code,
+          stateParam,
+        });
+      }
+      if (searchParams.has("access_token")) {
+        const token = {
+          accessToken: searchParams.get("access_token"),
+          refreshToken: searchParams.get("refresh_token"),
+          expiresIn: searchParams.get("expires_in"),
+        };
+        Cookies.set("spotify_auth_state", token.accessToken ?? "", {
+          sameSite: "strict",
+        });
+        dispatch({ type: "LOG_IN", payload: token });
+        setSearchParams({});
+      }
     }
-    if (searchParams.has("access_token")) {
-      const token = {
-        accessToken: searchParams.get("access_token"),
-        refreshToken: searchParams.get("refresh_token"),
-        expiresIn: searchParams.get("expires_in"),
-      };
-      Cookies.set("spotify_auth_state", token.accessToken ?? "");
-      dispatch({ type: "LOG_IN", payload: token });
-      setSearchParams({});
-    }
+    handleLogin();
   }, [dispatch, searchParams, setSearchParams, callbackURL]);
 
   return (
