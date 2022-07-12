@@ -2,8 +2,12 @@ import { useQuery } from "react-query";
 import fetcher from "utils/fetcher";
 import { Recommendation } from "types";
 
-const useRecommendation = () => {
-  const topTracksconfig = { method: "get", url: "/me/top/tracks?limit=5" };
+const useRecommendation = (token: string) => {
+  const topTracksconfig = {
+    method: "get",
+    url: "/me/top/tracks?limit=5",
+    token,
+  };
   const { data: topTracks } = useQuery(["5_TOP_TRACKS", topTracksconfig], () =>
     fetcher(topTracksconfig)
   );
@@ -13,6 +17,7 @@ const useRecommendation = () => {
   const recommendationConfig = {
     method: "get",
     url: `/recommendations?limit=20&seed_tracks=${topTracksId}`,
+    token,
   };
   const {
     data: recommendation,

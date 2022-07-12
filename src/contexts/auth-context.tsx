@@ -2,9 +2,9 @@ import Cookies from "js-cookie";
 import React, { useContext, createContext, useReducer } from "react";
 
 interface State {
-  accessToken: string | undefined;
-  refreshToken: string | undefined;
-  expiresIn: string | undefined;
+  accessToken: string;
+  refreshToken: string;
+  expiresIn: string;
 }
 
 interface Action {

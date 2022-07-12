@@ -2,8 +2,8 @@ import { useQuery } from "react-query";
 import fetcher from "utils/fetcher";
 import { Profile } from "types";
 
-const useProfile = () => {
-  const config = { method: "get", url: "/me" };
+const useProfile = (token: string) => {
+  const config = { method: "get", url: "/me", token };
   const { data, isLoading, error } = useQuery<Profile, Error>(
     ["profile", config],
     () => fetcher(config)

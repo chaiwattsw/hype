@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useTopArtists } from "hooks";
+import { useAuth, useTopArtists } from "hooks";
 import ShareTopArtists from "../Share/ShareTopArtists";
 import TopItemsContainer from "../TopItemsContainer";
 import TopItemsSkeleton from "../TopItemsSkeleton";
@@ -8,7 +8,12 @@ import { DurationState } from "types";
 
 const TopArtists = () => {
   const [duration, setDuration] = useState<DurationState>("short_term");
-  const { data: artists, isLoading } = useTopArtists(duration, "10");
+  const { state } = useAuth();
+  const { data: artists, isLoading } = useTopArtists(
+    duration,
+    "10",
+    state.accessToken
+  );
 
   return (
     <TopItemsContainer

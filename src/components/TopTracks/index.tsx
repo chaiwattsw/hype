@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useTopTracks } from "hooks";
+import { useAuth, useTopTracks } from "hooks";
 import ShareTopTracks from "../Share/ShareTopTracks";
 import TopItemsSkeleton from "../TopItemsSkeleton";
 import TopTrackItems from "./TopTrackItems";
@@ -8,7 +8,8 @@ import { DurationState } from "types";
 
 const TopTracks = () => {
   const [duration, setDuration] = useState<DurationState>("short_term");
-  const { data: tracks, isLoading } = useTopTracks(duration);
+  const { state } = useAuth();
+  const { data: tracks, isLoading } = useTopTracks(duration, state.accessToken);
 
   return (
     <div className="w-full flex flex-col gap-6 my-8">

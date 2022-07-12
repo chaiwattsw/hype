@@ -5,8 +5,8 @@ import { XIcon, MenuIcon, LogoutIcon } from "@heroicons/react/outline";
 
 const Header = () => {
   const [toggle, setToggle] = useState<boolean>(false);
-  const { data: profile } = useProfile();
-  const { dispatch } = useAuth();
+  const { state, dispatch } = useAuth();
+  const { data: profile } = useProfile(state.accessToken);
 
   const handleToggle = () => setToggle((prevState) => !prevState);
   const handleLogOut = () => dispatch({ type: "LOG_OUT" });
@@ -108,7 +108,9 @@ const Header = () => {
                 >
                   {profile.display_name}
                 </a>
-                <div className="flex flex-col">Log out</div>
+                <div className="flex flex-col" onClick={handleLogOut}>
+                  Log out
+                </div>
               </>
             )}
           </div>
