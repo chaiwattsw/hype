@@ -7,6 +7,7 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import RecommendedSkeleton from "components/Recommended/RecommendedSkeleton";
 import FestivalSkeleton from "components/Festival-lineup/festival-skeleton";
 import Loader from "components/Loader";
+import Cookies from "js-cookie";
 
 const Top = lazy(() => import("./components/Top"));
 const Recommended = lazy(() => import("./components/Recommended"));
@@ -32,7 +33,7 @@ function App() {
         refreshToken: searchParams.get("refresh_token"),
         expiresIn: searchParams.get("expires_in"),
       };
-      localStorage.setItem("hype_access_token", token.accessToken ?? "");
+      Cookies.set("spotify_auth_state", token.accessToken ?? "");
       dispatch({ type: "LOG_IN", payload: token });
       setSearchParams({});
     }
