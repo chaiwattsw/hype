@@ -27,7 +27,7 @@ const reducer = (state: State, action: Action) => {
         expiresIn: action.payload.expiresIn,
       };
     case "LOG_OUT":
-      window.localStorage.clear();
+      localStorage.clear();
       return {
         accessToken: "",
         refreshToken: "",

@@ -18,30 +18,24 @@ function App() {
   const callbackURL = process.env.REACT_APP_CALLBACK as string;
 
   useEffect(() => {
-    async function handleLogin() {
-      if (searchParams.has("code") && searchParams.has("state")) {
-        const code = searchParams.get("code");
-        const stateParam = searchParams.get("state");
-        axios.post(callbackURL, {
-          code: code,
-          stateParam,
-        });
-      }
-      if (searchParams.has("access_token")) {
-        const token = {
-          accessToken: searchParams.get("access_token"),
-          refreshToken: searchParams.get("refresh_token"),
-          expiresIn: searchParams.get("expires_in"),
-        };
-        await window.localStorage.setItem(
-          "hype_access_token",
-          token.accessToken ?? ""
-        );
-        dispatch({ type: "LOG_IN", payload: token });
-        setSearchParams({});
-      }
+    if (searchParams.has("code") && searchParams.has("state")) {
+      const code = searchParams.get("code");
+      const stateParam = searchParams.get("state");
+      axios.post(callbackURL, {
+        code: code,
+        stateParam,
+      });
     }
-    handleLogin();
+    if (searchParams.has("access_token")) {
+      const token = {
+        accessToken: searchParams.get("access_token"),
+        refreshToken: searchParams.get("refresh_token"),
+        expiresIn: searchParams.get("expires_in"),
+      };
+      localStorage.setItem("hype_access_token", token.accessToken ?? "");
+      dispatch({ type: "LOG_IN", payload: token });
+      setSearchParams({});
+    }
   }, [dispatch, searchParams, setSearchParams, callbackURL]);
 
   return (
