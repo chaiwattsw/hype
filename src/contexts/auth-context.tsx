@@ -1,3 +1,4 @@
+import Cookies from "js-cookie";
 import React, { useContext, createContext, useReducer } from "react";
 
 interface State {
@@ -27,7 +28,7 @@ const reducer = (state: State, action: Action) => {
         expiresIn: action.payload.expiresIn,
       };
     case "LOG_OUT":
-      localStorage.clear();
+      Cookies.remove("spotify_auth_state");
       return {
         accessToken: "",
         refreshToken: "",
