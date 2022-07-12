@@ -15,31 +15,34 @@ const FestivalLineup = lazy(() => import("./components/Festival-lineup"));
 function App() {
   const { dispatch } = useAuth();
   const [searchParams, setSearchParams] = useSearchParams();
+  const callbackURL = process.env.REACT_APP_CALLBACK as string;
 
   useEffect(() => {
-    if (searchParams.has("code") && searchParams.has("state")) {
-      const code = searchParams.get("code");
-      const stateParam = searchParams.get("state");
-      axios.post("http://localhost:8888/callback", {
-        code: code,
-        stateParam,
-      });
+    async function handleLogin() {
+      if (searchParams.has("code") && searchParams.has("state")) {
+        const code = searchParams.get("code");
+        const stateParam = searchParams.get("state");
+        axios.post(callbackURL, {
+          code: code,
+          stateParam,
+        });
+      }
+      if (searchParams.has("access_token")) {
+        const token = {
+          accessToken: searchParams.get("access_token"),
+          refreshToken: searchParams.get("refresh_token"),
+          expiresIn: searchParams.get("expires_in"),
+        };
+        await window.localStorage.setItem(
+          "hype_access_token",
+          token.accessToken ?? ""
+        );
+        dispatch({ type: "LOG_IN", payload: token });
+        setSearchParams({});
+      }
     }
-    if (searchParams.has("access_token")) {
-      const token = {
-        accessToken: searchParams.get("access_token"),
-        refreshToken: searchParams.get("refresh_token"),
-        expiresIn: searchParams.get("expires_in"),
-      };
-      dispatch({ type: "LOG_IN", payload: token });
-      window.localStorage.setItem("hype_client_token", token.accessToken ?? "");
-      window.localStorage.setItem(
-        "hype_refresh_token",
-        token.refreshToken ?? ""
-      );
-      setSearchParams({});
-    }
-  }, [dispatch, searchParams, setSearchParams]);
+    handleLogin();
+  }, [dispatch, searchParams, setSearchParams, callbackURL]);
 
   return (
     <Suspense fallback={<Loader />}>

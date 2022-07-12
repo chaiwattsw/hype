@@ -27,8 +27,7 @@ const reducer = (state: State, action: Action) => {
         expiresIn: action.payload.expiresIn,
       };
     case "LOG_OUT":
-      window.localStorage.removeItem("hype_client_token");
-      window.localStorage.removeItem("hype_refresh_token");
+      window.localStorage.clear();
       return {
         accessToken: "",
         refreshToken: "",

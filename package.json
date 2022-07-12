@@ -21,7 +21,7 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "dev": "set REACT_APP_LOGIN_URL=http://localhost:8080/login && react-scripts start",
+    "dev": "set REACT_APP_LOGIN_URL=http://localhost:8080/login && set REACT_APP_CALLBACK=http://localhost:8080/callback && react-scripts start",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "jest",

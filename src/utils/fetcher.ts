@@ -2,11 +2,14 @@ import axios, { AxiosError, AxiosResponse } from "axios";
 
 const client = axios.create({
   baseURL: "https://api.spotify.com/v1",
-  headers: { "Content-Type": "application/json" },
 });
-
-const token = window.localStorage.getItem("hype_client_token");
-client.defaults.headers.common.Authorization = `Bearer ${token}`;
+client.interceptors.request.use((config) => {
+  const token = window.localStorage.getItem("hype_access_token");
+  if (config.headers) {
+    config.headers.Authorization = token ? `Bearer ${token}` : "";
+  }
+  return config;
+});
 
 async function fetcher(config: Record<string, unknown>) {
   const onSuccess = (response: AxiosResponse) => response.data;
