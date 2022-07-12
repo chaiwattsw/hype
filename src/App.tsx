@@ -34,9 +34,9 @@ function App() {
           refreshToken: searchParams.get("refresh_token"),
           expiresIn: searchParams.get("expires_in"),
         };
-        Cookies.set("spotify_auth_state", token.accessToken ?? "", {
-          path: "",
-        });
+        // Cookies.set("spotify_auth_state", token.accessToken ?? "", {
+        //   path: "",
+        // });
         dispatch({ type: "LOG_IN", payload: token });
         setSearchParams({});
       }

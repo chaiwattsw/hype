@@ -1,10 +1,13 @@
 import { Toaster } from "react-hot-toast";
-import { useRecommendation } from "hooks";
+import { useAuth, useRecommendation } from "hooks";
 import Seeds from "./Seeds";
 import RecommendedList from "./RecommendedList";
 
 const Recommended = () => {
-  const { data: recommendation, isError } = useRecommendation();
+  const { state } = useAuth();
+  const { data: recommendation, isError } = useRecommendation(
+    state.accessToken
+  );
 
   if (isError) {
     return (

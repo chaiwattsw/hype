@@ -2,10 +2,11 @@ import { useQuery } from "react-query";
 import fetcher from "utils/fetcher";
 import { TopArtists } from "types";
 
-const useTopArtists = (duration: string, limit: string) => {
+const useTopArtists = (duration: string, limit: string, token: string) => {
   const config = {
     method: "get",
     url: `/me/top/artists?time_range=${duration}&limit=${limit}`,
+    token,
   };
   const { data, isLoading, error } = useQuery<TopArtists[], Error>(
     ["TOP_ARTISTS", config],
