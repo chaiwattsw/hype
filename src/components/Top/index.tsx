@@ -1,7 +1,8 @@
-import { Suspense } from "react";
-import TopTracks from "../TopTracks";
-import TopArtists from "../TopArtists";
+import { lazy, Suspense } from "react";
 import TopItemsSkeleton from "components/TopItemsSkeleton";
+
+const TopTracks = lazy(() => import("../TopTracks"));
+const TopArtists = lazy(() => import("../TopArtists"));
 
 const Top = () => {
   return (
