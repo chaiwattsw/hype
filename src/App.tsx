@@ -8,6 +8,8 @@ import RecommendedSkeleton from "components/Recommended/RecommendedSkeleton";
 import FestivalSkeleton from "components/Festival-lineup/festival-skeleton";
 import Loader from "components/Loader";
 import Cookies from "js-cookie";
+import ErrorFallback from "components/ErrorFallback";
+import { ErrorBoundary } from "react-error-boundary";
 
 const Top = lazy(() => import("./components/Top"));
 const Recommended = lazy(() => import("./components/Recommended"));
@@ -45,32 +47,34 @@ function App() {
   }, [dispatch, searchParams, setSearchParams, callbackURL]);
 
   return (
-    <Suspense fallback={<Loader />}>
-      <Routes>
-        <Route element={<ProtectedRoute />}>
-          <Route path="/" element={<Layout />}>
-            <Route path="/top" element={<Top />} />
-            <Route
-              path="recommendations"
-              element={
-                <Suspense fallback={<RecommendedSkeleton />}>
-                  <Recommended />
-                </Suspense>
-              }
-            />
-            <Route
-              path="/"
-              element={
-                <Suspense fallback={<FestivalSkeleton />}>
-                  <FestivalLineup />
-                </Suspense>
-              }
-            />
+    <ErrorBoundary FallbackComponent={ErrorFallback}>
+      <Suspense fallback={<Loader />}>
+        <Routes>
+          <Route element={<ProtectedRoute />}>
+            <Route path="/" element={<Layout />}>
+              <Route path="/top" element={<Top />} />
+              <Route
+                path="recommendations"
+                element={
+                  <Suspense fallback={<RecommendedSkeleton />}>
+                    <Recommended />
+                  </Suspense>
+                }
+              />
+              <Route
+                path="/"
+                element={
+                  <Suspense fallback={<FestivalSkeleton />}>
+                    <FestivalLineup />
+                  </Suspense>
+                }
+              />
+            </Route>
           </Route>
-        </Route>
-        <Route path="*" element={<Navigate replace to="/" />} />
-      </Routes>
-    </Suspense>
+          <Route path="*" element={<Navigate replace to="/" />} />
+        </Routes>
+      </Suspense>
+    </ErrorBoundary>
   );
 }
 
